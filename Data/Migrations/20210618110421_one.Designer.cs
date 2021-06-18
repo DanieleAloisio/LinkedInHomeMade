@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210617212154_four")]
-    partial class four
+    [Migration("20210618110421_one")]
+    partial class one
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,7 +43,10 @@ namespace Data.Migrations
                     b.Property<DateTime?>("Fine")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("IdProfilo")
+                    b.Property<int>("IdProfilo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdTipoEsperienza")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Inizio")
@@ -73,12 +76,14 @@ namespace Data.Migrations
 
                     b.HasIndex("IdProfilo");
 
+                    b.HasIndex("IdTipoEsperienza");
+
                     b.ToTable("Esperienze");
                 });
 
             modelBuilder.Entity("Data_Models.Profilo", b =>
                 {
-                    b.Property<int>("IdProfilo")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -93,9 +98,24 @@ namespace Data.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("Informazioni")
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Mobile")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("NickName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -112,14 +132,14 @@ namespace Data.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("IdProfilo");
+                    b.HasKey("Id");
 
                     b.ToTable("Profilo");
                 });
 
             modelBuilder.Entity("Data_Models.TipoEsperienza", b =>
                 {
-                    b.Property<int>("IdTipoEsperienza")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -129,24 +149,9 @@ namespace Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("IdTipoEsperienza");
+                    b.HasKey("Id");
 
                     b.ToTable("TipoEsperienze");
-                });
-
-            modelBuilder.Entity("EsperienzaTipoEsperienza", b =>
-                {
-                    b.Property<int>("EsperienzeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TipoEsperienzeIdTipoEsperienza")
-                        .HasColumnType("int");
-
-                    b.HasKey("EsperienzeId", "TipoEsperienzeIdTipoEsperienza");
-
-                    b.HasIndex("TipoEsperienzeIdTipoEsperienza");
-
-                    b.ToTable("EsperienzaTipoEsperienza");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -348,25 +353,20 @@ namespace Data.Migrations
             modelBuilder.Entity("Data_Models.Esperienza", b =>
                 {
                     b.HasOne("Data_Models.Profilo", "Profilo")
-                        .WithMany()
-                        .HasForeignKey("IdProfilo");
+                        .WithMany("Esperienze")
+                        .HasForeignKey("IdProfilo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data_Models.TipoEsperienza", "TipoEsperienza")
+                        .WithMany("Esperienze")
+                        .HasForeignKey("IdTipoEsperienza")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Profilo");
-                });
 
-            modelBuilder.Entity("EsperienzaTipoEsperienza", b =>
-                {
-                    b.HasOne("Data_Models.Esperienza", null)
-                        .WithMany()
-                        .HasForeignKey("EsperienzeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Data_Models.TipoEsperienza", null)
-                        .WithMany()
-                        .HasForeignKey("TipoEsperienzeIdTipoEsperienza")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("TipoEsperienza");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -418,6 +418,16 @@ namespace Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Data_Models.Profilo", b =>
+                {
+                    b.Navigation("Esperienze");
+                });
+
+            modelBuilder.Entity("Data_Models.TipoEsperienza", b =>
+                {
+                    b.Navigation("Esperienze");
                 });
 #pragma warning restore 612, 618
         }

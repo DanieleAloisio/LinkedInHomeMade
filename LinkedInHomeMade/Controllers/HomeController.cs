@@ -21,7 +21,7 @@ namespace LinkedInHomeMade.Controllers
         {
             var prof = _context.Profili.Select(x => new ProfiloModel
             {
-                IdProfilo = x.IdProfilo,
+                IdProfilo = x.Id,
                 Nome = x.Nome,
                 Cognome = x.Cognome,
                 Informazioni = x.Informazioni,

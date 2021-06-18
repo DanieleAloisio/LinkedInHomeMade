@@ -11,10 +11,6 @@ namespace Data_Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        //Foreign key for Standard
-        [ForeignKey("IdProfilo")]
-        public Profilo Profilo { get; set; }
-
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
@@ -46,7 +42,14 @@ namespace Data_Models
         [StringLength(50)]
         public string Azienda { get; set; }
 
-        public ICollection<TipoEsperienza> TipoEsperienze { get; set; }
+        public int IdProfilo { get; set; }
+        //Foreign key for Standard
+        [ForeignKey("IdProfilo")]
+        public Profilo Profilo { get; set; }
+
+        public int IdTipoEsperienza { get; set; }
+        [ForeignKey("IdTipoEsperienza")]
+        public TipoEsperienza TipoEsperienza { get; set; }
 
 
     }

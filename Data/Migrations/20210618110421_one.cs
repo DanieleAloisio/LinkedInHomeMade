@@ -47,54 +47,37 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Esperienze",
+                name: "Profilo",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Inizio = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Fine = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Descrizione = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    Localita = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Istituto = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    TitoloStudio = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Corso = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Qualifica = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    TipoDiImpiego = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Azienda = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    IdProfilo = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Esperienze", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Profilo",
-                columns: table => new
-                {
-                    IdProfilo = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    NickName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Cognome = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Paese = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Citta = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Mobile = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Professione = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Informazioni = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Profilo", x => x.IdProfilo);
+                    table.PrimaryKey("PK_Profilo", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "TipoEsperienze",
                 columns: table => new
                 {
-                    IdTipoEsperienza = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TipoEsperienze", x => x.IdTipoEsperienza);
+                    table.PrimaryKey("PK_TipoEsperienze", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -204,26 +187,38 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EsperienzaTipoEsperienza",
+                name: "Esperienze",
                 columns: table => new
                 {
-                    EsperienzeId = table.Column<int>(type: "int", nullable: false),
-                    TipoEsperienzeIdTipoEsperienza = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Inizio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Fine = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Descrizione = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    Localita = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Istituto = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    TitoloStudio = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Corso = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Qualifica = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    TipoDiImpiego = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Azienda = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    IdProfilo = table.Column<int>(type: "int", nullable: false),
+                    IdTipoEsperienza = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EsperienzaTipoEsperienza", x => new { x.EsperienzeId, x.TipoEsperienzeIdTipoEsperienza });
+                    table.PrimaryKey("PK_Esperienze", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EsperienzaTipoEsperienza_Esperienze_EsperienzeId",
-                        column: x => x.EsperienzeId,
-                        principalTable: "Esperienze",
+                        name: "FK_Esperienze_Profilo_IdProfilo",
+                        column: x => x.IdProfilo,
+                        principalTable: "Profilo",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EsperienzaTipoEsperienza_TipoEsperienze_TipoEsperienzeIdTipoEsperienza",
-                        column: x => x.TipoEsperienzeIdTipoEsperienza,
+                        name: "FK_Esperienze_TipoEsperienze_IdTipoEsperienza",
+                        column: x => x.IdTipoEsperienza,
                         principalTable: "TipoEsperienze",
-                        principalColumn: "IdTipoEsperienza",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -267,9 +262,14 @@ namespace Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EsperienzaTipoEsperienza_TipoEsperienzeIdTipoEsperienza",
-                table: "EsperienzaTipoEsperienza",
-                column: "TipoEsperienzeIdTipoEsperienza");
+                name: "IX_Esperienze_IdProfilo",
+                table: "Esperienze",
+                column: "IdProfilo");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Esperienze_IdTipoEsperienza",
+                table: "Esperienze",
+                column: "IdTipoEsperienza");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -290,10 +290,7 @@ namespace Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "EsperienzaTipoEsperienza");
-
-            migrationBuilder.DropTable(
-                name: "Profilo");
+                name: "Esperienze");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -302,7 +299,7 @@ namespace Data.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Esperienze");
+                name: "Profilo");
 
             migrationBuilder.DropTable(
                 name: "TipoEsperienze");

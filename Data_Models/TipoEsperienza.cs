@@ -11,7 +11,7 @@ namespace Data_Models
     public class TipoEsperienza
     {
         [Key]
-        public int IdTipoEsperienza { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(50)]

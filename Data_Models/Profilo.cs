@@ -11,7 +11,7 @@ namespace Data_Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdProfilo { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(20)]
@@ -47,6 +47,8 @@ namespace Data_Models
 
         [StringLength(250)]
         public string Informazioni { get; set; }
+
+        public ICollection<Esperienza> Esperienze { get; set; }
 
     }
 }
