@@ -1,4 +1,5 @@
 ﻿using Data;
+using Data_Models;
 using LinkedInHomeMade.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -33,7 +34,8 @@ namespace LinkedInHomeMade.Controllers
                 Qualifica = x.Qualifica,
                 TipoDiImpiego = x.TipoDiImpiego,
                 TitoloStudio = x.TitoloStudio,
-                IdProfilo = x.IdProfilo
+                IdProfilo = x.IdProfilo,
+                IdTipoEsperienza = x.IdTipoEsperienza
             });
 
             return View(exp);

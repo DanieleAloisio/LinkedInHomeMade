@@ -6,13 +6,14 @@
 <div class="main-body">
     <div class="row h-100 ">
         <div class="col-md-12">
-            @foreach (var exp in Model.OrderByDescending(x => x.Inizio))
+            <h6 class="text-info">Esperienze professionali</h6>
+            @foreach (var exp in Model.Where(x => x.IdTipoEsperienza == (int)LinkedInHomeMade.Enum.TipoEsperienze.Lavoro).OrderByDescending(x => x.Inizio))
             {
                 <div id="accordion">
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">
-                                <button class="btn btn-outline-info w-25" data-toggle="collapse" data-target="#@exp.Azienda" aria-expanded="true" aria-controls="@exp.Azienda">
+                                <button class="btn btn-outline-info w-25 " data-toggle="collapse" data-target="#@exp.Azienda" aria-expanded="true" aria-controls="@exp.Azienda">
                                     @exp.Azienda
                                 </button>
                             </h2>
@@ -26,6 +27,9 @@
                                 </div>
                                 <div class="row m-1">
                                     <span><i class="text-info">Qualifica</i></span>&nbsp; @exp.Qualifica
+                                </div>
+                                <div class="row m-1">
+                                    <span><i class="text-info">Località</i></span>&nbsp; @exp.Localita
                                 </div>
                                 <div class="row m-1">
                                     <span><i class="text-info">Descrizione</i></span>&nbsp; @exp.Descrizione
