@@ -4,9 +4,9 @@
 }
 
 <div class="main-body">
-    <div class="row h-100 ">
+    <div class="row h-100 text-md-center">
         <div class="col-md-12">
-            <h6 class="text-info">Esperienze professionali</h6>
+            <h2 class="text-info">Esperienze professionali</h2>
             @foreach (var exp in Model.Where(x => x.IdTipoEsperienza == (int)LinkedInHomeMade.Enum.TipoEsperienze.Lavoro).OrderByDescending(x => x.Inizio))
             {
                 <div id="accordion">

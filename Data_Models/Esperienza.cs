@@ -42,6 +42,8 @@ namespace Data_Models
         [StringLength(50)]
         public string Azienda { get; set; }
 
+        public int? Votazione { get; set; }
+
         public int IdProfilo { get; set; }
         //Foreign key for Standard
         [ForeignKey("IdProfilo")]

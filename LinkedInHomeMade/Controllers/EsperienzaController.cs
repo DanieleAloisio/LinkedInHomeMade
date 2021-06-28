@@ -40,5 +40,29 @@ namespace LinkedInHomeMade.Controllers
 
             return View(exp);
         }
+
+        public IActionResult Education()
+        {
+            var exp = _context.Esperienze.Where(x => x.IdProfilo == 1).Select(x => new EsperienzaModel
+            {
+                Id = x.Id,
+                Inizio = x.Inizio,
+                Fine = x.Fine,
+                Azienda = x.Azienda,
+                Corso = x.Corso,
+                Descrizione = x.Descrizione,
+                Istituto = x.Istituto,
+                Localita = x.Localita,
+                Qualifica = x.Qualifica,
+                TipoDiImpiego = x.TipoDiImpiego,
+                TitoloStudio = x.TitoloStudio,
+                IdProfilo = x.IdProfilo,
+                IdTipoEsperienza = x.IdTipoEsperienza,
+                Votazione = x.Votazione.HasValue ? x.Votazione.Value.ToString() : "-"
+               
+            });
+
+            return View(exp);
+        }
     }
 }

@@ -30,5 +30,7 @@ namespace LinkedInHomeMade.Models
 
         public string Azienda { get; set; }
 
+        public string Votazione { get; set; }
+
     }
 }
