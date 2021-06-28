@@ -1,6 +1,7 @@
 ﻿using Data;
 using Data_Models;
 using LinkedInHomeMade.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace LinkedInHomeMade.Controllers
 {
+    [Authorize]
     public class EsperienzaController : Controller
     {
         private readonly ApplicationDbContext _context;
