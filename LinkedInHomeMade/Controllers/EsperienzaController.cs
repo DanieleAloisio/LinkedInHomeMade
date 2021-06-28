@@ -21,7 +21,8 @@ namespace LinkedInHomeMade.Controllers
 
         public IActionResult Index()
         {
-            var exp = _context.Esperienze.Where(x => x.IdProfilo == 1).Select(x => new EsperienzaModel
+            //TODO: da sistemare
+            var exp = _context.Esperienze.Where(x => x.IdProfilo == 3).Select(x => new EsperienzaModel
             {
                 Id = x.Id,
                 Inizio = x.Inizio,
@@ -43,7 +44,8 @@ namespace LinkedInHomeMade.Controllers
 
         public IActionResult Education()
         {
-            var exp = _context.Esperienze.Where(x => x.IdProfilo == 1).Select(x => new EsperienzaModel
+            //TODO: da sistemare
+            var exp = _context.Esperienze.Where(x => x.IdProfilo == 3).Select(x => new EsperienzaModel
             {
                 Id = x.Id,
                 Inizio = x.Inizio,

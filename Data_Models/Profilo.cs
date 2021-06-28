@@ -50,5 +50,10 @@ namespace Data_Models
 
         public ICollection<Esperienza> Esperienze { get; set; }
 
+        public int IdTipoGruppo { get; set; }
+        [ForeignKey("IdTipoGruppo")]
+        public TipoGruppo TipoGruppo { get; set; }
+
+
     }
 }
