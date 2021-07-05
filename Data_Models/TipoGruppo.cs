@@ -16,7 +16,7 @@ namespace Data_Models
         [StringLength(50)]
         public string Nome { get; set; }
 
-        public ICollection<Profilo> Profili { get; set; }
+        public ICollection<ApplicationUser> ApplicationUsers { get; set; }
 
     }
 }

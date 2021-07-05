@@ -46,8 +46,8 @@ namespace Data_Models
 
         public int IdProfilo { get; set; }
         //Foreign key for Standard
-        [ForeignKey("IdProfilo")]
-        public Profilo Profilo { get; set; }
+        [ForeignKey("IdApplicationUser")]
+        public ApplicationUser ApplicationUser { get; set; }
 
         public int IdTipoEsperienza { get; set; }
         [ForeignKey("IdTipoEsperienza")]

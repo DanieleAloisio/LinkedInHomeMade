@@ -5,7 +5,7 @@ namespace LinkedInHomeMade.Models
 {
     public class ProfiloModel
     {
-        public int IdProfilo { get; set; }
+        public string IdProfilo { get; set; }
 
         public string Nome { get; set; }
 

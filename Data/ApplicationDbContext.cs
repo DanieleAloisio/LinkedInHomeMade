@@ -7,11 +7,11 @@ using System.Text;
 
 namespace Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Esperienza> Esperienze { get; set; }
         public DbSet<TipoEsperienza> TipoEsperienze { get; set; }
-        public DbSet<Profilo> Profili { get; set; }
+        public DbSet<ApplicationUser> Profili { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

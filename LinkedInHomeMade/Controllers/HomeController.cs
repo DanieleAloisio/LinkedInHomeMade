@@ -31,8 +31,8 @@ namespace LinkedInHomeMade.Controllers
                 Paese = x.Paese,
                 Professione = x.Professione,
                 Email = x.Email,
-                Mobile = x.Mobile,
-                NickName = x.NickName
+                Mobile = x.PhoneNumber,
+                NickName = x.UserName
                 
             }).FirstOrDefault();
 

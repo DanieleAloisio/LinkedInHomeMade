@@ -1,4 +1,5 @@
-﻿using LinkedInHomeMade.Models;
+﻿using Data_Models;
+using LinkedInHomeMade.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -13,11 +14,11 @@ namespace LinkedInHomeMade.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public AccountController(UserManager<IdentityUser> userManager,
-                                      SignInManager<IdentityUser> signInManager)
+        public AccountController(UserManager<ApplicationUser> userManager,
+                                      SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -31,12 +32,20 @@ namespace LinkedInHomeMade.Controllers
         [HttpPost]
         public async Task<IActionResult> Registrazione(RegistrazioneViewModel model)
         {
+
+
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser
+                var user = new ApplicationUser
                 {
                     UserName = model.Email,
                     Email = model.Email,
+                    Nome = model.Nome,
+                    Cognome = model.Cognome,
+                    Paese = model.Paese,
+                    Citta = model.Citta,
+                    Professione = model.Professione,
+                    IdTipoGruppo = model.TipoGruppo
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);

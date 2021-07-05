@@ -9,8 +9,32 @@ namespace LinkedInHomeMade.Models
     public class RegistrazioneViewModel
     {
         [Required]
+        [StringLength(20)]
+        public string Nome { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string Cognome { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string Paese { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string Citta { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string Professione { get; set; }
+
+        [Required]
+        public int TipoGruppo { get; set; }
+
+        [Required]
         [EmailAddress]
         public string Email { get; set; }
+
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }

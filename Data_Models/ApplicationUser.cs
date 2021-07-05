@@ -1,25 +1,19 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Data_Models
 {
-    [Table("Profilo")]
-    public class Profilo
+    public class ApplicationUser : IdentityUser
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
         [Required]
         [StringLength(20)]
         public string Nome { get; set; }
-
-        [Required]
-        [StringLength(20)]
-        public string NickName { get; set; }
 
         [Required]
         [StringLength(20)]
@@ -35,14 +29,6 @@ namespace Data_Models
 
         [Required]
         [StringLength(20)]
-        public string Mobile { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string Email { get; set; }
-
-        [Required]
-        [StringLength(20)]
         public string Professione { get; set; }
 
         [StringLength(250)]
@@ -53,7 +39,5 @@ namespace Data_Models
         public int IdTipoGruppo { get; set; }
         [ForeignKey("IdTipoGruppo")]
         public TipoGruppo TipoGruppo { get; set; }
-
-
     }
 }
