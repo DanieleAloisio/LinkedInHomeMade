@@ -21,10 +21,10 @@ namespace LinkedInHomeMade.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index([FromQuery(Name = "id")] int id)
         {
             //TODO: da sistemare
-            var exp = _context.Esperienze.Where(x => x.IdProfilo == 3).Select(x => new EsperienzaModel
+            var exp = _context.Esperienze.Where(x => x.IdProfilo == id).Select(x => new EsperienzaModel
             {
                 Id = x.Id,
                 Inizio = x.Inizio,

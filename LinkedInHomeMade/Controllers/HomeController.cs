@@ -2,10 +2,12 @@
 using Data_Models;
 using LinkedInHomeMade.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace LinkedInHomeMade.Controllers
 {
@@ -13,14 +15,19 @@ namespace LinkedInHomeMade.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public HomeController(ApplicationDbContext context)
+        public HomeController(ApplicationDbContext context, SignInManager<ApplicationUser> signInManager)
         {
             _context = context;
+            _signInManager = signInManager;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
+            var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
+
             var prof = _context.Profili.Select(x => new ProfiloModel
             {
                 IdProfilo = x.Id,
@@ -34,7 +41,7 @@ namespace LinkedInHomeMade.Controllers
                 Mobile = x.PhoneNumber,
                 NickName = x.UserName
                 
-            }).FirstOrDefault();
+            }).FirstOrDefault(x => x.IdProfilo == userLogged.Id);
 
             return View(prof);
         }
