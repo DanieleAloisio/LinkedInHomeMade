@@ -7,7 +7,7 @@ namespace LinkedInHomeMade.Models
 
         public int Id { get; set; }
 
-        public int IdProfilo { get; set; }
+        public string IdProfilo { get; set; }
         public int IdTipoEsperienza { get; set; }
 
         public DateTime Inizio { get; set; }

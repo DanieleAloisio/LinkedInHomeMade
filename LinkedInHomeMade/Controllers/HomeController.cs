@@ -28,7 +28,7 @@ namespace LinkedInHomeMade.Controllers
         {
             var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
 
-            var prof = _context.Profili.Select(x => new ProfiloModel
+            var prof = _context.Users.Select(x => new ProfiloModel
             {
                 IdProfilo = x.Id,
                 Nome = x.Nome,

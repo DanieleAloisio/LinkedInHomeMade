@@ -11,7 +11,7 @@ namespace Data
     {
         public DbSet<Esperienza> Esperienze { get; set; }
         public DbSet<TipoEsperienza> TipoEsperienze { get; set; }
-        public DbSet<ApplicationUser> Profili { get; set; }
+        public DbSet<ApplicationUser> Users { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

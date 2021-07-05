@@ -44,7 +44,7 @@ namespace Data_Models
 
         public int? Votazione { get; set; }
 
-        public int IdProfilo { get; set; }
+        public string IdApplicationUser { get; set; }
         //Foreign key for Standard
         [ForeignKey("IdApplicationUser")]
         public ApplicationUser ApplicationUser { get; set; }

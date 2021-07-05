@@ -2,6 +2,7 @@
 using Data_Models;
 using LinkedInHomeMade.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,16 +16,20 @@ namespace LinkedInHomeMade.Controllers
     public class EsperienzaController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public EsperienzaController(ApplicationDbContext context)
+        public EsperienzaController(ApplicationDbContext context, SignInManager<ApplicationUser> signInManager)
         {
             _context = context;
+            _signInManager = signInManager;
         }
 
-        public IActionResult Index([FromQuery(Name = "id")] int id)
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            //TODO: da sistemare
-            var exp = _context.Esperienze.Where(x => x.IdProfilo == id).Select(x => new EsperienzaModel
+            var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
+
+            var exp = _context.Esperienze.Where(x => x.IdApplicationUser == userLogged.Id).Select(x => new EsperienzaModel
             {
                 Id = x.Id,
                 Inizio = x.Inizio,
@@ -37,17 +42,18 @@ namespace LinkedInHomeMade.Controllers
                 Qualifica = x.Qualifica,
                 TipoDiImpiego = x.TipoDiImpiego,
                 TitoloStudio = x.TitoloStudio,
-                IdProfilo = x.IdProfilo,
+                IdProfilo = x.IdApplicationUser,
                 IdTipoEsperienza = x.IdTipoEsperienza
             });
 
             return View(exp);
         }
 
-        public IActionResult Education()
+        public async Task<IActionResult> Education()
         {
+            var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
             //TODO: da sistemare
-            var exp = _context.Esperienze.Where(x => x.IdProfilo == 3).Select(x => new EsperienzaModel
+            var exp = _context.Esperienze.Where(x => x.IdApplicationUser == userLogged.Id).Select(x => new EsperienzaModel
             {
                 Id = x.Id,
                 Inizio = x.Inizio,
@@ -60,7 +66,7 @@ namespace LinkedInHomeMade.Controllers
                 Qualifica = x.Qualifica,
                 TipoDiImpiego = x.TipoDiImpiego,
                 TitoloStudio = x.TitoloStudio,
-                IdProfilo = x.IdProfilo,
+                IdProfilo = x.IdApplicationUser,
                 IdTipoEsperienza = x.IdTipoEsperienza,
                 Votazione = x.Votazione.HasValue ? x.Votazione.Value.ToString() : "-"
                
