@@ -1,4 +1,5 @@
-﻿using Data;
+﻿using DAL;
+using Data;
 using Data_Models;
 using LinkedInHomeMade.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -16,34 +17,24 @@ namespace LinkedInHomeMade.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UnitOfWork _unitOfWork;
 
-        public HomeController(ApplicationDbContext context, SignInManager<ApplicationUser> signInManager)
+        public HomeController(ApplicationDbContext context, SignInManager<ApplicationUser> signInManager, UnitOfWork unitOfWork)
         {
             _context = context;
             _signInManager = signInManager;
+            _unitOfWork = unitOfWork;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
+            var dbProfilo = _unitOfWork.UserRepository.GetUserById(userLogged.Id);
 
-            var prof = _context.Users.Select(x => new ProfiloModel
-            {
-                IdProfilo = x.Id,
-                Nome = x.Nome,
-                Cognome = x.Cognome,
-                Informazioni = x.Informazioni,
-                Citta = x.Citta,
-                Paese = x.Paese,
-                Professione = x.Professione,
-                Email = x.Email,
-                Mobile = x.PhoneNumber,
-                NickName = x.UserName
+            var profiloModel = new ApplicationUserModel(dbProfilo);
 
-            }).FirstOrDefault(x => x.IdProfilo == userLogged.Id);
-
-            return View(prof);
+            return View(profiloModel);
         }
 
         public IActionResult Privacy()
@@ -62,7 +53,7 @@ namespace LinkedInHomeMade.Controllers
         {
             var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
 
-            if(userLogged != null) 
+            if (userLogged != null)
             {
                 userLogged.Nome = nome;
                 userLogged.Cognome = cognome;
@@ -72,7 +63,8 @@ namespace LinkedInHomeMade.Controllers
                 userLogged.Informazioni = informazioni;
                 userLogged.PhoneNumber = mobile;
             };
-            await _context.SaveChangesAsync();
+
+            await _unitOfWork.SaveChangesAsync();
             return Json(new { status = true });
         }
     }

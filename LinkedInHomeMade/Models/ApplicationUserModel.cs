@@ -1,9 +1,10 @@
+using Data_Models;
 using System;
 using System.Collections.Generic;
 
 namespace LinkedInHomeMade.Models
 {
-    public class ProfiloModel
+    public class ApplicationUserModel
     {
         public string IdProfilo { get; set; }
 
@@ -27,5 +28,19 @@ namespace LinkedInHomeMade.Models
 
         public ICollection<EsperienzaModel> Esperienze { get; set; }
 
+
+        public ApplicationUserModel(ApplicationUser dbUser)
+        {
+            IdProfilo = dbUser.Id;
+            Nome = dbUser.Nome;
+            Cognome = dbUser.Cognome;
+            Informazioni = dbUser.Informazioni;
+            Citta = dbUser.Citta;
+            Paese = dbUser.Paese;
+            Professione = dbUser.Professione;
+            Email = dbUser.Email;
+            Mobile = dbUser.PhoneNumber;
+            NickName = dbUser.UserName;
+        }
     }
 }

@@ -1,3 +1,4 @@
+using DAL;
 using Data;
 using Data_Models;
 using Microsoft.AspNetCore.Builder;
@@ -34,6 +35,7 @@ namespace LinkedInHomeMade
             services.AddControllersWithViews();
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddTransient<UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
