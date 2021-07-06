@@ -40,7 +40,7 @@ namespace LinkedInHomeMade.Controllers
                 Email = x.Email,
                 Mobile = x.PhoneNumber,
                 NickName = x.UserName
-                
+
             }).FirstOrDefault(x => x.IdProfilo == userLogged.Id);
 
             return View(prof);
@@ -55,6 +55,25 @@ namespace LinkedInHomeMade.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> ModificaProfilo(string nome, string cognome, string professione, string paese, string citta, string informazioni, string mobile)
+        {
+            var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
+
+            if(userLogged != null) 
+            {
+                userLogged.Nome = nome;
+                userLogged.Cognome = cognome;
+                userLogged.Professione = professione;
+                userLogged.Paese = paese;
+                userLogged.Citta = citta;
+                userLogged.Informazioni = informazioni;
+                userLogged.PhoneNumber = mobile;
+            };
+            await _context.SaveChangesAsync();
+            return Json(new { status = true });
         }
     }
 }
