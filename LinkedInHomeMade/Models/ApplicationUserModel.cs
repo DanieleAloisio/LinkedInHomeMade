@@ -22,6 +22,16 @@ namespace LinkedInHomeMade.Models
 
         public string Mobile { get; set; }
 
+        public string Website { get; set; }
+
+        public string Instagram { get; set; }
+
+        public string Github { get; set; }
+
+        public string Facebook { get; set; }
+
+        public string Twitter { get; set; }
+
         public string Email { get; set; }
 
         public string Professione { get; set; }
@@ -41,6 +51,11 @@ namespace LinkedInHomeMade.Models
             Email = dbUser.Email;
             Mobile = dbUser.PhoneNumber;
             NickName = dbUser.UserName;
+            Website = dbUser.Website;
+            Instagram = dbUser.Instagram;
+            Facebook = dbUser.Facebook;
+            Twitter = dbUser.Twitter;
+            Github = dbUser.Github;
         }
     }
 }

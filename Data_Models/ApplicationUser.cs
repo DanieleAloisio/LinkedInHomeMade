@@ -39,5 +39,20 @@ namespace Data_Models
         public int IdTipoGruppo { get; set; }
         [ForeignKey("IdTipoGruppo")]
         public TipoGruppo TipoGruppo { get; set; }
+
+        [StringLength(20)]
+        public string Website { get; set; }
+        
+        [StringLength(20)]
+        public string Instagram { get; set; }
+       
+        [StringLength(20)]
+        public string Github { get; set; }
+        
+        [StringLength(20)]
+        public string Facebook { get; set; }
+        
+        [StringLength(20)]
+        public string Twitter { get; set; }
     }
 }

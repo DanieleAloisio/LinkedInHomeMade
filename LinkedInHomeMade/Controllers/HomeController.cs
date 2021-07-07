@@ -49,7 +49,9 @@ namespace LinkedInHomeMade.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> ModificaProfilo(string nome, string cognome, string professione, string paese, string citta, string informazioni, string mobile)
+        public async Task<JsonResult> ModificaProfilo(string nome, string cognome, string professione, string paese, string citta, 
+                                                      string informazioni, string mobile, string website, string instagram, 
+                                                      string github, string facebook, string twitter)
         {
             var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
 
@@ -62,6 +64,11 @@ namespace LinkedInHomeMade.Controllers
                 userLogged.Citta = citta;
                 userLogged.Informazioni = informazioni;
                 userLogged.PhoneNumber = mobile;
+                userLogged.Website = website;
+                userLogged.Instagram = instagram;
+                userLogged.Github = github;
+                userLogged.Facebook = facebook;
+                userLogged.Twitter = twitter;
             };
 
             await _unitOfWork.SaveChangesAsync();
