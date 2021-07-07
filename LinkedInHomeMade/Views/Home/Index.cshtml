@@ -188,7 +188,18 @@
             <div class="col-sm-8">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Skill</i> Dev</h6>
+                        <div class="row">
+                            <div class="col-11">
+                                <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Skill</i> Dev</h6>
+                            </div>
+                            <div class="col-1">
+                                <button type="button" id="btnOpenModaleModificaSkill" name="btnModificaSkill" class="btn btn-outline-secondary btn-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
                         <small>C#</small>
                         <div class="progress mb-3" style="height: 5px">
                             <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
@@ -212,62 +223,61 @@
                     </div>
                 </div>
             </div>
+
         </div>
-
     </div>
-</div>
 
 
-@section scripts {
+    @section scripts {
 
-<script type="text/javascript">
-    $("#btnOpenModaleModificaProfilo").click(function () {
-        $('#mdlModProf').modal('show');
-    });
-
-
-    $("#btnModifica").click(function () {
-
-
-        var nome = $("#Nome").val()
-        var cognome = $("#Cognome").val()
-        var professione = $("#Professione").val()
-        var paese = $("#Paese").val()
-        var citta = $("#Citta").val()
-        var informazioni = $("#Informazioni").val()
-        var mobile = $("#Mobile").val()
-
-        var website = $("#Website").val()
-        var instagram = $("#Instagram").val()
-        var github = $("#Github").val()
-        var facebook = $("#Facebook").val()
-        var twitter = $("#Twitter").val()
-
-        $.ajax({
-            url: "@Url.Action("ModificaProfilo", "Home")",
-            type: "POST",
-            datatype: 'json',
-            headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
-            data: { nome: nome, 
-            cognome: cognome, 
-            professione: professione, 
-            paese: paese, 
-            citta: citta, 
-            informazioni: informazioni, 
-            mobile: mobile, 
-            website: website, 
-            instagram: instagram, 
-            github: github, 
-            facebook: facebook, 
-            twitter: twitter },
-            success: function (jqXHR, exception) {
-
-                $("#mdlModProf").modal("hide");
-
-                location.reload();
-            }
+    <script type="text/javascript">
+        $("#btnOpenModaleModificaProfilo").click(function () {
+            $('#mdlModProf').modal('show');
         });
-    });
 
-</script>
-}
+
+        $("#btnModifica").click(function () {
+
+
+            var nome = $("#Nome").val()
+            var cognome = $("#Cognome").val()
+            var professione = $("#Professione").val()
+            var paese = $("#Paese").val()
+            var citta = $("#Citta").val()
+            var informazioni = $("#Informazioni").val()
+            var mobile = $("#Mobile").val()
+
+            var website = $("#Website").val()
+            var instagram = $("#Instagram").val()
+            var github = $("#Github").val()
+            var facebook = $("#Facebook").val()
+            var twitter = $("#Twitter").val()
+
+            $.ajax({
+                url: "@Url.Action("ModificaProfilo", "Home")",
+                type: "POST",
+                datatype: 'json',
+                headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+                data: { nome: nome,
+                cognome: cognome,
+                professione: professione,
+                paese: paese,
+                citta: citta,
+                informazioni: informazioni,
+                mobile: mobile,
+                website: website,
+                instagram: instagram,
+                github: github,
+                facebook: facebook,
+                twitter: twitter },
+                success: function (jqXHR, exception) {
+
+                    $("#mdlModProf").modal("hide");
+
+                    location.reload();
+                }
+            });
+        });
+
+    </script>
+    }
