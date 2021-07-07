@@ -34,11 +34,6 @@ namespace Data_Models
         [StringLength(250)]
         public string Informazioni { get; set; }
 
-        public ICollection<Esperienza> Esperienze { get; set; }
-
-        public int IdTipoGruppo { get; set; }
-        [ForeignKey("IdTipoGruppo")]
-        public TipoGruppo TipoGruppo { get; set; }
 
         [StringLength(20)]
         public string Website { get; set; }
@@ -54,5 +49,11 @@ namespace Data_Models
         
         [StringLength(20)]
         public string Twitter { get; set; }
+        public int IdTipoGruppo { get; set; }
+        [ForeignKey("IdTipoGruppo")]
+        public TipoGruppo TipoGruppo { get; set; }
+        public ICollection<Esperienza> Esperienze { get; set; }
+
+        public ICollection<Skills> Skills { get; set; }
     }
 }
