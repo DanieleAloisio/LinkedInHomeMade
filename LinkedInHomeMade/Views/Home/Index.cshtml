@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
 <div class="container">
     <div class="main-body">
 
@@ -237,61 +236,84 @@
 </div>
 
 @section scripts {
+    <script type="text/javascript">
 
-<script type="text/javascript">
-    $("#btnOpenModaleModificaProfilo").click(function () {
-        $('#mdlModProf').modal('show');
+    $(document).ready(function(){
+
+
+
     });
 
-      $("#btnOpenModaleInseriscSkill").click(function () {
+        $("#btnOpenModaleModificaProfilo").click(function () {
 
-       $('#mdlAddSkill').modal('show');
-    });
-
-
-
-    $("#btnModifica").click(function () {
-
-
-        var nome = $("#Nome").val()
-        var cognome = $("#Cognome").val()
-        var professione = $("#Professione").val()
-        var paese = $("#Paese").val()
-        var citta = $("#Citta").val()
-        var informazioni = $("#Informazioni").val()
-        var mobile = $("#Mobile").val()
-
-        var website = $("#Website").val()
-        var instagram = $("#Instagram").val()
-        var github = $("#Github").val()
-        var facebook = $("#Facebook").val()
-        var twitter = $("#Twitter").val()
-
-        $.ajax({
-            url: "@Url.Action("ModificaProfilo", "Home")",
-            type: "POST",
-            datatype: 'json',
-            headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
-            data: { nome: nome,
-            cognome: cognome,
-            professione: professione,
-            paese: paese,
-            citta: citta,
-            informazioni: informazioni,
-            mobile: mobile,
-            website: website,
-            instagram: instagram,
-            github: github,
-            facebook: facebook,
-            twitter: twitter },
-            success: function (jqXHR, exception) {
-
-                $("#mdlModProf").modal("hide");
-
-                location.reload();
-            }
+            $('#mdlModProf').modal('show');
         });
-    });
 
-</script>
-    }
+        $("#btnOpenModaleInseriscSkill").click(function () {
+
+           $('#mdlAddSkill').modal('show');
+        });
+
+        $('#btnInserisciSkill').click(function () {
+
+            var tag = $("#Tag").val()
+
+                $.ajax({
+                url: "@Url.Action("AggiungiSkill", "Home")",
+                type: "POST",
+                datatype: 'json',
+                headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+                data: { tag: tag },
+                success: function (jqXHR, exception) {
+
+                    $("#mdlAddSkill").modal("hide");
+
+                    location.reload();
+                }
+            });
+        });
+
+        $("#btnModifica").click(function () {
+
+            var nome = $("#Nome").val()
+            var cognome = $("#Cognome").val()
+            var professione = $("#Professione").val()
+            var paese = $("#Paese").val()
+            var citta = $("#Citta").val()
+            var informazioni = $("#Informazioni").val()
+            var mobile = $("#Mobile").val()
+
+            var website = $("#Website").val()
+            var instagram = $("#Instagram").val()
+            var github = $("#Github").val()
+            var facebook = $("#Facebook").val()
+            var twitter = $("#Twitter").val()
+
+            $.ajax({
+                url: "@Url.Action("ModificaProfilo", "Home")",
+                type: "POST",
+                datatype: 'json',
+                headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+                data: { nome: nome,
+                cognome: cognome,
+                professione: professione,
+                paese: paese,
+                citta: citta,
+                informazioni: informazioni,
+                mobile: mobile,
+                website: website,
+                instagram: instagram,
+                github: github,
+                facebook: facebook,
+                twitter: twitter },
+                success: function (jqXHR, exception) {
+
+                    $("#mdlModProf").modal("hide");
+
+                    location.reload();
+                }
+            });
+        });
+
+    </script>
+}

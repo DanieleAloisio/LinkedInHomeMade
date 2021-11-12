@@ -37,16 +37,16 @@ namespace Data_Models
 
         [StringLength(20)]
         public string Website { get; set; }
-        
+
         [StringLength(20)]
         public string Instagram { get; set; }
-       
+
         [StringLength(20)]
         public string Github { get; set; }
-        
+
         [StringLength(20)]
         public string Facebook { get; set; }
-        
+
         [StringLength(20)]
         public string Twitter { get; set; }
         public int IdTipoGruppo { get; set; }
@@ -54,6 +54,6 @@ namespace Data_Models
         public TipoGruppo TipoGruppo { get; set; }
         public ICollection<Esperienza> Esperienze { get; set; }
 
-        public ICollection<Skills> Skills { get; set; }
+        public ICollection<Skills> Skills { get; set; } = new List<Skills>();
     }
 }

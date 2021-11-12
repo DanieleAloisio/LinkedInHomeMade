@@ -11,6 +11,7 @@ namespace DAL
         private readonly ApplicationDbContext _context;
 
         private IUserRepository userRepository;
+        private ISkillRepository skillRepository;
 
         public IUserRepository UserRepository
         {
@@ -19,6 +20,16 @@ namespace DAL
                 if (userRepository == null)
                     userRepository = new UserRepository(_context);
                 return userRepository;
+            }
+        }
+
+        public ISkillRepository SkillRepository
+        {
+            get
+            {
+                if (skillRepository == null)
+                    skillRepository = new SkillRepository(_context);
+                return skillRepository;
             }
         }
 

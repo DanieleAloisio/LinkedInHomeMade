@@ -74,5 +74,30 @@ namespace LinkedInHomeMade.Controllers
             await _unitOfWork.SaveChangesAsync();
             return Json(new { status = true });
         }
+
+        [HttpPost]
+        public async Task<JsonResult> AggiungiSkill(string tag)
+        {
+            try
+            {
+                var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
+
+                //userLogged.Skills ??= new List<Skills>();
+                userLogged.Skills.Add(new Skills()
+                {
+                    Tag = tag,
+                    Competenza = 1
+                });
+
+                await _unitOfWork.SaveChangesAsync();
+                return Json(new { status = true });
+            }
+            catch (System.Exception ex)
+            {
+
+                return Json(new object());
+            }
+
+        }
     }
 }
