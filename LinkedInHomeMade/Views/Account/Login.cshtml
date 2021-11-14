@@ -9,26 +9,26 @@
     <div class="col-md-12">
         <form method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group col-4">
                 <label asp-for="Email"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-4">
                 <label asp-for="Password"></label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
+            <div class="form-group ml-3">
                 <div class="custom-control custom-checkbox">
                     <input asp-for="Ricordami" type="checkbox" class="custom-control-input">
                     <label class="custom-control-label" asp-for="Ricordami">@Html.DisplayNameFor(m => m.Ricordami)</label>
                 </div>
 
+                <button type="submit" class="btn-primary mt-2 rounded">Login</button>
             </div>
-            <button type="submit" class="btn-primary">Login</button>
         </form>
 
     </div>
