@@ -49,8 +49,8 @@ namespace LinkedInHomeMade.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> ModificaProfilo(string nome, string cognome, string professione, string paese, string citta, 
-                                                      string informazioni, string mobile, string website, string instagram, 
+        public async Task<JsonResult> ModificaProfilo(string nome, string cognome, string professione, string paese, string citta,
+                                                      string informazioni, string mobile, string website, string instagram,
                                                       string github, string facebook, string twitter)
         {
             var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
@@ -86,7 +86,7 @@ namespace LinkedInHomeMade.Controllers
                 userLogged.Skills.Add(new Skills()
                 {
                     Tag = tag,
-                    Competenza = 1
+                    Competenza = 10
                 });
 
                 await _unitOfWork.SaveChangesAsync();
@@ -98,6 +98,23 @@ namespace LinkedInHomeMade.Controllers
                 return Json(new object());
             }
 
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> ModificaCompetenzaSkill(string idTag, string valCompetenza)
+        {
+            var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
+            var dbProfilo = _unitOfWork.UserRepository.GetUserById(userLogged.Id);
+
+            var skill = dbProfilo.Skills.FirstOrDefault(x => x.Id == int.Parse(idTag));
+
+            if (skill != null)
+            {
+                skill.Competenza = int.Parse(valCompetenza);
+            }
+
+            await _unitOfWork.SaveChangesAsync();
+            return Json(new { status = true });
         }
     }
 }

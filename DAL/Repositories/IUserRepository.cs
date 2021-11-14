@@ -1,5 +1,6 @@
 ﻿using Data;
 using Data_Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,9 @@ namespace DAL.Repositories
 
         public ApplicationUser GetUserById(string id)
         {
-            return _dbSet.FirstOrDefault(x => x.Id == id);
+            return _dbSet.Include(x => x.Skills)
+                         .Include(x => x.Esperienze)
+                         .FirstOrDefault(x => x.Id == id);
         }
 
     }

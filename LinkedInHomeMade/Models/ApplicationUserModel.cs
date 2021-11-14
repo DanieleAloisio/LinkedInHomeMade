@@ -36,7 +36,8 @@ namespace LinkedInHomeMade.Models
 
         public string Professione { get; set; }
 
-        public ICollection<EsperienzaModel> Esperienze { get; set; }
+        public ICollection<Esperienza> Esperienze { get; set; }
+        public ICollection<Skills> Skills { get; set; } = new List<Skills>();
 
 
         public ApplicationUserModel(ApplicationUser dbUser)
@@ -56,6 +57,8 @@ namespace LinkedInHomeMade.Models
             Facebook = dbUser.Facebook;
             Twitter = dbUser.Twitter;
             Github = dbUser.Github;
+            Esperienze = dbUser.Esperienze;
+            Skills = dbUser.Skills;
         }
     }
 }
