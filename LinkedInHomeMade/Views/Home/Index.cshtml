@@ -209,7 +209,7 @@
                                 <small>@skill.Tag</small>
                                 <div class="mb-3 " style="height: 5px">
                                     <input class="col-10" type="range" id="@skill.Id" name="@skill.Id" min="10" max="100" value="@skill.Competenza">
-                                    <button type="button" class="btn btn-outline-danger btn-circle"><i class="fa fa-times"></i></button>
+                                    <button data-value="@skill.Id" class="btn btn-outline-danger btn-circle deletable"><i class="fa fa-times"></i></button>
                                 </div>
                             }
                         </div>
@@ -226,96 +226,105 @@
 @section scripts {
 <script type="text/javascript">
 
-    $(document).ready(function(){
+    $("#btnOpenModaleModificaProfilo").click(function () {
 
-
-
+        $('#mdlModProf').modal('show');
     });
 
-        $("#btnOpenModaleModificaProfilo").click(function () {
+    $("#btnOpenModaleInseriscSkill").click(function () {
 
-            $('#mdlModProf').modal('show');
-        });
+       $('#mdlAddSkill').modal('show');
+    });
 
-        $("#btnOpenModaleInseriscSkill").click(function () {
+    $('#btnInserisciSkill').click(function () {
 
-           $('#mdlAddSkill').modal('show');
-        });
-
-        $('#btnInserisciSkill').click(function () {
-
-            var tag = $("#Tag").val()
-
-                $.ajax({
-                url: "@Url.Action("AggiungiSkill", "Home")",
-                type: "POST",
-                datatype: 'json',
-                headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
-                data: { tag: tag },
-                success: function (jqXHR, exception) {
-
-                    $("#mdlAddSkill").modal("hide");
-
-                    location.reload();
-                }
-            });
-        });
-
-        $("#btnModifica").click(function () {
-
-            var nome = $("#Nome").val()
-            var cognome = $("#Cognome").val()
-            var professione = $("#Professione").val()
-            var paese = $("#Paese").val()
-            var citta = $("#Citta").val()
-            var informazioni = $("#Informazioni").val()
-            var mobile = $("#Mobile").val()
-
-            var website = $("#Website").val()
-            var instagram = $("#Instagram").val()
-            var github = $("#Github").val()
-            var facebook = $("#Facebook").val()
-            var twitter = $("#Twitter").val()
+        var tag = $("#Tag").val()
 
             $.ajax({
-                url: "@Url.Action("ModificaProfilo", "Home")",
-                type: "POST",
-                datatype: 'json',
-                headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
-                data: { nome: nome,
-                cognome: cognome,
-                professione: professione,
-                paese: paese,
-                citta: citta,
-                informazioni: informazioni,
-                mobile: mobile,
-                website: website,
-                instagram: instagram,
-                github: github,
-                facebook: facebook,
-                twitter: twitter },
-                success: function (jqXHR, exception) {
+            url: "@Url.Action("AggiungiSkill", "Home")",
+            type: "POST",
+            datatype: 'json',
+            headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+            data: { tag: tag },
+            success: function (jqXHR, exception) {
 
-                    $("#mdlModProf").modal("hide");
+                $("#mdlAddSkill").modal("hide");
 
-                    location.reload();
-                }
-            });
+                location.reload();
+            }
         });
+    });
 
-        $('input[type=range]').click(function () {
+    $("#btnModifica").click(function () {
 
-            let idTag = $(this).attr('id');
-            let valCompetenza = $(this).val();
+        var nome = $("#Nome").val()
+        var cognome = $("#Cognome").val()
+        var professione = $("#Professione").val()
+        var paese = $("#Paese").val()
+        var citta = $("#Citta").val()
+        var informazioni = $("#Informazioni").val()
+        var mobile = $("#Mobile").val()
 
-                $.ajax({
-                url: "@Url.Action("ModificaCompetenzaSkill", "Home")",
-                type: "POST",
-                datatype: 'json',
-                headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
-                data: { idTag: idTag, valCompetenza: valCompetenza }
-            });
+        var website = $("#Website").val()
+        var instagram = $("#Instagram").val()
+        var github = $("#Github").val()
+        var facebook = $("#Facebook").val()
+        var twitter = $("#Twitter").val()
+
+        $.ajax({
+            url: "@Url.Action("ModificaProfilo", "Home")",
+            type: "POST",
+            datatype: 'json',
+            headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+            data: { nome: nome,
+            cognome: cognome,
+            professione: professione,
+            paese: paese,
+            citta: citta,
+            informazioni: informazioni,
+            mobile: mobile,
+            website: website,
+            instagram: instagram,
+            github: github,
+            facebook: facebook,
+            twitter: twitter },
+            success: function (jqXHR, exception) {
+
+                $("#mdlModProf").modal("hide");
+
+                location.reload();
+            }
         });
+    });
+
+    $('input[type=range]').click(function () {
+
+        let idTag = $(this).attr('id');
+        let valCompetenza = $(this).val();
+
+            $.ajax({
+            url: "@Url.Action("ModificaCompetenzaSkill", "Home")",
+            type: "POST",
+            datatype: 'json',
+            headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+            data: { idTag: idTag, valCompetenza: valCompetenza }
+        });
+    });
+
+    $('.deletable').click(function() {
+
+        let idTag = $(this).data('value')
+
+            $.ajax({
+            url: "@Url.Action("EliminaCompetenzaSkill", "Home")",
+            type: "POST",
+            datatype: 'json',
+            headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+            data: { idTag: idTag }
+        }).done(function() {
+                location.reload();
+        });
+    });
 
 </script>
 }

@@ -80,16 +80,23 @@ namespace LinkedInHomeMade.Controllers
         {
             try
             {
-                var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
+                var splittedTag = tag.Split(',');
 
-                //userLogged.Skills ??= new List<Skills>();
-                userLogged.Skills.Add(new Skills()
+                if (splittedTag.Any())
                 {
-                    Tag = tag,
-                    Competenza = 10
-                });
+                    var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
 
-                await _unitOfWork.SaveChangesAsync();
+                    splittedTag.ToList().ForEach(item =>
+
+                    userLogged.Skills.Add(new Skills()
+                    {
+                        Tag = item,
+                        Competenza = 10
+                    }));
+
+                    await _unitOfWork.SaveChangesAsync();
+                }
+
                 return Json(new { status = true });
             }
             catch (System.Exception ex)
@@ -114,6 +121,18 @@ namespace LinkedInHomeMade.Controllers
             }
 
             await _unitOfWork.SaveChangesAsync();
+            return Json(new { status = true });
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> EliminaCompetenzaSkill(string idTag)
+        {
+            var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
+            var dbProfilo = _unitOfWork.UserRepository.GetUserById(userLogged.Id);
+
+            var skill = dbProfilo.Skills.FirstOrDefault(x => x.Id == int.Parse(idTag));
+
+            await _unitOfWork.Remove(skill);
             return Json(new { status = true });
         }
     }

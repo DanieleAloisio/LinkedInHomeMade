@@ -43,5 +43,11 @@ namespace DAL
         {
             return await _context.SaveChangesAsync();
         }
+
+        public async Task<int> Remove(object skill)
+        {
+            _context.Remove(skill);
+            return await _context.SaveChangesAsync();
+        }
     }
 }
