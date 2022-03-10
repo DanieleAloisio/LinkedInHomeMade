@@ -41,13 +41,31 @@ namespace DAL
 
         public async Task<int> SaveChangesAsync()
         {
-            return await _context.SaveChangesAsync();
+            try
+            {
+                return await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public async Task<int> Remove(object skill)
         {
-            _context.Remove(skill);
-            return await _context.SaveChangesAsync();
+            try
+            {
+                _context.Remove(skill);
+                return await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
     }
 }

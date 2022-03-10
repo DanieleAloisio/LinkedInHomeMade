@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class Extend_One : Migration
+    public partial class initsql : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,6 +19,21 @@ namespace Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Skills",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Descrizione = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Tag = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Competenza = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Skills", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -79,6 +94,11 @@ namespace Data.Migrations
                     Citta = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Professione = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Informazioni = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    Website = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Instagram = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Github = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Facebook = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Twitter = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     IdTipoGruppo = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -208,7 +228,6 @@ namespace Data.Migrations
                     TipoDiImpiego = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Azienda = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Votazione = table.Column<int>(type: "int", nullable: true),
-                    IdProfilo = table.Column<int>(type: "int", nullable: false),
                     IdApplicationUser = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     IdTipoEsperienza = table.Column<int>(type: "int", nullable: false)
                 },
@@ -225,6 +244,30 @@ namespace Data.Migrations
                         name: "FK_Esperienze_TipoEsperienze_IdTipoEsperienza",
                         column: x => x.IdTipoEsperienza,
                         principalTable: "TipoEsperienze",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Rel_Skills_ApplicationUsers",
+                columns: table => new
+                {
+                    SkillsId = table.Column<int>(type: "int", nullable: false),
+                    UsersId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rel_Skills_ApplicationUsers", x => new { x.SkillsId, x.UsersId });
+                    table.ForeignKey(
+                        name: "FK_Rel_Skills_ApplicationUsers_AspNetUsers_UsersId",
+                        column: x => x.UsersId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Rel_Skills_ApplicationUsers_Skills_SkillsId",
+                        column: x => x.SkillsId,
+                        principalTable: "Skills",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -282,6 +325,11 @@ namespace Data.Migrations
                 name: "IX_Esperienze_IdTipoEsperienza",
                 table: "Esperienze",
                 column: "IdTipoEsperienza");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rel_Skills_ApplicationUsers_UsersId",
+                table: "Rel_Skills_ApplicationUsers",
+                column: "UsersId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -305,13 +353,19 @@ namespace Data.Migrations
                 name: "Esperienze");
 
             migrationBuilder.DropTable(
+                name: "Rel_Skills_ApplicationUsers");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "TipoEsperienze");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "TipoEsperienze");
+                name: "Skills");
 
             migrationBuilder.DropTable(
                 name: "TipoGruppo");

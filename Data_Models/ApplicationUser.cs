@@ -35,19 +35,19 @@ namespace Data_Models
         public string Informazioni { get; set; }
 
 
-        [StringLength(20)]
+        [StringLength(200)]
         public string Website { get; set; }
 
-        [StringLength(20)]
+        [StringLength(150)]
         public string Instagram { get; set; }
 
-        [StringLength(20)]
+        [StringLength(150)]
         public string Github { get; set; }
 
-        [StringLength(20)]
+        [StringLength(150)]
         public string Facebook { get; set; }
 
-        [StringLength(20)]
+        [StringLength(150)]
         public string Twitter { get; set; }
         public int IdTipoGruppo { get; set; }
         [ForeignKey("IdTipoGruppo")]

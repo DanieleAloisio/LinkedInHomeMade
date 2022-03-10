@@ -5,6 +5,7 @@ using LinkedInHomeMade.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -53,26 +54,37 @@ namespace LinkedInHomeMade.Controllers
                                                       string informazioni, string mobile, string website, string instagram,
                                                       string github, string facebook, string twitter)
         {
-            var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
 
-            if (userLogged != null)
+            try
             {
-                userLogged.Nome = nome;
-                userLogged.Cognome = cognome;
-                userLogged.Professione = professione;
-                userLogged.Paese = paese;
-                userLogged.Citta = citta;
-                userLogged.Informazioni = informazioni;
-                userLogged.PhoneNumber = mobile;
-                userLogged.Website = website;
-                userLogged.Instagram = instagram;
-                userLogged.Github = github;
-                userLogged.Facebook = facebook;
-                userLogged.Twitter = twitter;
-            };
+                throw new Exception("Exception message");
+                var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
 
-            await _unitOfWork.SaveChangesAsync();
-            return Json(new { status = true });
+                if (userLogged != null)
+                {
+                    userLogged.Nome = nome;
+                    userLogged.Cognome = cognome;
+                    userLogged.Professione = professione;
+                    userLogged.Paese = paese;
+                    userLogged.Citta = citta;
+                    userLogged.Informazioni = informazioni;
+                    userLogged.PhoneNumber = mobile;
+                    userLogged.Website = website;
+                    userLogged.Instagram = instagram;
+                    userLogged.Github = github;
+                    userLogged.Facebook = facebook;
+                    userLogged.Twitter = twitter;
+                };
+                
+                await _unitOfWork.SaveChangesAsync();
+                return Json(new { status = true });
+            }
+            catch (System.Exception)
+            {
+                return Json(new { status = false });
+            }
+
+
         }
 
         [HttpPost]

@@ -19,15 +19,14 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        //TODO: Mappare nome
                         <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><i class="material-icons text-info mr-2">Me</i></a>
                         <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
+                            @*<li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Esperienza" asp-action="Index"><i class="material-icons text-info mr-1">Work experience</i></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Esperienza" asp-action="Education"><i class="material-icons text-info mr-1">Education</i></a>
-                            </li>
+                            </li>*@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout"><i class="material-icons text-info mr-1">Logout</i></a>
                             </li>
