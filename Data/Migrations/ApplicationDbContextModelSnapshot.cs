@@ -71,6 +71,9 @@ namespace Data.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
+                    b.Property<int?>("IdCurriculumVitae")
+                        .HasColumnType("int");
+
                     b.Property<int>("IdTipoGruppo")
                         .HasColumnType("int");
 
@@ -140,6 +143,8 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("IdCurriculumVitae");
+
                     b.HasIndex("IdTipoGruppo");
 
                     b.HasIndex("NormalizedEmail")
@@ -151,6 +156,36 @@ namespace Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Data_Models.CurriculumVitae", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ContentType")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("File")
+                        .IsRequired()
+                        .HasMaxLength(2147483647)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("IdApplicationUser")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CurriculumVitae");
                 });
 
             modelBuilder.Entity("Data_Models.Skills", b =>
@@ -341,11 +376,17 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data_Models.ApplicationUser", b =>
                 {
+                    b.HasOne("Data_Models.CurriculumVitae", "CurriculumVitae")
+                        .WithMany()
+                        .HasForeignKey("IdCurriculumVitae");
+
                     b.HasOne("Data_Models.TipoGruppo", "TipoGruppo")
                         .WithMany("ApplicationUsers")
                         .HasForeignKey("IdTipoGruppo")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("CurriculumVitae");
 
                     b.Navigation("TipoGruppo");
                 });

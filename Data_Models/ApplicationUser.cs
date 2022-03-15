@@ -54,5 +54,8 @@ namespace Data_Models
         public TipoGruppo TipoGruppo { get; set; }
 
         public ICollection<Skills> Skills { get; set; } = new List<Skills>();
+        
+        [ForeignKey("IdCurriculumVitae")]
+        public CurriculumVitae CurriculumVitae { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<ApplicationUser> Users { get; set; }
+        public DbSet<CurriculumVitae> CurriculumVitae { get; set; }
         public DbSet<Skills> Skills { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

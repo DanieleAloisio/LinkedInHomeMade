@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class initnew : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,6 +19,22 @@ namespace Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CurriculumVitae",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    ContentType = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    File = table.Column<string>(type: "nvarchar(max)", maxLength: 2147483647, nullable: false),
+                    IdApplicationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CurriculumVitae", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -87,6 +103,7 @@ namespace Data.Migrations
                     Facebook = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     Twitter = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     IdTipoGruppo = table.Column<int>(type: "int", nullable: false),
+                    IdCurriculumVitae = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -105,6 +122,12 @@ namespace Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_CurriculumVitae_IdCurriculumVitae",
+                        column: x => x.IdCurriculumVitae,
+                        principalTable: "CurriculumVitae",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_AspNetUsers_TipoGruppo_IdTipoGruppo",
                         column: x => x.IdTipoGruppo,
@@ -255,6 +278,11 @@ namespace Data.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_IdCurriculumVitae",
+                table: "AspNetUsers",
+                column: "IdCurriculumVitae");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AspNetUsers_IdTipoGruppo",
                 table: "AspNetUsers",
                 column: "IdTipoGruppo");
@@ -300,6 +328,9 @@ namespace Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Skills");
+
+            migrationBuilder.DropTable(
+                name: "CurriculumVitae");
 
             migrationBuilder.DropTable(
                 name: "TipoGruppo");
