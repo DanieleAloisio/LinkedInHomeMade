@@ -3,6 +3,7 @@ using Data;
 using Data_Models;
 using LinkedInHomeMade.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -145,6 +146,24 @@ namespace LinkedInHomeMade.Controllers
 
             await _unitOfWork.Remove(skill);
             return Json(new { status = true });
+        }
+
+        public async Task<IActionResult> UploadFile(IFormFile file)
+        {
+            try
+            {
+                var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
+
+                //this._fileService.Add(file, trainId);
+                //await this.UnitOfWork.SaveAsync(UIUtility.GetADName(this.HttpContext.Session.GetString("CurrentUser")));
+
+                return View();
+                //return Redirect(PageName.ProjectTrainDetail.TrimEnd('/') + $"?id={this.Id}&trainId={trainId}");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
