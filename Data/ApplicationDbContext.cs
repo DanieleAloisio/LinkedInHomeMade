@@ -9,8 +9,6 @@ namespace Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Esperienza> Esperienze { get; set; }
-        public DbSet<TipoEsperienza> TipoEsperienze { get; set; }
         public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<Skills> Skills { get; set; }
 

@@ -52,7 +52,6 @@ namespace Data_Models
         public int IdTipoGruppo { get; set; }
         [ForeignKey("IdTipoGruppo")]
         public TipoGruppo TipoGruppo { get; set; }
-        public ICollection<Esperienza> Esperienze { get; set; }
 
         public ICollection<Skills> Skills { get; set; } = new List<Skills>();
     }

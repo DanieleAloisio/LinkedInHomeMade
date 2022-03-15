@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220310113123_change-lenght-field")]
-    partial class changelenghtfield
+    [Migration("20220315132953_init-new")]
+    partial class initnew
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -155,69 +155,6 @@ namespace Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Data_Models.Esperienza", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Azienda")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Corso")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Descrizione")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<DateTime?>("Fine")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("IdApplicationUser")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("IdTipoEsperienza")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Inizio")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Istituto")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Localita")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Qualifica")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("TipoDiImpiego")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("TitoloStudio")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int?>("Votazione")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdApplicationUser");
-
-                    b.HasIndex("IdTipoEsperienza");
-
-                    b.ToTable("Esperienze");
-                });
-
             modelBuilder.Entity("Data_Models.Skills", b =>
                 {
                     b.Property<int>("Id")
@@ -239,23 +176,6 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Skills");
-                });
-
-            modelBuilder.Entity("Data_Models.TipoEsperienza", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TipoEsperienze");
                 });
 
             modelBuilder.Entity("Data_Models.TipoGruppo", b =>
@@ -432,23 +352,6 @@ namespace Data.Migrations
                     b.Navigation("TipoGruppo");
                 });
 
-            modelBuilder.Entity("Data_Models.Esperienza", b =>
-                {
-                    b.HasOne("Data_Models.ApplicationUser", "ApplicationUser")
-                        .WithMany("Esperienze")
-                        .HasForeignKey("IdApplicationUser");
-
-                    b.HasOne("Data_Models.TipoEsperienza", "TipoEsperienza")
-                        .WithMany("Esperienze")
-                        .HasForeignKey("IdTipoEsperienza")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ApplicationUser");
-
-                    b.Navigation("TipoEsperienza");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -498,16 +401,6 @@ namespace Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Data_Models.ApplicationUser", b =>
-                {
-                    b.Navigation("Esperienze");
-                });
-
-            modelBuilder.Entity("Data_Models.TipoEsperienza", b =>
-                {
-                    b.Navigation("Esperienze");
                 });
 
             modelBuilder.Entity("Data_Models.TipoGruppo", b =>

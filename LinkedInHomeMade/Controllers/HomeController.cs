@@ -57,7 +57,6 @@ namespace LinkedInHomeMade.Controllers
 
             try
             {
-                throw new Exception("Exception message");
                 var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
 
                 if (userLogged != null)

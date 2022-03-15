@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class initsql : Migration
+    public partial class initnew : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,19 +34,6 @@ namespace Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Skills", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TipoEsperienze",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TipoEsperienze", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -94,11 +81,11 @@ namespace Data.Migrations
                     Citta = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Professione = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Informazioni = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    Website = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    Instagram = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    Github = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    Facebook = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    Twitter = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Website = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    Instagram = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    Github = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    Facebook = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    Twitter = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     IdTipoGruppo = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -212,43 +199,6 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Esperienze",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Inizio = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Fine = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Descrizione = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    Localita = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Istituto = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    TitoloStudio = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Corso = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Qualifica = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    TipoDiImpiego = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Azienda = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Votazione = table.Column<int>(type: "int", nullable: true),
-                    IdApplicationUser = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    IdTipoEsperienza = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Esperienze", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Esperienze_AspNetUsers_IdApplicationUser",
-                        column: x => x.IdApplicationUser,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Esperienze_TipoEsperienze_IdTipoEsperienza",
-                        column: x => x.IdTipoEsperienza,
-                        principalTable: "TipoEsperienze",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Rel_Skills_ApplicationUsers",
                 columns: table => new
                 {
@@ -317,16 +267,6 @@ namespace Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Esperienze_IdApplicationUser",
-                table: "Esperienze",
-                column: "IdApplicationUser");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Esperienze_IdTipoEsperienza",
-                table: "Esperienze",
-                column: "IdTipoEsperienza");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Rel_Skills_ApplicationUsers_UsersId",
                 table: "Rel_Skills_ApplicationUsers",
                 column: "UsersId");
@@ -350,16 +290,10 @@ namespace Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Esperienze");
-
-            migrationBuilder.DropTable(
                 name: "Rel_Skills_ApplicationUsers");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "TipoEsperienze");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
