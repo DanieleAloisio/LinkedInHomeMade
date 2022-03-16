@@ -37,6 +37,7 @@ namespace LinkedInHomeMade.Models
         public string Professione { get; set; }
 
         public ICollection<Skills> Skills { get; set; } = new List<Skills>();
+        public CurriculumVitae CurriculumVitae { get; set; } = new CurriculumVitae();
 
 
         public ApplicationUserModel(ApplicationUser dbUser)
@@ -57,6 +58,7 @@ namespace LinkedInHomeMade.Models
             Twitter = dbUser.Twitter;
             Github = dbUser.Github;
             Skills = dbUser.Skills;
+            CurriculumVitae = dbUser.CurriculumVitae;
         }
     }
 }

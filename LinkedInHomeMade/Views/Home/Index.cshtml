@@ -169,17 +169,26 @@
                                         <div class="col-11">
                                             <h6 class="d-flex align-items-center mb-3">My<i class="material-icons text-info mr-2"> CV</i></h6>
                                         </div>
-                                        <form method="post" action="/Home/UploadFile" enctype="multipart/form-data">
-                                            <div class="input-group">
-                                                <div class="custom-file">
-                                                    <input type="file" name="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
-                                                    <label class="custom-file-label my-0" for="inputGroupFile04">Carica CV</label>
+                                        @if (Model.CurriculumVitae == null)
+                                        {
+                                            <form method="post" action="/Home/UploadFile" enctype="multipart/form-data">
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+                                                        <input type="file" name="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                                                        <label class="custom-file-label my-0" for="inputGroupFile04">Carica CV</label>
+                                                    </div>
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Carica</button>
+                                                    </div>
                                                 </div>
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Carica</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                    <form method="post" action="/Home/DownloadFile">
+                                        <button class="btn btn-primary" type="submit">Download CV</button>
+                                    </form>
+                                        }
                                     </div>
                                 </div>
                             </div>

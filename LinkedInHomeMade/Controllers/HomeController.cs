@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
 
 namespace LinkedInHomeMade.Controllers
@@ -179,11 +180,12 @@ namespace LinkedInHomeMade.Controllers
                     if (fileBase64 != null)
                     {
                         userLogged.CurriculumVitae =
-                            new CurriculumVitae() 
-                            { File = fileBase64, 
-                              ContentType = file.ContentType,
-                              Name = file.FileName,
-                              UserId = Guid.Parse(userLogged.Id)
+                            new CurriculumVitae()
+                            {
+                                File = fileBase64,
+                                ContentType = file.ContentType,
+                                Name = file.FileName,
+                                UserId = Guid.Parse(userLogged.Id)
                             };
                     }
 
@@ -191,6 +193,25 @@ namespace LinkedInHomeMade.Controllers
                 }
 
                 return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DownloadFile(IFormFile file)
+        {
+            try
+            {
+
+                var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
+                var dbProfilo = _unitOfWork.UserRepository.GetUserById(userLogged.Id);
+
+                byte[] bytes = Convert.FromBase64String(dbProfilo.CurriculumVitae.File);
+
+                return File(bytes, dbProfilo.CurriculumVitae.ContentType, Path.GetFileName(dbProfilo.CurriculumVitae.Name));
             }
             catch (Exception ex)
             {
