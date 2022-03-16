@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -44,6 +45,17 @@ namespace LinkedInHomeMade.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Contatti()
+        {
+            var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
+            var dbProfilo = _unitOfWork.UserRepository.GetUserById(userLogged.Id);
+
+            var profiloModel = new ApplicationUserModel(dbProfilo);
+
+            return View(profiloModel);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -75,7 +87,7 @@ namespace LinkedInHomeMade.Controllers
                     userLogged.Facebook = facebook;
                     userLogged.Twitter = twitter;
                 };
-                
+
                 await _unitOfWork.SaveChangesAsync();
                 return Json(new { status = true });
             }
@@ -152,13 +164,20 @@ namespace LinkedInHomeMade.Controllers
         {
             try
             {
-                var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
+                if (file != null)
+                {
+                    var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
 
-                //this._fileService.Add(file, trainId);
-                //await this.UnitOfWork.SaveAsync(UIUtility.GetADName(this.HttpContext.Session.GetString("CurrentUser")));
+                    using (var ms = new MemoryStream())
+                    {
+                        file.CopyTo(ms);
+                        var fileBytes = ms.ToArray();
+                        string s = Convert.ToBase64String(fileBytes);
+                    }
+                }
+
 
                 return View();
-                //return Redirect(PageName.ProjectTrainDetail.TrimEnd('/') + $"?id={this.Id}&trainId={trainId}");
             }
             catch (Exception ex)
             {

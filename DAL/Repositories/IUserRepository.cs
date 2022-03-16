@@ -23,6 +23,7 @@ namespace DAL.Repositories
         public ApplicationUser GetUserById(string id)
         {
             return _dbSet.Include(x => x.Skills)
+                         .Include(x => x.CurriculumVitae)
                          .FirstOrDefault(x => x.Id == id);
         }
 
