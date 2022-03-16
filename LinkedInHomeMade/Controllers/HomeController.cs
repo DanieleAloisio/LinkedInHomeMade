@@ -160,6 +160,7 @@ namespace LinkedInHomeMade.Controllers
             return Json(new { status = true });
         }
 
+        [HttpPost]
         public async Task<IActionResult> UploadFile(IFormFile file)
         {
             try
@@ -167,17 +168,29 @@ namespace LinkedInHomeMade.Controllers
                 if (file != null)
                 {
                     var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
-
+                    var fileBase64 = "";
                     using (var ms = new MemoryStream())
                     {
                         file.CopyTo(ms);
                         var fileBytes = ms.ToArray();
-                        string s = Convert.ToBase64String(fileBytes);
+                        fileBase64 = Convert.ToBase64String(fileBytes);
                     }
+
+                    if (fileBase64 != null)
+                    {
+                        userLogged.CurriculumVitae =
+                            new CurriculumVitae() 
+                            { File = fileBase64, 
+                              ContentType = file.ContentType,
+                              Name = file.FileName,
+                              UserId = Guid.Parse(userLogged.Id)
+                            };
+                    }
+
+                    await _unitOfWork.SaveChangesAsync();
                 }
 
-
-                return View();
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
             {

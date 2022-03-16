@@ -26,7 +26,7 @@ namespace Data_Models
         [StringLength(int.MaxValue)]
         public string File { get; set; }
 
-        [ForeignKey("IdApplicationUser")]
-        public Guid IdApplicationUser { get; set; }
+        public ApplicationUser User { get; set; }   
+        public Guid UserId { get; set; }
     }
 }

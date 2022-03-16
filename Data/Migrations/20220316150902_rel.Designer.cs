@@ -4,14 +4,16 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220316150902_rel")]
+    partial class rel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,7 +58,7 @@ namespace Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CurriculumVitaeId")
+                    b.Property<int>("CurriculumVitaeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -144,8 +146,7 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CurriculumVitaeId")
-                        .IsUnique()
-                        .HasFilter("[CurriculumVitaeId] IS NOT NULL");
+                        .IsUnique();
 
                     b.HasIndex("IdTipoGruppo");
 
@@ -380,7 +381,9 @@ namespace Data.Migrations
                 {
                     b.HasOne("Data_Models.CurriculumVitae", "CurriculumVitae")
                         .WithOne("User")
-                        .HasForeignKey("Data_Models.ApplicationUser", "CurriculumVitaeId");
+                        .HasForeignKey("Data_Models.ApplicationUser", "CurriculumVitaeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Data_Models.TipoGruppo", "TipoGruppo")
                         .WithMany("ApplicationUsers")
