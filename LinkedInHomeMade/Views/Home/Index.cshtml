@@ -185,9 +185,14 @@
                                         }
                                         else
                                         {
-                                    <form method="post" action="/Home/DownloadFile">
-                                        <button class="btn btn-primary" type="submit">Download CV</button>
-                                    </form>
+                                            <div class="d-flex justify-content-center">
+                                                <form method="post" action="/Home/DownloadFile">
+                                                    <button class="btn btn-primary" type="submit">Download CV</button>
+                                                </form>
+                                                <form method="post" action="/Home/EliminaFile">
+                                                    <button class="ml-1 btn btn-danger" type="submit">Elimina CV</button>
+                                                </form>
+                                            </div>
                                         }
                                     </div>
                                 </div>
