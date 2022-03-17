@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace LinkedInHomeMade.Controllers
 {
-    [Authorize] // EMAIL
+    [Authorize] //Test EMAIL
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
