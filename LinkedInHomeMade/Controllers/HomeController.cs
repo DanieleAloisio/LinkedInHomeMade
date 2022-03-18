@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace LinkedInHomeMade.Controllers
 {
-    [Authorize] //TEST AZURE 
+    [Authorize] //TEST SQL AZURE
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
