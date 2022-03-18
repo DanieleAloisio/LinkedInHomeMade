@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220315142658_init")]
-    partial class init
+    [Migration("20220318141223_init-loggithub")]
+    partial class initloggithub
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,6 +58,9 @@ namespace Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("CurriculumVitaeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -72,9 +75,6 @@ namespace Data.Migrations
                     b.Property<string>("Github")
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
-
-                    b.Property<int?>("IdCurriculumVitae")
-                        .HasColumnType("int");
 
                     b.Property<int>("IdTipoGruppo")
                         .HasColumnType("int");
@@ -145,7 +145,9 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdCurriculumVitae");
+                    b.HasIndex("CurriculumVitaeId")
+                        .IsUnique()
+                        .HasFilter("[CurriculumVitaeId] IS NOT NULL");
 
                     b.HasIndex("IdTipoGruppo");
 
@@ -177,17 +179,45 @@ namespace Data.Migrations
                         .HasMaxLength(2147483647)
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("IdApplicationUser")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.ToTable("CurriculumVitae");
+                });
+
+            modelBuilder.Entity("Data_Models.LogGitHub", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("AuthorName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Date")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Message")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LogGitHub");
                 });
 
             modelBuilder.Entity("Data_Models.Skills", b =>
@@ -379,8 +409,8 @@ namespace Data.Migrations
             modelBuilder.Entity("Data_Models.ApplicationUser", b =>
                 {
                     b.HasOne("Data_Models.CurriculumVitae", "CurriculumVitae")
-                        .WithMany()
-                        .HasForeignKey("IdCurriculumVitae");
+                        .WithOne("User")
+                        .HasForeignKey("Data_Models.ApplicationUser", "CurriculumVitaeId");
 
                     b.HasOne("Data_Models.TipoGruppo", "TipoGruppo")
                         .WithMany("ApplicationUsers")
@@ -442,6 +472,11 @@ namespace Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Data_Models.CurriculumVitae", b =>
+                {
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Data_Models.TipoGruppo", b =>

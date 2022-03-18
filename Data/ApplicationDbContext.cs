@@ -12,6 +12,7 @@ namespace Data
         public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<CurriculumVitae> CurriculumVitae { get; set; }
         public DbSet<Skills> Skills { get; set; }
+        public DbSet<LogGitHub> LogGitHub { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

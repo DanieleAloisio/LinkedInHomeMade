@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkedInHomeMade", "LinkedInHomeMade\LinkedInHomeMade.csproj", "{8FA52A6F-7AE6-47F6-BC0D-9E118F3756C1}"
 EndProject
@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data_Models", "Data_Models\Data_Models.csproj", "{3917D1D3-4F07-4067-BA14-164D21E6545B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{2A10D549-78E4-4586-806B-205B2737F578}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{2A10D549-78E4-4586-806B-205B2737F578}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHubMonitorApp", "..\..\AzureFunctionDemo\GitHubMonitorApp\GitHubMonitorApp.csproj", "{471F0164-9453-409E-9EE7-D54ACB5611C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{2A10D549-78E4-4586-806B-205B2737F578}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A10D549-78E4-4586-806B-205B2737F578}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A10D549-78E4-4586-806B-205B2737F578}.Release|Any CPU.Build.0 = Release|Any CPU
+		{471F0164-9453-409E-9EE7-D54ACB5611C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{471F0164-9453-409E-9EE7-D54ACB5611C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{471F0164-9453-409E-9EE7-D54ACB5611C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{471F0164-9453-409E-9EE7-D54ACB5611C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

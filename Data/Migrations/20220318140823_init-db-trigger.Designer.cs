@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220316150902_rel")]
-    partial class rel
+    [Migration("20220318140823_init-db-trigger")]
+    partial class initdbtrigger
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,7 +58,7 @@ namespace Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CurriculumVitaeId")
+                    b.Property<int?>("CurriculumVitaeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -146,7 +146,8 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CurriculumVitaeId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[CurriculumVitaeId] IS NOT NULL");
 
                     b.HasIndex("IdTipoGruppo");
 
@@ -381,9 +382,7 @@ namespace Data.Migrations
                 {
                     b.HasOne("Data_Models.CurriculumVitae", "CurriculumVitae")
                         .WithOne("User")
-                        .HasForeignKey("Data_Models.ApplicationUser", "CurriculumVitaeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Data_Models.ApplicationUser", "CurriculumVitaeId");
 
                     b.HasOne("Data_Models.TipoGruppo", "TipoGruppo")
                         .WithMany("ApplicationUsers")

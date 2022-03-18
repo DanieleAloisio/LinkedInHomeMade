@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class init : Migration
+    public partial class initdbtrigger : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,7 +30,7 @@ namespace Data.Migrations
                     Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     ContentType = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     File = table.Column<string>(type: "nvarchar(max)", maxLength: 2147483647, nullable: false),
-                    IdApplicationUser = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -103,7 +103,7 @@ namespace Data.Migrations
                     Facebook = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     Twitter = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     IdTipoGruppo = table.Column<int>(type: "int", nullable: false),
-                    IdCurriculumVitae = table.Column<int>(type: "int", nullable: true),
+                    CurriculumVitaeId = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -123,8 +123,8 @@ namespace Data.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_CurriculumVitae_IdCurriculumVitae",
-                        column: x => x.IdCurriculumVitae,
+                        name: "FK_AspNetUsers_CurriculumVitae_CurriculumVitaeId",
+                        column: x => x.CurriculumVitaeId,
                         principalTable: "CurriculumVitae",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -278,9 +278,11 @@ namespace Data.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_IdCurriculumVitae",
+                name: "IX_AspNetUsers_CurriculumVitaeId",
                 table: "AspNetUsers",
-                column: "IdCurriculumVitae");
+                column: "CurriculumVitaeId",
+                unique: true,
+                filter: "[CurriculumVitaeId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUsers_IdTipoGruppo",
