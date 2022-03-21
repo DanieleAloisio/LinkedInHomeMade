@@ -218,5 +218,18 @@ namespace LinkedInHomeMade.Controllers
                 throw ex;
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> EliminaFile()
+        {
+            var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
+            var dbProfilo = _unitOfWork.UserRepository.GetUserById(userLogged.Id);
+
+            var cv = dbProfilo.CurriculumVitae;
+
+            await _unitOfWork.Remove(cv);
+            return RedirectToAction("Index");
+        }
+
     }
 }
