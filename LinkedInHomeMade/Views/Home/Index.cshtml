@@ -18,7 +18,7 @@
                     <div class="modal-body">
                         <form>
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-12">
                                     <div class="form-group">
                                         <h6 class="mb-0"><label asp-for="@Model.Nome"></label></h6>
                                         <input type="text" asp-for="@Model.Nome" class="form-control w-75" />
@@ -34,35 +34,6 @@
                                     <div class="form-group">
                                         <h6 class="mb-0"><label asp-for="@Model.Mobile"></label></h6>
                                         <input type="text" asp-for="@Model.Mobile" class="form-control w-75" />
-                                    </div>
-                                    <div class="form-group">
-                                        <h6 class="mb-0"><label asp-for="@Model.Paese"></label></h6>
-                                        <input type="text" asp-for="@Model.Paese" class="form-control w-75" />
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
-                                        <input type="text" asp-for="@Model.Website" class="form-control w-75" />
-                                    </div>
-                                    <div class="form-group">
-                                        <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github mr-2 icon-inline"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>Github</h6>
-                                        <input type="text" asp-for="@Model.Github" class="form-control w-75" />
-                                    </div>
-                                    <div class="form-group">
-                                        <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter mr-2 icon-inline text-info"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>Twitter</h6>
-                                        <input type="text" asp-for="@Model.Twitter" class="form-control w-75" />
-                                    </div>
-                                    <div class="form-group">
-                                        <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram mr-2 icon-inline text-danger"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>Instagram</h6>
-                                        <input type="text" asp-for="@Model.Instagram" class="form-control w-75" />
-                                    </div>
-                                    <div class="form-group">
-                                        <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook mr-2 icon-inline text-primary"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>Facebook</h6>
-                                        <input type="text" asp-for="@Model.Facebook" class="form-control w-75" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="@Model.Informazioni"><h6 class="mb-0">Su di me</h6></label><textarea asp-for="@Model.Informazioni" class="form-control w-75"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -80,13 +51,14 @@
             await Html.RenderPartialAsync("InserisciSkill", new SkillViewModel());
         }
 
+        <input type="file" id="imgupload" style="display:none" />
         <div id="dialog" style="overflow: hidden;">
             <div class="row gutters-sm col-12">
                 <div class="d-flex flex-column text-center col-5">
-                    <div class="col-12">
+                    <div class="col-10">
                         <div class="profile-header-container">
                             <div class="profile-header-img">
-                                <img class="img-circle" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" />
+                                <img class="img-circle" style="height:200px; width:200px" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEBLAEsAAD/4QBaRXhpZgAASUkqAAgAAAABAA4BAgA4AAAAGgAAAAAAAABNYW4gZmFjZSBjYXJ0b29uIGljb24gdmVjdG9yIGlsbHVzdHJhdGlvbiBncmFwaGljIGRlc2lnbv/hBVdodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+Cjx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iPgoJPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KCQk8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOklwdGM0eG1wQ29yZT0iaHR0cDovL2lwdGMub3JnL3N0ZC9JcHRjNHhtcENvcmUvMS4wL3htbG5zLyIgICB4bWxuczpHZXR0eUltYWdlc0dJRlQ9Imh0dHA6Ly94bXAuZ2V0dHlpbWFnZXMuY29tL2dpZnQvMS4wLyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczpwbHVzPSJodHRwOi8vbnMudXNlcGx1cy5vcmcvbGRmL3htcC8xLjAvIiAgeG1sbnM6aXB0Y0V4dD0iaHR0cDovL2lwdGMub3JnL3N0ZC9JcHRjNHhtcEV4dC8yMDA4LTAyLTI5LyIgeG1sbnM6eG1wUmlnaHRzPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvcmlnaHRzLyIgcGhvdG9zaG9wOkNyZWRpdD0iR2V0dHkgSW1hZ2VzL2lTdG9ja3Bob3RvIiBHZXR0eUltYWdlc0dJRlQ6QXNzZXRJRD0iODc4OTM5MjQ0IiB4bXBSaWdodHM6V2ViU3RhdGVtZW50PSJodHRwczovL3d3dy5pc3RvY2twaG90by5jb20vbGVnYWwvbGljZW5zZS1hZ3JlZW1lbnQ/dXRtX21lZGl1bT1vcmdhbmljJmFtcDt1dG1fc291cmNlPWdvb2dsZSZhbXA7dXRtX2NhbXBhaWduPWlwdGN1cmwiID4KPGRjOmNyZWF0b3I+PHJkZjpTZXE+PHJkZjpsaT5qZW1hc3RvY2s8L3JkZjpsaT48L3JkZjpTZXE+PC9kYzpjcmVhdG9yPjxkYzpkZXNjcmlwdGlvbj48cmRmOkFsdD48cmRmOmxpIHhtbDpsYW5nPSJ4LWRlZmF1bHQiPk1hbiBmYWNlIGNhcnRvb24gaWNvbiB2ZWN0b3IgaWxsdXN0cmF0aW9uIGdyYXBoaWMgZGVzaWduPC9yZGY6bGk+PC9yZGY6QWx0PjwvZGM6ZGVzY3JpcHRpb24+CjxwbHVzOkxpY2Vuc29yPjxyZGY6U2VxPjxyZGY6bGkgcmRmOnBhcnNlVHlwZT0nUmVzb3VyY2UnPjxwbHVzOkxpY2Vuc29yVVJMPmh0dHBzOi8vd3d3LmlzdG9ja3Bob3RvLmNvbS9waG90by9saWNlbnNlLWdtODc4OTM5MjQ0LT91dG1fbWVkaXVtPW9yZ2FuaWMmYW1wO3V0bV9zb3VyY2U9Z29vZ2xlJmFtcDt1dG1fY2FtcGFpZ249aXB0Y3VybDwvcGx1czpMaWNlbnNvclVSTD48L3JkZjpsaT48L3JkZjpTZXE+PC9wbHVzOkxpY2Vuc29yPgoJCTwvcmRmOkRlc2NyaXB0aW9uPgoJPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KPD94cGFja2V0IGVuZD0idyI/Pgr/7QCEUGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAGgcAlAACWplbWFzdG9jaxwCeAA4TWFuIGZhY2UgY2FydG9vbiBpY29uIHZlY3RvciBpbGx1c3RyYXRpb24gZ3JhcGhpYyBkZXNpZ24cAm4AGEdldHR5IEltYWdlcy9pU3RvY2twaG90b//bAEMACgcHCAcGCggICAsKCgsOGBAODQ0OHRUWERgjHyUkIh8iISYrNy8mKTQpISIwQTE0OTs+Pj4lLkRJQzxINz0+O//bAEMBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//CABEIAmQCZAMBEQACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABQYCAwQBB//EABgBAQADAQAAAAAAAAAAAAAAAAABAwQC/9oADAMBAAIQAxAAAAG5gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGMNPFmquzVz1jz14ZTGfXOzrnb3xt74ymAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMYnnqt5qrdPFnkAAAABs753917rK99leUwAAAAAAAAAAAAAAAAAAAAAAAAAAABp475abuaq3yJAAAAAAAHst3dfRbV021ZTAAAAAAAAAAAAAAAAAAAAAAAAAA0V2cVF+muwAAAAAAAAAAey6LKuq6ndZX6AAAAAAAAAAAAAAAAAAAAAAAauO+HPo0V2AAAAAAAAAAAAAbe+Oy+jotq9AAAAAAAAAAAAAAAAAAAAAMYcVGjlpv8gAAAAAAAAAAAAAANvfHfpzbu+AAAAAAAAAAAAAAAAAAAANXHUdm16+OgAAAAAAAAAAAAAAAPZdl+fsvo9AAAAAAAAAAAAAAAAAABorsjsurGJAAAAAAAAAAAAAAAAAHXfR36M4AAAAAAAAAAAAAAAAAGnjuMya/IkAAAAAAAAAAAAAAAAAASevJvsrAAAAAAAAAAAAAAAAA8IrHs18dgAAAAAAAAAAAAAAAAAAdd1PfpzAAAAAAAAAAAAAAAAAc9dkbk1gAAAAAAAAAAAAAAAAAADotrktWQAAAAAAAAAAAAAAAADgzaeSm4AAAAAAAAAAAAAAAAAAAbe+JXZjAAAAAAAAAAAAAAAAAisezVx2AAAAAAAAAAAAAAAAAAANnXMttxAAAAAAAAAAAAAAAADwh8O7yJAAAAAAAAAAAAAAAAAAAGfXMvtxAAAAAAAAAAAAAAAADDmYjFuAAAAAAAAAAAAAAAAAAAAymJjdhAAAAAAAAAAAAAAAAGnjuLx7AAAAAAAAAAAAAAAAAAAAPZiZ3YQAAAAAAAAAAAAAAABz12RuTWAAAAAAAAAAAAAAAAAAAB7MTO7CAAAAAAAAAAAAAAAAOaq2Oy6gAAAAAAAAAAAAAAAAAAAPZTO7AAAAAAAAAAAAAAAAAOWm2PzagAAAAAAAAAAAAAAAAAAAPZiZ3YQAAAAAAAAAAAAAAABy03R+bSAAAAAAAAAAAAAAAAAAAB7MTO7CAAAAAAAAAAAAAAAAOWm6PzaQAAAAAAAAAAAAAAAAAAAMpiY3YQAAAAAAAAAAAAAAABy02x+bUAAAAAAAAAAAAAAAAAAABlMTG7CAAAAAAAAAAAAAAAAOaq2Oy6gAAAAAAAAAAAAAAAAAAAM+uZfbiAAAAAAAAAAAAAAAAHPVbG5dQAAAAAAAAAAAAAAAAAAAGzrmW24gAAAAAAAAAAAAAAABorsjMmsAAARNtUJdTx98ekjXZP0X9nHYAAAAAGMxBXUxFtXP1zuiZSq2epu3c9AAAbe+JXZjAAAAAAAAAAAAAAAAGnjuLx7AABp6ip6skbZWAB7E2XPonqLwAAAAObrmn68nJ3wABsibTm1S9NoAA3d8SmzGAAAAAAAAAAAAAAAANfPUTi2gAaeoq2nL6b+es0+IwNPXPN1zy9c2LPon6LwAAANHXNK2Y/Tp5738zticonGY1zHN1zN03TFNwAG+yuT15AAAAAAAAAAAAAAAABhExGHcAAAAAAEuXrnq46AAAA0dc5xOyJAAAAAAHRbVJasoAAAAAAAAAAAAAAAA8IfDv8gAAAAAAAAAAAAAAAAAAAOq6mQ05gAAAAAAAAAAAAAAMImNp0dXdXXZXD4t2PMgAAAAAAAAAAAAAAAAAABpzTV1OETH037u+O2yoAAAAAAAAAAAACMp0RlGgS1+bmqt8r7AAAAAAAAAAAAAAAAAAAhLqdWnNdomDy7dPPXsxZNeD2QAAAAAAAAAAAAhc2vjrtAhNGSz5dQAAAAwmM4kAeS9gAAAABhMZxIAAAA4bOKVrxz5Ysuzl4sAn9eHf1yAAAAAAAAAAAAIPLs4+LBkU/Zhsme+YpuAAAFY0URffFhpumqrAMJZwAAAAEDdVBW1TFdljouAAAAibaqjrySddtly7MQZE7qx9PdYAAAAAAAAAAAAg8uzj4s9MZVDXg9L1i25xIAA5OuafpzjNN3y6fYDyXhlAAAAYTFI1ZvAXTNp38yAAAIe6mp6sshXbZ8uzw9PCf1Y+nusAAAAAAAAAAAAQubXw12j0puzBq65u2Pb3V9gACMs4q99AF2y6dsSBrlsgAAAObrmm6c4Ftz393HYAAAg76avpy99dtmy7PTIxLDqxb++AAAAAAAAAAAABEZ9MdVeMimbMGrrm45NknVYAAOXrmnac42RN3zaUANUtsAAABjKkasuILrm07uZAAAFf0Z63oz9tdtqy7PDIxLJswbJgAAAAAAAAAAAARtN8VRpxMyl7MGvrm2ZdUxTcAABXb6Yiyux0XS1dgA1S2wAAAAhba4C6maqtn6bQAAAKzpzQN9HbXZa8u3AzPZiybMHoAAAAAAAAAAAAOSuyDzbPD0pm3BrnmzZtM9ReAAAAAANUtsAAAAAAAAAAKlqyxF1PbXZa8u3E9Onuue1YwAAAAAAAAAAAAMYmt494xKbtwa55n6L7Lm0gAAAAADVLbAAAAAAAAAAClbMfBZX212WrLt8PSSuzyt+cAAAAAAAAAAAAAQWXZzcWeFN2YNXXMvVdbcmoAAAAAAapbYAAAAAAAAAAUHdh09c9tdlqy7fQTmrH1d1gAAAAAAAAAAAADgquiM+oUzZg1dc93Hd2xbQAAAAABrlsgAAAAAAAAANcx8/34B212WvLtG3rmwa8PoAAAAAAAAAAAAAMYV/Lu189U3Zg09c7In6Bg3gAAAAADVLbAAAAAAAAAAR9ldL2Yx3V22rLsEtoyyFtIAAAAAAAAAAAAAA5K7ITNsp2zDo64F9w7t/PQAAAAAGqW2AAAAAAAAAAgr6KxpzDvrttOXZ1d1zerH6AAAAAAAAAAAAAAActdnzbvjk65Fxya5Oq0AAAAADXLZDGWKckZQAAAAAAAFU1ZYa6kSldl1ruk7s2UgAAAAAAAAAAAAAAAPmSI6QsefRYc+gAAAAADn6nmnryQHVzz0cwAAAAAABRN2Hm65FghfkgAAAAAAAAAAAAAAAAfNkRUhKVW3DJrAAAAAA1y4u+/ADs553cwAAAAAAOfrmh7sIFkib0AAAAAAAAAAAAAAAAAfOkQ0hsib/h3+wAGMxH98c3fOCMk7uZ6eeuvnrKJ0dTyz0OmOejmBo655OudHXOqY9N0dd1ffTz0AAIO+mr6coFpibqAAAAAAAAAAAAAAAAAfP0QMgLrj299fYEHfTW9GbXMAAD2J7OepCuyRrt3x1wd1RtlfB3xq65AAAk6rbXm1buZAFO15Iy2oC3RNwAAAAAAAAAAAAAAAAAKIVyYAsOfRY8+gRltdO14wAAAAAAAAAABI12XPHsA1dRQduHyYAusTaQAAAAAAAAAAAAAAAAClFWmAOvju84toqmrLDXUgATlF8pXZrmOXrnm650zGMwPTZE9HPXTz10c9apiu6M/P1yABfcO7fz0IG+is6cwAvkTYgAAAAAAAAAAAAAAAAColPmABd8W3t47p+vJF21ACZputeXVHdpKI85kAAD2Wc8598x8d4RzSNmPyYAF5xbevjsUXbi5e+AB9FiZkAAAAAAAAAAAAAAAAArJR5gATlF9ozaajryRNtQHsTe8W3o56qWibZbkmJrx56xiQRlLKecuo9MSjZ99hoVTVlhrqQBe8O7p56ibaqjryAAfTomQAAAAAAAAAAAAAAAAAII+fTAAzib5i3Vu/PCX0AStVtvyaxEWTXbkvNcr1V3ueiec0Yp54njdxsdxHNsrVM7VHBZXStmMAfQMG/Ymj7MXH3wAB9YidwAAAAAAAAAAAAAAAABGHzSYAAsGfRmVzRnAtOXVN03AVu6YeyeiJ7o66XWRrOWeeCedaO7mLZRGUBQN2HV1yM4n6Dg3wl1NW1ZQAN8Pq6QAAAAAAAAAAAAAAAABoPlEwABnE2LPorWnMBdse3ur7AHJ3Lq3XPWMyB7EZRzqiqS4j2AFM2Y46ysd3Hdvya6Ntxa5gACVh9JSAAAAAAAAAAAAAAAAAPD5QjTIADs474++AL7h3b+egAAEvEkewAAAqerLD3Uiapu5uuY6ysAAWSJvQAAAAAAAAAAAAAAAAAB82RFSAAAAv2Hdu56AAAAAAAAqmrLDXUjo565+uQAALrE2kAAAAAAAAAAAAAAAAAAo5WZgAAAC84tvXx2AAOdZin0xT6jqVAACoa8kVbUAAAAPpMTKgAAAAAAAAAAAAAAAAAFcKJMAAAAXDJrlKrQAANCzW6zc9CsAACj7cXH3wAAABsPq8TmAAAAAAAAAAAAAAAAAAcZ8tmAAAAJqm605tXsAAAAAAAlDW01XTm8mAAAAJyH0JIAAAAAAAAAAAAAAAAAAHzNEbIAAADr47sNF8vVd7AAAAAcnfEVbXC208vfAAAAAF6ibIAAAAAAAAAAAAAAAAAAAVko8wAAAABsiZGuzt472xPhz9c6Jj0xmNMxydc6uuQAAAAANx9TidoAAAAAAAAAAAAAAAAAABifNkRkgAAAAAAAAAAAAAAABcom2AAAAAAAAAAAAAAAAAAAAGkphW5jwAAAAAAAAAAAAAAAtUTcz0AAAAAAAAAAAAAAAAAAAAAjSnog5AAAAAAAAAAAAADfC8pngAAAAAAAAAAAAAAAAAAAAAACMKoiBliAAAAAAAAAAAeliibmdAAAAAAAAAAAAAAAAAAAAAAAAAOUrhXUcEgAAAAAAAAPSeibaSQAAAAAAAAAAAAAAAAAAAAAAAAAAPCPIIhURcsQAAAAAekjCfTYjrAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrI4jjgORGg1HhkbTqO1MkSh0gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/8QAMhAAAAUBBwMEAQQCAwEAAAAAAAECAwQFEBESEyAwUDM0QBUhMTIUIiMkYEGAJTVCQ//aAAgBAQABBQL/AEHMyIG8ggcgZyxmrGYsZyxnqGeCeQYIyP8AoBmRA3yBuqPcJaiBPmCeSYIyPmlOJSFPKMX3+ETqiBPkCMj5VTqUhTqleQl5RBLqVcipwkhTqleYlxSQl4j40zuC3r+AS4pIQ4S+KWskBSzWfBNvcQ45gBnefCNOXcM4vARnfw7SsSeEWrErh2Ptwbx3I4hnqcG+f6uIb6nBuHe5xCPv/TE/bglfTiS+eCd6fEl88E90/wCmP/T+mP8A0/pj/wBOJL54J/6cSXzwT/04lP24J/6cSn7cE90+JR9+Ce6ew9UWmw5UJCwbzpgpDyQ1UnUhiU0/vKUSCeqZEFzJCxmuBMt9Aaqhht5DydbfU4J3p6nXUMokzVv6iMyOHPxbj76I6H5LkhWlC1NqiTkva2upwS/ppddS0hxEqWsqbIMFSnB6UoelKB0t0HTZBBUOQkGhSRAmYtp55LDbzq33Ex3lAqfJMFS3h6UselKHpSwdLeCoMlIiSF6mupwSvrvfIVFZVtOMNumltCN9nqf0xj7+epRIScs725CXLFfbiIshK5QUokkqWGpBOH5ctVsd/EDUSnOHnTMsqJ3alEhLjhuKBHhMvcvKldW1Eo26htY0megtzGm/amPKZjmd50XvX3cxVrPu15UnrC+x/r0+Rmt7EuUbihClGvQfttzZRkYhyjSrZqXainqMpOiP0fKk9b/Nj3WZdNl1CycRqlLwR7EKwLI7ysP3JJ3p2FqwoM7zsYXmM7FT7YQe5+AVhfEfo+VK6xAwfuHeqIXvE1VDtrWujan7bEjt7YXa7FV6Ihd18mdrPR8qWX6yB/Ic6op5/wAPVJRmR7G0ZjnwVv8A9dhRYkqSaVWMoy2diqn7CJ3IP4sQVyPKll+kHY51RTD/AI2uXDUSiSozhxcrSv52ZkQ1nhO+HEPFs1U/3BD7oHYgrz8uQV7IP4L4c6gpR/o3nPr4tTO+UIndD/0I5XveWor0/wCbHOoKUf6953p+LOO+YIndArIiffzJCcLtjnVFNO6VvOdLxXlYnhE7q2OnC15kpF6LHeqIasMvec6fiOKwN2Q+6sbRjc80yvJxGBYe6wbVhc3nOn4k5WGJZD7qyK3cnzn2sxPwH+vYwrGxur+PEqirmrIXchhrMVwDrCXBKTglWU5WKJun7uDEQxpGIj8GprvkWU5BrlIimCIklwNQ7+ylL3lmZHfoaV4EheZIsovfcHU/+wsp68MvdWm8tDabi3pC8ti2hl/L4OrF/wAhY2rA4XuWhSkoJU+OkHVGh6qgeqtgqlHMJmR1AlJVYtu8fFiG7VPtIB1CMQOqMj1VA9VQE1Ngw3IZd11Ry5q2hF+9wdZL+fbCczItsuoZZrcW4eojMgiZIQEVRZBM+O6DkxmiXVEhdRkKCnXF7DE51kNOoeRoqDmZKtoRcJWy/mW0pz3snv5LPkQn8l+11eU0Z3nbQi/Z4Oul+9bFcypFlTVfI0x6cbhenRwdMZMKpQOmPD0+SPwJI/Akj8CSCpsgwVKWE0psFTY4XTGjJ5lbC9LKsbFlUduRoopXQuDrpe2iG7mxhUe70U+NmLH5zROf42MCjGSsZxFLlMFIaMrj0RO1sku5z+ikldT+DrhfxtFMdwuipd1aRXmw0TLImpwyqZIJ6NhIxloGUgZKBlIGWgYU2mZJJhzOqQqTOB7RG7YVB7LY0wU4YPB1hN8DQlRoW04TrdUL9+2nN45NlQZxoSpSDaqslsIrSAmqRFAp0Ux+ZGBzopBVTiJC6yyQcrLyg7JeeFNasmt5sXQ2VzXwJT2e/paTha4OopxQNNMfuOqlopaLmbZUI0GEMOOBMIFFaH4zIOI0YVCUFIUgxHiqfNKSQmx1OB2xBYlioyMCNLCcb/CPpxsaUqNCpaykQLYScMTQqM0pRtmLj05WMkwGiURXFbPThmWQ04pbzqWWnFm6vTTEY6hwrycD2ll3Ci1j2j7FxC4tip9zZTE/uzJP5DmqiIvlcLU0YKhss9Dwap3NmaZM66Gi5jha4i6RsxTvi6jxIGaYzRmKCSNeuonfL2qa3lwOFrTeKJs05WKJrNsZagTWxLVilbLaDccSWFPCyms6LswJSWQRkZb3wH6i2gGd57NIazJvD1BnImbLMl1gM1FpYIyUW0uUw2HaoQdkOvblFZwRuHrUfGztocW2aKi+kFVR6q2PVUBVVWPU3x6m+DqUgHOkmFOuL3mmzedbQTbfDqIlJnQ1RHuCo0TCXEutIeRLo62wZXH58CkmsEVxcXJgsSik0p9jzWWXH1wqW3G5CRAjyRIo77QMjSfj/IiUhx0MsNx0ck9HZfJ+hkHoUhjxCIzOPSH3RGgsReYegRnw7QyDtMltBSVJPdap8p4M0MgzFZjlzikJWS6ZEcC6GyYVQnAqjSyB0uYQ9Plj8CWPTphgqVMMJokkwihBujxEBthlr/aH/8QAKBEAAQMBCAMBAQEBAQAAAAAAAQACAxEQEhMgMDEyUCFAQVFgIoCQ/9oACAEDAQE/Af8AgelUI3IQrCasNquNWG1YQWCjG5UI/gACUIj9QjaNQsaUYgjE5EEd0GEoRD76ZjaUYj8RBHatjJTYwPYMQKMZHYtYXJsYHuFgKdERt1oFU2L96BzA5OYW9U1pcmtDejfH9HUMZeQFOlkZ9HTMbeK26eRtD0rW3R1E23SRirupl49JCPFepfx6Rg/z1LuP8a7bo279Udujj5dUeji5fxsXL+Ni5fxsO/VHo4d+qO3Rxb9Uduji5dU7bo4uXVO49HHy0XSgIyuKvFXihKfqa8O13S/iL3FVKD3BCb9QIO2g/j0cfLOSBunSF2dknw6jnBqc4uzA0TJK755OPRs5ZiaIh71hOWCVgrBWCVhOVxyoo3/DpOdQVRJcVdKw3LBKwSsFYJWCVhuTHHY5pOPRjf0LjdItB3VANeXj/Gy7dABU0WCnRltg26mV1fFgBOyEP6nx3fPuQj7bJHTyFGat6iR9PAsAqaJrQ0WEV9yLjkBuup07zQWxsujI/kfbi45H8ionVFNFzq2Md813u+WNdpS8bIh/rLJy9uLjkduUDQ1QNc7tvVG2jLxsi5ZZOXtxccjt7I+Od+2QbartsjNtGbayLllfyPtw7ZHb2Rcc7hUWj0htozWRcsrt/bh3yHeyLjoObY1tNdzftjW/TpTb2R8sh29yI/6yHeyHpZeVkfLJIaN9weDkO9kPSycrI+WSY/PdjNW2u3si5dK7eyPlkkNXe7EaGlrt7GcukO1sfK1xoK++114VsdvYN+kk42xcrZXVNPfjfdNjuRtb5HRzHxbFyskfdHQskLU41NsR/wA+jT0pT5tjIDvKdN+ImvSwn5rDKfQcanqoj/r0zruNB1YNDnMjVjBYwWMFitV9ttba23gFiNWMFjBYwWK1BwOeY+KdZGatyPkp4CJJ0A9wQmP1CVqMjUZvxGVyJJ0GyEIEHLIau6yE/LZHUHsxuochNBXrWGhtl3zNirusJqwmrBWCVhOWG5YblhuWE5YJWCFhNRiHxOaW5m+RbMfnXMNW2S8ssTa+bajRvBYrUDUVT23hmZxtcanroj5pZLyytFBS2VtCqlX3LEcsRyxHK+5XjkAoKWStoa5W8RZK6g68eEDUVU2+SIVdlMTSjAfiwnK478Vx34rjvxYTkIShCEGgbI2SCrco2se68ewid8U2SEeM1FdV0K6FdCu5yKG0WSup47HZPN5lckfHKDRXwqjKXBE5ZOVrOScaCqJr2TT8yN20a6MvK2Leqe+8e3bt6U3K2vincM45xRyuK4rgRoM8vLu4uOgHq+EX/mg/l3cb6eD6LpQNu9a8tTZQd9QvaEZvxFxO/wDAAkISuWMsYLGCxisVyxXLFcsRyqT/AO4H/8QAKBEAAQIEBgMBAQEBAQAAAAAAAQACAxARMRMgMDJAUBIhQVFgIoCQ/9oACAECAQE/Af8AgetEYjUYqxXLzcvNyxHLFKxViNVQf4AkBGKPiMRx1A4hCKUIoQIPdF4CMU/OGIjghFH1Ag9q6IAi8nkCIQhEB7Fzw1OeTzA8hNiA362tE6L+dA15Ca8O6pzg1OcXdGyJ8PUPf4omvSw3/D0z3eI6iG6o6VzqnqIV+kiGg6mHu6SKffUs3dI/d1Lb/wAa2/Rut1Qv0b9vVDo4m3+Ni7f42Lb+Ni2/jYtuqHRxbdUL9HF29U2/RxdvVNv0cTbothEoQ2heIXiEYQ+JzC3XbC/UGNCoEWNKML8RBF9Bm7o37c4BKawNzvh/RqNaXJrQ3MRVPh0tnZu6N23MBVAtasVqxgsZYyxgsVq82qqiM+jSaKlABoXkFiNWKFjBYyxgsULEantFxmh7ujNuB5nSDiLKp14W7+NhX6AmixU14MjfqYTae5E0Ri/ia+vMin5Nj6+inijuohsr7MiaJzq86JfI5vk3mU02Cpm91TkbblxN2RtlEbQ10WtpJ7fuuxv2T2/dKFulE25WbeXE3ZG2RFRREUztFTM8I+jowt0om3Kzby4m7ILSibs7L5DfVbfI++jBvKJtys28uLfILSibs7TQzPrL81T7OjBk/blFuXFyC0ou7Qa/9k91co0mO+GT3fBpQbSibegibcgtKNrjjQtsn7cjN3MOQWlG1xxoe2T9uSEOa8UMxaUXbri/GFpP25GCg5sQeqzFpP2644ovOJtm0VPPcKGTbSNtccWHunE2zht+897aybabr6w4sEe5xNsmNr0LmAoehOKP9cGnChD1N4qEIf700YawyngNFB1UUf51hlOu0VPVkVGcQ3LBKwSsErCcvB06zrPxJWG5YRWCVglYTkWkZ4Q916yIKOyMh19lAAaBY0owR8RhuC8HFCD+oQmoADQdDBRFMsMUb1kYfZw21PJiNqMgFTTrXionCtmdFpZYrlilYyxQsVqxGrEasRqxWrGCxisVyEU/U1wOZ3ozhD71zxQyhbcsV1PUvAqhGj4lYbk5lEx3icz902ig66KPVZQtuVxqaybZBUC8GrDasNqw2rwavEZH2lCdUUyu3ShtqevPtEUNFBtkimjZsMqryVVVVVVVeS8pPPyUM0dlN5Mb4jsIrfqg5Ip95Gu/Z1VVVVVZudTIDUTMoTa++xumDxfTJE3ZQ4ryVcvkEXnLD2zftTRU0QFOycPuR1+FC2zi2omN8R27r8KFadPde4fu4ULb3cXdwmbe7iMrbgthE371zQ5GERbUDHFCD+oNAt/AEAowmrBWCVglYIWE1YTVhNWG1UA/9wP/xAA4EAABAgIGCAQGAQQDAAAAAAABAAIDERAgITFQURIiMEBBYXGBMjNykRMjQlJgoWIEgIKxFHCS/9oACAEBAAY/Av7B7VmrBR4l4lergrQr1YfwC0qy1ZbS9WhZKw43ZZueatsVhxXPebbVliWQ3ywq2zDbVJuA88LtwOTvfCOamcF0Tg3PCOmCzwg4J1/DQMJGCHCR1/DRgZwoYGf+5+/4b3/De/4b3wofho6/ho64GdjJmuVY7R6K2I73VkV3uteTwtU25HbTcZBShNnzKtiEdLF5jvdWRXd1KK3uFNjp7AYGa+k8yCl4WZVphfDjX8HbTSd2Gam42cBW0mGRWg/Vf/uuMDNbSctIw3S4L6R3VsRq80ey80eyse1fSe68o9lrNI6r4MQ2/SdkXuWk72VkJ3svBLqVa5gXmNXmj2Xmj2VjmFeCfQr4UcEO4E8awwM7hbDHazZAvbpSWq0DoPxztgEyrGqVxoOEvhNt0W2miZK1W+6kRI741tOg69PlwMjhHwoZ1uJyTvQplTNAKnvfapELjqvdbs5Bw96stpLSE+uzLm33KZR9BVlwqN6b2aLaH+pfDd4m/wCtiWNOoP3R8J5t4GpPZ/CYZZmgQ3nVN3LZf5UWcW1W72aZJ/qKD28EHi413GkOHBTplsi7IKZ40tdmNiPVQKrd/f1oh9K/eoz0io4d9jE9NRmxZ6qG1W9N7B5UCh/WhtdzaQ0cao5jYluaLTeKWtyGxhjrQ2qBy3tpqO60H1bAvhiYPDJSAM18R/iyyqtPPZfEh38QpSM18SIJSuGyYOVDKBQBmd8PKo7rREHPb9xu0sm0MqN5b4RnUd1oiDltzuz6GVHO3087aXdaJZjbu6bs92bqGVBzt33Sypf1oh9du7purnZCltIG/SRbQ/1Ghrsjtzur+dlLadM8d/svFD/VSx2Y2wHPdWNzNLaLfDgM7iojcnUj+JlthyovV6v3EN+0UgNHBa/spDAo3qpiM77nLcHu50/4HBIvWkD7rNznt3uyFR/owSJ2pa7IqdWbiAOa8c+gVjHLyj7q1jl9Q7KyKO6sINExTM060Ro7rxz6BWNeV5bl5blbpDstSIDXaz7jUin+OCHm0VGcrKmhCtdxOSm9xJr2FWRD3tWuwHopOm3qvMHa1fLhk9VYQ3oFrPce+wkTptyK02Gyqcm2VIx6YI0/wqPh96ZN8TrN5H2usNRzzwCmakU/ywSEf41GO4caQ3IVtKKdEZK4+6sLgtWL7hWFpXhHuvL/AGvL/a8v9r6R3WtEaFrRHFXE91qEtK0Xisx2YpbCHG01Sc34JBPWq08RYaD0FX4jvC3/AHQ5j5tkVPgdj4Srkf6eVo4ot48FI1Yfppc/hwqs5zwRhyfVMM/VdR2qSHFNZlQ7nagyesyxXLwq5XK5eFXCkkmQCdEznR8QXPqw/SKNEXvrQR/HBDyIqhwvCa8cU0/xqT4Mtp+IL23qbSQeStIeOa+ZCI6LxkdQvPavPZ/6Xns915k+gWpDc79LUY1n7XzIhPJOiHoKHZi0VWjIUF3DhWY3IYJF6TrGCeoUN1Rz8zU04Ym3LKiwLWd7K6fdeBcQtV01rCVGTM0GtuFLm5GkDM0fCbe6/pWhtzcMFiNzaawcLwhFHA21IfSrpaInRdVkRZzUzbyUhUfzph9Zovci915rQuVuDPZk4is+GfC8fupD9I2N2xHppfENzQrPALq7n/a3BonO3ZM9I3Iemn4Y4mZ2ER+bpYMx/wBzdlD9NfkrldRbdXPIbOGMxPBmv+x2yHIy2FlFuwiHnsmsH1GSDRcMGiQ8xsix9gPFTFu4Sh67v0p7IO4ME8Ie3gbRstQ2ZFSfqFTBns9aIF8pncrXd22him+If1hAjNvZf02k2OI6K2TuoWtC9ivLcrIZ91qwwOq+n2VzPZfT7LzPZaz3Hvtmw23uKaxtzRLCC0iYKl9B8JwP/kvF/hwrQiN0gtKBrty4qRwARf6gSbwZmpDDNdsnfcL1NvzGct90IbdIoPia8T9DEJuZJ33BTh/Mb+1Jwkee86Ub5bcuK0ITdEYnKLDDlOBElycteEZZi7dJATKnE+U3netRs3fcb8Y1oQnmLF8mL2cvL0vTapOBHXbasIgZusU48SfJq+VDA547JzQ7qF5IHpsWpEe39rUjNPUKzQPdeT+wvIcvIevIcvKl3Ctcxvda8f2CtDn9Svlw2t6D+6H/xAAsEAABAgMHBAMAAwEBAAAAAAABABEhMVEQIEFQYXGhMIGRsUDB8NHh8WCA/9oACAEBAAE/If8AwPMAG6xDsX9iUTUHZahaxAFXZDGIgOL2VAbhSYPf/gArgCFlKY/2IkmZfpyc0HIKnz7lJQ51NC5oFRJEicl/ggkSLLH+5GylAsA5rDJqBYwwoPjgkFwWVFNViztcxnZc0ChPYHzKCUKhcTLQA5MEXACuQSkuKFSKFGVBIzwCehdsillIgAwihHhzkr52GByYDuKSITkuTk89nBkkk/4MMoOBUZI71gykmDXJHqAZTDu5I4df+M6QRLknKefkZsXTKudkZNlTI3yOblQmMj9uVCYyOXlQTGRysqSMjlZUl75HKypyMj9uVcdkfuyrhsrUpoye1y8opAGgou5fejEL3ouw+AUFl991iUUUyUXPC6K9kVHflo1Ebn9oVgyPzBNTDyOhycqZQ1OUTInQ473gIhBEiE7BGlqb9R0scCaQggkyF4fJFiEyM4FMqOPbvEfaAmStK0GAA7qed1MCdnsqcNLFPd1KBsJNi+SN+BMoDVDHTpGpgJCpRXGJkGCmNTCWwRPsD/CGL4jZU4SQPsCorKxAj2w/rZSwODTrkAGIdE3DNYnCEA3RoEgEwQBu3nX9WRmSxymbkA4PAKSLalGvDNgMDXKcboajysgfBRcCqaQjr8yF3DbMOg1Q8N39A5Q9RGR+RRw6l7CODwCw8YClhwswXRMBj8snbQLQSC4mpCIademHQzQXRTo6jLmm6acnLDREIRyZkom/REKAlS1uE7+W9NEtATThJ3s55R0h+eiLyECCAsXCMRWKx0uRhTA9M9gkr1Y/WgEcXS9ayIjOCwlk5ESA3zV6aExsBY0YL8yqmTFKoUo1cXzD5sw72lmY3QABIh7QcLFNBM5HouVjFGOZyTm1x5xN+icCo+jZwyiWOqjOzg+YgYtQFJ3WAVKBjLFV+7D8Jzf9O5jPwLkGs6LDVXPe99EoVfpZ7HpYmAWA62CZ3Qt8tb2T7LkWcz7se0CRzfOCmzi0kzGyAYAkLhhqA6ITkgZAQYjGwBywVQ4nR72L1Y+DOPpAMGXuFgx3WgwfL2iWQmVKDQ2c37seFQvroTG6II6qoAR4GMQukHS1pT+ciFzSMgwbIj9LY5mz2PVkwa/OMPPCxQOQROBXL2bVA9fHoTn42yAWe56snsFnnD5jk4GRDMMxYIOO65ezfoHr8P4ztoW4s5h9WVVs4h83TVgzrm/dm+sdfmEJD4upgebPc9Ih526uifNawn628r7seVWeYdfnEJfE1Gzb7Pq3WmfzgEKRRDGErPzK2aEB6/mw+Ls5yt931a5AjLt8+LaLVEEmIYhcl7t0WetHUD8XfH8f7bxj6sK5InqgGDDIORKMWmS1k1OsgNBNhHhswlg+D+sSbXKBcji5sKEMAYDIha0QNgOsZkFnARIzL3CFyw+BTMm21oORp9GSA229C2lQHrI2Ji7GEz16uwN7jhKF7GSMawLgWlE4RRAASN3VBRMoe495BTfgWSGC/Cnh3UkJ8PaEOM0L2agRBJiGQDlgmKtLfHMmMtwgPQBHB8wQxfMFIm+kEJUdjfY0xcOwubEAc5IwSouPLEH9rgCNg2U3HEb5FyA6KYsURDtfgQpwun7Twd3OQ8NQNlIVVzO9AcBXdBsUNuC4uskHB3I2395I1VD7NyITOH7tK+NBaV+ScQmMx93B1FIhyOSXNzdoDj+8k3CQ5uRdmbYbT4Jex0w0gmgMT9V989io/tkRY2wr8QX4ggb+lTAbiG8ICUBwAAQM90vfXIhQTDgcDefKYSbXQR8S7rkHgZJ36Pq65ZgdwX+CONywFbBBojTs4QBIiCw4PQZ0JLwIEo3KMoi8WiwSYnQohgMQWIuwbawkAOZBVYFtl3d4uckd05wbrooC+4WC28bhBickwQA4I6mzRsBHrBuGmBRmhPZE2BfuV+RX7lNYEBS8SYCwbYByTgmrkZdsLGIFTe6DD/TWR6wu2N7aifMckc9d9fd047FcKQWLpqq+1xmMQPLC0oQ/STZ6xJlBtNY+Uf5c3U03qpB3Sy/wSmHYcsU7lcoTJAhVZlJ31Q8IgAU/7LGy3013StHCJAEksAj4XhtvaGY4yRj04o3nBz/tUPcFyojfYWzgjCuAsRiHUwCB9YIOZ7k/QlSzsFCRFoME3i2HqxBP+CFAwGAsIcMVq3i3RcFkdvUvNHZzkuis4vHrYjgrC9CFMDcYVXebsG6tByiiKZXACZBE2GSRvx1zBAAAADAXO0B4tblOCKw0pCpRbHK95gVHwGTfnoN5+/qYDcFh+m6DCi0nhaA6AsaofdoHFps4IuCk6636XcpOTMXAh5jpR/kh8Lg/ZtB+GHmunQ0zvAf3k1H2PB/vpPXQLxDhkcovqWgTqETUCNORvmhRHThVF73yZuRHgP4dJg1ugGYky2lW9ggGDC/2M+IdKYQAO6DLAwyaFETtvh0jZ5LcYAUBEAGRHXJAOSwGJT7vmBEMUyX6TvCKP6yhlgxu2ekd7qUmXu8Qm4gOIPTxl0ESgoFP5kjsciiA6jPMBs/HKGfYO91HAXUpuH+JI6UYnmCOI90M546Aa0/2n8oqTNkx2NgC5iesw7gEHJhAyhlEGIOKM2kx9GmRlIwIMJpicqLxC4FOZz4r+UQgCCJg5A4FMxNyAAAAEABlj4oEFH8esMRuFL5geWWmChCq+nMH3spP9p4b0oeCPzBTAMfkAEgAHJwCZn/K/wAIFB0JnfM91iIiO6If8nin/wA1eXxAookgAm/9Bggz90c4ORFLVKOJRo/YU0MamjqLQG6oBJYBymxwaBCsT+c01OTHvnrUdRxTompFOSRkE5QCkLZ/msWHb+ZEa/8AKQ+4MsPblezofpfwy5hn7kgvdon/AKh//9oADAMBAAIAAwAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeqra4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABYbbbbbRaAAAAAAAAAAAAAAAAAAAAAAAAAAAACG7bbbbbbbDQAAAAAAAAAAAAAAAAAAAAAAAAAAC7bbbbbbbbbbBCAAAAAAAAAAAAAAAAAAAAAAAAHbbbbbbbbbbbbbEQAAAAAAAAAAAAAAAAAAAAAejbbbbbbbbbbbbbbbUAAAAAAAAAAAAAAAAAAAAObbbbbbbbbbbbbbbbYWAAAAAAAAAAAAAAAAAAAB7bbbbbbbbbbbbbbbbbUAAAAAAAAAAAAAAAAAAS7bbbbbbbbbbbbbbbbbbAAAAAAAAAAAAAAAAAAS7bbbbbbbbbbbbbbbbbbZAAAAAAAAAAAAAAAAAC7bbbbbbbbbbbbbbbbbbbAAAAAAAAAAAAAAAAAALbbbbbbbbbbbbbbbbbbbbAAAAAAAAAAAAAAAAAD7bbbbbbbbbbbbbbbbbbbIAAAAAAAAAAAAAAAACXbbbbbbbbbbbbbbbbbbbYgAAAAAAAAAAAAAAAAPbbbbbbbbbbbbbbbbbbbbIAAAAAAAAAAAAAAAACbbbbbbbbbbbbbbbbbbbbagAAAAAAAAAAAAAAAAXbbbbbbbbbbbbbbbbbbbbUAAAAAAAAAAAAAAAACbbbbbbbbbbbbbbbbbbbbaAAAAAAAAAAAAAAAAAfbbbbbbbbbbbbbbbbbbbbUAAAAAAAAAAAAAAAABbbbbbbbbbbbbbbbbbbbbagAAAAAAAAAAAAAAAALbbbbbbbbbbbbbbbbbbbbMAAAAAAAAAAAAAAAAD7bbbbbbbbbbbbbbbbbbbbAAAAAAAAAAAAAAAAAHbbbbbbbbbbbbbbbbbbbbEAAAAAAAAAAAAAAAABbbbbbbbbbbbbbbbbbbbbZAAAAAAAAAAAAAAAAADbbbZZVPbbbbbbHJXHbbbEAAAAAAAAAAAAAAAAC7bbQkknPbbbbbLEkkjbbZAAAAAAAAAAAAAAAAAHbbS1Co27bbbbOmUqm3bbMAAAAAAAAAAAAAAAACbbbbbbbALbbbZ/bbbbbbagAAAAAAAAAAAAAAAAQbbbbbbbbbbbbbbbbbbbbEAAAAAAAAAAAAAAACcTbbbbbbbbbbbbbbbbbbbYiKgAAAAAAAAAAAACFqbbbbbbbbbbbbbbbbbbbbKg1gAAAAAAAAAAAAYnXbbbba7bDbbbbbXbbbbYLIk0AAAAAAAAAAAABdkXbbbY/babbbbbRDbbbbIw9kAAAAAAAAAAAAAJ01PbbZpSbQbbbbWpDbbbYmt3gAAAAAAAAAAAAAfvkbbbRJLbPbbbapJ7bbbQj89AAAAAAAAAAAAAfsozbbbpYbb7bbbArjbbbYlNn0AAAAAAAAAAAACvnE7bbY17bfbbbbYzbbbbU88mAAAAAAAAAAAAAd9wrbbbbbbZ7bbbbbbbbbbFl3gAAAAAAAAAAAABYuE7bbbbbbPbbbbbbbbbbYvu0AAAAAAAAAAAAADFojbbbbbbbrbbbbbbbbbbFsmAAAAAAAAAAAAAAQnE7bbbbbbNbbbbbbbbbZU8kQAAAAAAAAAAAAAD08nbbbbbbb7bbbbbbbbbUnE0AAAAAAAAAAAAAAD6Evbbbbbbfbbbbbbbbbak0qAAAAAAAAAAAAAAABYk7bbbbbZ447bbbbbbbElzgAAAAAAAAAAAAAAADknbbbbbbDW27bbbbbbYk8AAAAAAAAAAAAAAAAAMlbbbbbbZm2nbbbbbbZUnAAAAAAAAAAAAAAAAABk2bbHBza6Z3Z58jbbbQkoAAAAAAAAAAAAAAAAAMkzbSkkk69RfEkk3TbZEnAAAAAAAAAAAAAAAAABEnbSkkkkkkkkkkkm7YYkoAAAAAAAAAAAAAAAAAYkrYkklEu4kk3okk27MknAAAAAAAAAAAAAAAAADEkrYkm5zbbbBQPEknJEkgAAAAAAAAAAAAAAAAAYklaknfHUYdOArUklbEkmAAAAAAAAAAAAAAAAAAEkkYknZNVTji6YkkoUkmwAAAAAAAAAAAAAAAAAQkk4klbbh8EACnLE3Ikk8AAAAAAAAAAAAAAAAAAUkkYkjbahSRszbUkukklgAAAAAAAAAAAAAAAAATkkkkl7bbYi7bbbE0kkk4AAAAAAAAAAAAAAAAAAckkkknbbfbbfbbUkkkknAAAAAAAAAAAAAAAAAADEkkkm7bZvt/bbakkkkkwAAAAAAAAAAAAAAAAAAIkkkk3bbb597bbEkkkk2AAAAAAAAAAAAAAAAAACUkkkkzbbbbbbYXEkkklgAAAAAAAAAAAAAAAAAADkkkknUbbbbbWIkkkkk4AAAAAAAAAAAAAAAAAAAIkkkkk2q+rVYkkkkkk2AAAAAAAAAAAAAAAAAAAAMkkkkkkkkkkkkkkkklAAAAAAAAAAAAAAAAAAAAAYkkkkkkkkkkkkkkk1AAAAAAAAAAAAAAAAAAAAAAR0kkkkkkkkkkkkk9AAAAAAAAAAAAAAAAAAAAAAACckkkkkkkkkkkk4AAAAAAAAAAAAAAAAAAAAAAAAARMkkkkkkkkk3QAAAAAAAAAAAAAAAAAAAAAAAAAACDekkkkkknoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQLdtvvCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/8QAJxEBAAIBAwQDAAIDAQAAAAAAAQARMRAhUCAwQWFAUXFgoYCBsZD/2gAIAQMBAT8Q/wABxYEV6n2MAh9E9UX8R8bFeGC8RzD+AbAEd9J7yAGO3kCKwwGN5kDmseQv2gAUfBQczwlQ2VzKHK7ngns346DszFbT3fI4LE3PL8zNk3DdxqKiEbzj5+SzM5jinNoJRwWeJVVbiAKOFt4aWjxABRw+Dw8LtPEDY8J/rOJFrhKFxI2uEqBxOb84MgUVxOXgxZOKycGLPFYPB4eKcfw2ccHm/OKccHl/OKweDy/nFZODz/nFZv4bZf4aZvzg8fZ2I3nkKivmB4Yf7TBd5QLYJsZ5Se6YRjeMNtdjJweHrNuNowdQ1uS/uIFsU36kVkHbl15eDVDqM2xi6g0Psl/uX+4/bEol4ijJL+1Bcl4YPgg/iH2k9kv9z2R+2J+J731Z+DdB+Ap47SNiGAckEOJ/78A9SBrdm/ZNHYeJFU8aK1Gzuiim58zNq9SgBxHtGj1JWDQAjEpr5ZrUl7Q38O3Z8GztveRbhNwcvQa+WYej+xN0ZOy6oxpZu76XTRxp7kCb6c/y8PR/ejkIAE61TdRpuHdWi4t6uw9n/tpj6c/y30cv7otvb8Hdy9GHs4dMPS7+XPedGXRbeuwNRbXeSyolNamgdl7Bph6VbflvcdGfR9g42Slmc9+/ZKY99oWw0x9CpPzKD0ZtFsnCu9GPoufmKhg2Xrm0W6cKremPo2j5qs9a5dHXClbdMfRefN3151y/ujocI6Trj1v/AJwUbIQDTP8AuioPCKnrh12z4+fkMMG9yf3NVS8HsDXDoFBngdgyQFTWwfAplpT8G6v1raoDEoreFyd5l0j4Fy8VR+u8NdKvv3LxdAwb6VDdgvMfCT0Q+iDQbzBHGhTV+mrlMT8x+meieiDZmGeugfbjKDo9piFr1imJhGeAjvUBlgeERjaZR7GT3IbZ0/6zjMurF5fk/hvRcQtt8ZTuruvUwvZoLYj9WPhnpnrnrnrhI8jDyMIL+kQp6lS60hxyudMvTatg0qDbD2FCJ5Yh5lUINESmnpwa37x1fs6oLalNoMRL/DAsMC8z3z3z2xbzFcsvQFaJV6Noeen+ppsJ549KshEINr0bp9ajEEpmM2nkIn4icexB4F8ReWDy3Me1WnSaBMTceQ82HD0UN6B0Gw++h6IyX4iJnRa6Lg1FoaUq+eRFVkIB0Cj02IJmCYehQzo7HbpNPU2INyIreSpFYejD+di2W+5b247l4mIxy+H4WD81uVcwrHViDNmV+5X7gEY0Z61fNlfYKZ1Et9atPNleAjud/E2Dcxb35zBT6JBHc7eQYXhM+/gGAYDO8PuT0R+iPgNL8oyV8xzH/wBwP//EACYRAQACAQMFAQEBAAMBAAAAAAEAETEQIVAgMEBBYVFxYICBsXD/2gAIAQIBAT8Q/wCA6MmC+z8SKT7T7QL3D3kD7IN7hiP+A3BYT9T4kVc9vDMFkic7TAPNZ9jPxFXd8EUxPYXHYVMI8r9Nnz/HFNyZ7efK5HIT455mLZsmzjUC2M7cBwM/ocUJvFLeCxxKgKMxFbwtPDA2e4qtvD5PJwu9cQ9xwn/e8S6HCXA4l0OEVricfBsW2+Jw8GqbxWDg3S4rI4PNxRn/ABoZ4P8A9+KM8Hj/ALxRng8f94rI4PH/AHisX+NMP+NMfB5uzuTtPSXAfUXyR/4mS7wK0RXdz0k+UyBD9o7Q7GDg83W7RN899SXmV9xQogm3UApib8OvFwe9dTuiF1cQj+Ep+Sn5D8YJBvcA4ZX2paiVgieWJ+4/mz4Sn5PhD84L7nzfVg4M2vAB99oGlFMvJDH/ABOAtir2JsuHQ0jiVFvegC2fghunPmYNX2EZOI+IjAFsR26DTZBsvy3rxEN99unwbfnbOtgVGYbHQ7Pl5OjHNsYeyYtzoJs6D87Y1bQUp3JIq6cXl5OjDDZREj11JqLKjtqRz2QtqBW2psOz/wCWmbR0Zi8ydCYtMvb83Q4Hs4ejL2cmmSYhrg8sbGMNMWh39dC6ql94NNwbL1dj2RuumbQ1NA8sbDoaYtD2BJUKG8wjHT7doSFmYNdoG50yaGgWh5gtaGmLQbj38vGOjNp60NjzBYkSttcWg2Hv5eMKOmbR03F8251xaG++weMaBpm6Knzb/hri0Nrv5Hiiwa5NaI85LKYtWmHQWjv5eKLGuTWot78+ntmJUw6imcG3Drk0t244HcfcNBrQu960plpT4NV/3VqSPAAUcLge9uOkeBUmrw9n8d5V0q+/UnQ8PYEdukF2Ir1D2s+k+kQiXqImdDU/jUwiD+ofvPpPpEsTLHXcvx0PCHRYdHxEAoOtBzMoT2Ewm8PQie0B9mEOxg9mO6en/vOh4Q6MGrJ4PJ/pnRUQFFdDwh0W5qav1Eq3aB74foh74frPvPvPvGD6CPoIwH+oDZ1C01vXpPCHTfmmDppUy6WFkcw7ALB8EG9RDaxLIN79OTWvOJOm/wCHVLRcttDsx2RbJFvU+E+U+E+EBwStXa03B66c3903l9cUdIBTGZRbzo2T91padBkIrKSkpKykVFXWUnS7TpsPIerFk6LgdFu2hQ02lpaEXegf1FVt1qHVULpav65FAUxEXQrXSLaAYB6LCIRGOl2dXSi1IAo5K1Bk6Mv97Fy2W9uewe5nM9byGXws/wDdatnYeGO0KXhCuRHaFeEFA5tqsImz38zcNkCtu08llp+0iJs9vAEb2mPdx4g7mQIjG0fwz6T6Q9jpf20AfUMQ/wA28Xf/AMevyr5W/Gvmr8G/8BcuX1XLl/8AKL//xAAsEAEAAQEECgMBAQEBAQAAAAABEQAhMUFRECBQYXGBkaGxwTDR8EDh8YBg/9oACAEBAAE/EP8AwOLIu9FWYNblJh8aLseH9qV9AFB0YF4hRfcFPuXFNXknR2V5f/ARRO9qz1M2wqxgjIx3pWUWaz8QxdWGfJZO9WUXmWNWNM3LO1BSDuZ21NnNBqVAZ17U0SzWf4UZRZjVnJGRnvUaKZlpU+J3O1ZMP5L6kzoz+eRJGIxUEQ6zrUQO4We9X7QLjKb6piX4LX+xq0eIKhub3POhEkZNmJyBetTUudvfqlVVZXF/vdjObqhoWY/WypO5dze1dAFwuNhCoRRLkqRG3H2q/Y9nRSwy3tJEJeuxUC3bGw3bGuWbAUjciVdjoYptm/J2IoFWAvpOEBkbIhwsvR/3YkIG0h72TE8idtiQrdM8XZLlcHbYm6iHSzZKhdzzsNZFwKmzFnZKhN3zsPdQ/GylDbnnYci3R32V2bYbjeod9ld8bDUcZ2V32w+weHZXfbD7N4dldwbD7F4dlWuC2H2bw7KtDu+dhmzuPh2UJL8TsMytw2UZ/JbsMTuE8/AoFQBarhRYI2W4L5cqRCfIPVlqcG3/AHUeYLCQ6NDsSlO+WdqiVhy2R4Z8vmOtcrgKnDyy0OQve1OEJ3A6UvJNn/pR5MMIPlSmIqzeav7VnTwHqF58Ang9hieAPfXJtcDFZBi03KexLeJjwu1lBtKIR40BalosN3I7/keT1ZejI+6tmFav+rv1rmLSdnMrJeVdw8ndrieJ62GYe/rTPIWCnBAZ06AuG4dY60TJ534GkdgL0UYg8F91iFxZ7oXgj01+ffiFSMYYw8VqILZL5U9uCQq7m35fFgBAb8IKXdsV0OAFR6S4zDq1fBdy8NebCo67cGr/ALD7oF94oq2dyRPilYK8FHzNKGqxXgs4+dYzuJ8bD3jM7ayCigpd8McQcEmi5CyHA5zChBJYIlvfhkzDDUM2Lqihdx4fCg3g8dYSXJbDEozKSEZOyTKZLybAguHbvruzktAFKXNY8HRuGZ32SsMoo2WBDrbodCPFqNhoxL+RQ+dZpP7DgWxnxHvQKMjCUkbBLftd9T0RjEP+/OsX/wBNyNwy7kb3alnNLi+FzXIpckG7uGhiYEOVDcACf18NT370gkQMiYVbsBkKYOTw0Iklo/DdW70YXpqX1aJfc3mHyMbGaJ6fGDhARmxpMDpRKudHOYHzFPfTg5s9TgoOln9andHgU6AlXFYEDI2HHQpf8y1eNECtuE8runwXU3NryJ5u7dSAiJaJhUvRk3gF636jyJch/wBj40L3DLVyPmlVlbaRi2TlwCcvicQz8LovEE3cxPjQcSFW4MaTb0Q3aHPCfL/WI3x4FW96gpiLbqi5Sr/qnLfiVJtisGIPEpIVLNk66uw52So96W4gp5NXTiHB0jdgI0l3HULHufCF3keRNS6ETNdAoyMJSrJDLcse58MWjAUb7x0arpnRtUl37t1X1hZk6UY4T5f65FmvVXnF5q08Q80K3MnJpqkJt44tEqyXQjXlKLrXvqSBvWnRqLhYcE+x+ErjPTqStuHq+GHeTovvQ43p5qOmTe4vrrVgyB3s0fq3FQbi62/1wbkdH/auPF5ruXh0W/12tEV/7x964uzZuaW+tJTSHgMWjBQAGpbuHNBE8vw34rfBIqYkQbzQhAqsAY1LNzOLHv8ADFnew+2hDGoG61QELgr8G80X3nTdUO39c+Yeo/yu49VYyD5j3o/FzaNzO6i+BkjoeVYwZeKIrTExelS4iFfQ379XgKHUT6+J7Pixv3zfUNiUTU9Ke6iAtXBTCPin/wBQP+aO48mi3mPAnRC+R1aCCP65mEqD1+mvIreQRW8gmv2c3RLM9oJ6+GAZg1rB/wCcfHBMwT8cBL3SvvR3nk0fiz/5TYTUMiy05H3H9g3QTqKdihEdFu1ww4P5r9HN0QTfWse/nveUultFp/La1YPSDR+hmqYYcqNi73P1TbUzS4DztfX9snCLFzv7zoQhSYqz+e1ov5/jPr57f5rK7b+W0qQLgrR3nkoBAnTA0juF3aP7YZWtvF+NJgv3LRbXB2Z9vn/eyqwTd/ISLHYRaWWXQZ4vk0sGWKdwL6AAAgLv7QRkUTMrH5WszB0CA/EtEDfWo0Iglz812yHUx/LMZhAcwPadJngebS8YWUsP9f3lCBfcmVOXIhHChB/mWm2CVbxi3v8ANwlejPr+WNW1GbhpCd15WgUSLa8CgAAAgDDYFmHdy/iU4ohqXNumXWVLrJ2fmGQM8Ww90oErFXn1a3Xo01CnKf4YLbCEytPEaYOm8TGFGChiyvFoC5oA2FDt56g6ZmtyLqPr5mJIUm5Z8lJy3E6kmlhIv8EGMiLcsOwad+Q7j3sSPZr1008MLeknc+ZICcDMx++VJDGorDFyZHz2/wAJ5lh3TU/Cp2JSbSVevdFZpUZERzHVQnF4B3p1AWCd11Pdb+yrTB4Kb2RXuvI1+FqKFnBPqrfpox20BOExGdOFIwaQAVcCpYM4MmhQJWCpIQMRnpfUyDcleq8eh7rFLiVLbJwakQ36CdlpQQbn2Dbr4bivxinTUk/0h/jYn4xBPWpJLPPNg7RqXGzJamRm9qYvWM0cMtcSZXKhqAjWLDvNQgHFV+yhizwTknvQtuSS0Ok1PocCHoTU6NMLTqzT6zODJ017mSiYCxSQ7Hirg1Eb1kmDq2ggHELXuvTU5Y8nYn5Smpw3MA9vTTaUtUvGL1zq9l/oXPCU2E3cnidSGyGA4uBzYqeYyOK6kH+DJbER/wCape9SUYDth8zy0yOsdm9VfWsN25FbM2bqhq7Mp7UdbW4p3KS14R7Bq5/4zyVdv6i9pPF+99b1+99YMOP2156XwNR34MvioD9E3zQMb2T1FPcnS6xf3ptjgLRzHWZlK5vgnvpvNCPcuOb41bJPXB62JNDuT3etW1k7TO5Dz0BGzbtq3zFIs+ov6aEQQvxDfZb2pZIEOxG0fgEoBeFXwOar/HCU52yxsLBgOfaloAcvocG6nuLIvEv1RCczQiQAlXApJ9sDkbD756stiHvM9bEs/wDsfVq2dlsP1aT00Trm/J61H0CAYrdUbc2sxLV66EkkKbyS3vNEKjLbX6lnKu/UKvbkWUt/pW89VAf6UXLm21c65KLgBwND1iLQAvaQQxOcLnZGg4OK5gb+pD11f3RY0T8acxeY3rnrWTx+Z12JZD9rqkWIW3jScWWGTicmyrFbI+i+9QZ+Q+zuZ5aZHxQC9z8ny0Pu7NRzKADTDxkPWaJBLEJ6MUYSLh6wlHyH8r6sJ/ZxoGUfhdQzCck+ooVEsJh5fFBKBcpDrB2qbG2KHSg7VA0Db4l68d9AgyHmXu06v/OmFGWBKtwUJFuLI/d/PVBUC9qCSOzg2JZnL3Q9Na7bnLng98mrHFy70T3qG0XI7j7XSgFAjYjjTaltNLwZnjRAJH+zHlRwVXcO79ULzJPVKEQ/W+hL/wAXzRLuWyqQfwkseDjoJtJbl+7M0JU4GBoBgkSEpXcB4DZpcu/rLFAABcVFWXljyOfidayWZXgg2LYRPdUayOziYJQuk54bjqmoURCz5l96vDOxYuaXTVxg7mrjHE1L2HgUkvIAspsavLB9tBhaAIA1AgEAPmJ7zpsJkncn0pVLDEluEFW9ZG7cbjWsJkV5idw2KkkNzTuEdsRrXozLbit6gD/mpG+HgfAteHiV/wAVQFxcvgHNF3GkoSNbIS39BqPNWncLjrykSoHIHodjRkQM3wL3n4nLMfE1pi/WGSTWUhlpC6XxXxIOAv5/BLJaQ7pvOxkZkJbv+ofF+dQR61gREjfTMvh3ooxk4NOH1quB4BUhYXy30EEGt+0on38crQZzsnZNjWwAJcgh7/Et1la6z710EhJHCn2VybqZrlvmgGZKAAAC4NeO2SR/G74iXnjUg90csDLICDY0byiu7b3BSIw2J8JwhwphQzxstoy5SiROPzvTAlSAokZdRe5jy60x8qTmvxW6GUU3dzPLZD8PDryzgycvityrZtD5YcqPApjaeeHOhd34SPM+JQJWAxaMYgx+0TQSxwWDo+yr2PssnkfI8AWg7wO+yCzK1gWrX8ny/JvYMpNHAY3T1hRgAXODslKLC7ko5a24PuhU3ivjFXkcZ/dWdIBtftxaJRDl4QroKMnzHjJt1N7wC2ouwHcEbIGEtdwSEpZJHBOZvP8Adhzn2MtPZuN057Kvvd4DmODvKeONq7vd+O6kwtAIR3n94KgErhTVhpVm8ym693UGFwCADA2YmsbgjjnzqyPLbpdXpNIpERLx/svU0QsGa3BxqxDrRFpuN7ve20Dgl/38OapeitgwnlyeVOBuFAd4/wBDlkQBKtPtTaRseHtbuo4Nvha5q9dp3aDBE4QtKm1V5bHIW9RpFEOB2l3P+RukQsq7gpmKttmWbsHOKMChttjg4ctroJDaVkhld0v5zStyk38cKlkThJcr+1Ijm9KOT8oJCXAStNr7cq215FOomIQdVvYqSViEE8ZW7dlyOCHRqaWGQOQx2qfUnCIdh71JbjPEzUp0H8Cr54mUvdOAPh0duguIeWr0Bmb3URFYyjtQLFXP219UoIbODpCjQqYEXFvf/UP/2Q==" />
                                 <!-- badge -->
                                 <div class="rank-label-container">
                                     <span class="label label-default rank-label">@Model.Professione</span>
@@ -94,15 +66,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <button type="button" id="btnOpenModaleModificaProfilo" name="btnModificaProfilo" class="btn btn-outline-secondary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-                            </svg>
-                        </button>
-                    </div>
+
+                    <form method="post" action="/Home/UploadImage" enctype="multipart/form-data">
+                        <div class="col-2">
+                            <button type="button" id="OpenImgUpload" name="btnModificaProfilo" class="btn btn-outline-secondary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="fa-solid fa-image" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <div class="mt-5 col-7 justify-content-center">
+                <div class="mt-5 col-6 justify-content-center">
                     <div class="row">
                         <div class="col-sm-3">
                             <h6 class="mb-0">Nome completo</h6>
@@ -131,70 +106,97 @@
                     </div>
                     <hr>
                 </div>
+
+                <div class="col-1">
+                    <button type="button" id="btnOpenModaleModificaProfilo" name="btnModificaProfilo" class="btn btn-outline-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="d-flex justify-content-center col-5">
-                @if (Model.CurriculumVitae == null)
-                {
-                    <div>
-                        <form method="post" action="/Home/UploadFile" enctype="multipart/form-data">
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" name="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
-                                    <label class="custom-file-label my-0" for="inputGroupFile04">Carica CV</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Carica</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                }
-                else
-                {
-                    <div class="d-flex justify-content-center">
-                        <form method="post" action="/Home/DownloadFile">
-                            <button class="btn btn-primary" type="submit">Download CV</button>
-                        </form>
-                        <form method="post" action="/Home/EliminaFile">
-                            <button class="ml-1 btn btn-danger" type="submit">Elimina CV</button>
-                        </form>
-                    </div>
-                }
-            </div>
-            <div>
-                <span class="align-items-center"><i class="material-icons text-info mr-2">Skill</i> Dev</span>
-                <button type="button" id="btnOpenModaleInseriscSkill" name="btnInserisciSkill" class="btn btn-outline-secondary btn-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                    </svg>
-                </button>
-                @if (Model.Skills.Any())
-                {
-                    @foreach (var skill in Model.Skills)
-                    {
-                        <div class="col-12">
-                            <small>@skill.Tag</small>
-                            <div class="mb-3 " style="height: 5px">
-                                <input type="range" id="@skill.Id" name="@skill.Id" min="10" max="100" value="@skill.Competenza">
-                                <button data-value="@skill.Id" class="btn btn-outline-danger btn-circle deletable"><i class="fa fa-times"></i></button>
+        <div class="row gutters-sm ml-5 mt-5">
+            <div class="col-sm-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <h6 class="d-flex align-items-center mb-3">Carica <i class="material-icons text-info ml-2">CV</i></h6>
                             </div>
                         </div>
-                    }
-                }
-                else
-                {
-                    <div class="col-12">
-                        <span class="mt-2" style="color:red">Inserisci le tue 3 skill migliori</span>
+                        @if (Model.CurriculumVitae == null)
+                        {
+                            <div>
+                                <form method="post" action="/Home/UploadFile" enctype="multipart/form-data">
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" name="file" class="custom-file-input " id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                                            <label class="custom-file-label my-0" for="inputGroupFile04">Carica CV</label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Carica</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="d-flex justify-content-center">
+                                <form method="post" action="/Home/DownloadFile">
+                                    <button class="btn btn-primary" type="submit">Download CV</button>
+                                </form>
+                                <form method="post" action="/Home/EliminaFile">
+                                    <button class="ml-1 btn btn-danger" type="submit">Elimina CV</button>
+                                </form>
+                            </div>
+                        }
                     </div>
+                </div>
+            </div>
 
-                }
+            <div class="col-sm-8">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-11">
+                                <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Skill</i> Dev</h6>
+                            </div>
+                            @if (Model.Skills?.Count < 3)
+                            {
+                                <div class="col-1">
+                                    <button type="button" id="btnOpenModaleInseriscSkill" name="btnInserisciSkill" class="btn btn-outline-secondary btn-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            }
+                        </div>
+                        @if (Model.Skills.Any())
+                        {
+                            @foreach (var skill in Model.Skills)
+                            {
+                                <small>@skill.Tag</small>
+                                <div class="mb-3 " style="height: 5px">
+                                    <input class="col-10" type="range" id="@skill.Id" name="@skill.Id" min="10" max="100" value="@skill.Competenza">
+                                    <button data-value="@skill.Id" class="btn btn-outline-danger btn-circle deletable"><i class="fa fa-times"></i></button>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <h6 class="d-flex align-items-center mb-3">Inserisci le tue 3 migliori <i class="material-icons text-info ml-2">Skill</i> </h6>
+                        }
+
+                    </div>
+                </div>
             </div>
         </div>
-    </diSv>
 </div>
+
 
 @section scripts {
     <script type="text/javascript">
@@ -233,16 +235,7 @@
         var nome = $("#Nome").val()
         var cognome = $("#Cognome").val()
         var professione = $("#Professione").val()
-        var paese = $("#Paese").val()
-        var citta = $("#Citta").val()
-        var informazioni = $("#Informazioni").val()
         var mobile = $("#Mobile").val()
-
-        var website = $("#Website").val()
-        var instagram = $("#Instagram").val()
-        var github = $("#Github").val()
-        var facebook = $("#Facebook").val()
-        var twitter = $("#Twitter").val()
 
         $.ajax({
             url: "@Url.Action("ModificaProfilo", "Home")",
@@ -252,15 +245,7 @@
             data: { nome: nome,
             cognome: cognome,
             professione: professione,
-            paese: paese,
-            citta: citta,
-            informazioni: informazioni,
-            mobile: mobile,
-            website: website,
-            instagram: instagram,
-            github: github,
-            facebook: facebook,
-            twitter: twitter },
+            mobile: mobile },
             success: function (jqXHR, exception) {
 
                 $("#mdlModProf").modal("hide");
@@ -301,6 +286,8 @@
                 location.reload();
         });
     });
+
+        $('#OpenImgUpload').click(function () { $('#imgupload').trigger('click'); });
 
     </script>
 }

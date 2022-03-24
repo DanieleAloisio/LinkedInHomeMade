@@ -47,8 +47,9 @@ namespace Data_Models
         [StringLength(150)]
         public string Facebook { get; set; }
 
-        [StringLength(150)]
-        public string Twitter { get; set; }
+        [StringLength(int.MaxValue)]
+        public string ImageProfile { get; set; }
+
         public int IdTipoGruppo { get; set; }
         [ForeignKey("IdTipoGruppo")]
         public TipoGruppo TipoGruppo { get; set; }

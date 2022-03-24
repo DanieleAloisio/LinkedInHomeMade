@@ -55,7 +55,7 @@ namespace LinkedInHomeMade.Models
             Website = dbUser.Website;
             Instagram = dbUser.Instagram;
             Facebook = dbUser.Facebook;
-            Twitter = dbUser.Twitter;
+            Twitter = dbUser.ImageProfile;
             Github = dbUser.Github;
             Skills = dbUser.Skills;
             CurriculumVitae = dbUser.CurriculumVitae;
