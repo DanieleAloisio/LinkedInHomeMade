@@ -30,7 +30,7 @@ namespace LinkedInHomeMade.Models
 
         public string Facebook { get; set; }
 
-        public string Twitter { get; set; }
+        public string ImageProfile { get; set; }
 
         public string Email { get; set; }
 
@@ -55,7 +55,7 @@ namespace LinkedInHomeMade.Models
             Website = dbUser.Website;
             Instagram = dbUser.Instagram;
             Facebook = dbUser.Facebook;
-            Twitter = dbUser.ImageProfile;
+            ImageProfile = dbUser.ImageProfile;
             Github = dbUser.Github;
             Skills = dbUser.Skills;
             CurriculumVitae = dbUser.CurriculumVitae;

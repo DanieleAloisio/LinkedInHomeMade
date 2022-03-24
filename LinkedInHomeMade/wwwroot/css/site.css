@@ -81,3 +81,33 @@ body {
     line-height: 1.42857;
 }
 
+I have used a pseudo element on the .container element with a background color with opacity. Rather than hovering over the image, I have shown the button when hovering over the container.
+
+.containerImage:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0);
+}
+
+.containerImage:hover::before {
+    background-color: rgba(0,0,0,0.5);
+}
+
+
+.containerImage button {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    opacity: 0;
+}
+
+.containerImage:hover button {
+    opacity: 1;
+}

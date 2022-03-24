@@ -221,5 +221,28 @@ namespace LinkedInHomeMade.Controllers
             return RedirectToAction("Index");
         }
 
+
+        [HttpPost]
+        public async Task<JsonResult> UploadImage(string file)
+        {
+            try
+            {
+                if (file != null)
+                {
+                    var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
+
+                    userLogged.ImageProfile = file;
+
+                    await _unitOfWork.SaveChangesAsync();
+                }
+
+                return Json(new { status = true });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }
