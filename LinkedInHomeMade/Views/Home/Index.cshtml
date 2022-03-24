@@ -194,126 +194,127 @@
 @section scripts {
     <script type="text/javascript">
 
-    $("#btnOpenModaleModificaProfilo").click(function () {
+	$("#btnOpenModaleModificaProfilo").click(function () {
 
-        $('#mdlModProf').modal('show');
-    });
+		$('#mdlModProf').modal('show');
+	});
 
-    $("#btnOpenModaleInseriscSkill").click(function () {
+	$("#btnOpenModaleInseriscSkill").click(function () {
 
-       $('#mdlAddSkill').modal('show');
-    });
+	   $('#mdlAddSkill').modal('show');
+	});
 
-    $('#btnInserisciSkill').click(function () {
+	$('#btnInserisciSkill').click(function () {
 
-        var tag = $("#Tag").val()
+		var tag = $("#Tag").val()
 
-            $.ajax({
-            url: "@Url.Action("AggiungiSkill", "Home")",
-            type: "POST",
-            datatype: 'json',
-            headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
-            data: { tag: tag },
-            success: function (jqXHR, exception) {
+			$.ajax({
+			url: "@Url.Action("AggiungiSkill", "Home")",
+			type: "POST",
+			datatype: 'json',
+			headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+			data: { tag: tag },
+			success: function (jqXHR, exception) {
 
-                $("#mdlAddSkill").modal("hide");
+				$("#mdlAddSkill").modal("hide");
 
-                location.reload();
-            }
-        });
-    });
+				location.reload();
+			}
+		});
+	});
 
-    $("#btnModifica").click(function () {
+	$("#btnModifica").click(function () {
 
-        var nome = $("#Nome").val()
-        var cognome = $("#Cognome").val()
-        var professione = $("#Professione").val()
-        var mobile = $("#Mobile").val()
+		var nome = $("#Nome").val()
+		var cognome = $("#Cognome").val()
+		var professione = $("#Professione").val()
+		var mobile = $("#Mobile").val()
 
-        $.ajax({
-            url: "@Url.Action("ModificaProfilo", "Home")",
-            type: "POST",
-            datatype: 'json',
-            headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
-            data: { nome: nome,
-            cognome: cognome,
-            professione: professione,
-            mobile: mobile },
-            success: function (jqXHR, exception) {
+		$.ajax({
+			url: "@Url.Action("ModificaProfilo", "Home")",
+			type: "POST",
+			datatype: 'json',
+			headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+			data: { nome: nome,
+			cognome: cognome,
+			professione: professione,
+			mobile: mobile },
+			success: function (jqXHR, exception) {
 
-                $("#mdlModProf").modal("hide");
+				$("#mdlModProf").modal("hide");
 
-                location.reload();
-            },
-            error: function(error) {
-                console.error(error);
-            }
-        });
-    });
+				location.reload();
+			},
+			error: function(error) {
+				console.error(error);
+			}
+		});
+	});
 
-    $('input[type=range]').click(function () {
+	$('input[type=range]').click(function () {
 
-        let idTag = $(this).attr('id');
-        let valCompetenza = $(this).val();
+		let idTag = $(this).attr('id');
+		let valCompetenza = $(this).val();
 
-            $.ajax({
-            url: "@Url.Action("ModificaCompetenzaSkill", "Home")",
-            type: "POST",
-            datatype: 'json',
-            headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
-            data: { idTag: idTag, valCompetenza: valCompetenza }
-        });
-    });
+			$.ajax({
+			url: "@Url.Action("ModificaCompetenzaSkill", "Home")",
+			type: "POST",
+			datatype: 'json',
+			headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+			data: { idTag: idTag, valCompetenza: valCompetenza }
+		});
+	});
 
-    $('.deletable').click(function() {
+	$('.deletable').click(function() {
 
-        let idTag = $(this).data('value')
+		let idTag = $(this).data('value')
 
-            $.ajax({
-            url: "@Url.Action("EliminaCompetenzaSkill", "Home")",
-            type: "POST",
-            datatype: 'json',
-            headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
-            data: { idTag: idTag }
-        }).done(function() {
-                location.reload();
-        });
-    });
+			$.ajax({
+			url: "@Url.Action("EliminaCompetenzaSkill", "Home")",
+			type: "POST",
+			datatype: 'json',
+			headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+			data: { idTag: idTag }
+		}).done(function() {
+				location.reload();
+		});
+	});
 
-    $('#OpenImgUpload').click(function () { $('#imgupload').click() });
+	$('#OpenImgUpload').click(function () { $('#imgupload').trigger('click'); });
 
-    function readFile() {
 
-      if (this.files && this.files[0]) {
+	function readFile() {
 
-        var FR= new FileReader();
+	  if (this.files && this.files[0]) {
 
-          FR.addEventListener("load", function (e) {
+		var FR= new FileReader();
 
-              debugger
-              $.ajax({
-                  url: "@Url.Action("UploadImage", "Home")",
-                  type: "POST",
-                  datatype: 'json',
-                  headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
-                  data: { file: e.target.result }
-              }).done(function () {
-                  location.reload();
-              });
-          });
-        }
-    }
+		FR.addEventListener("load", function(e) {
 
-        $('#imgupload').on('change', readFile);
+			$.ajax({
+			url: "@Url.Action("UploadImage", "Home")",
+			type: "POST",
+			datatype: 'json',
+			headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+			data: { file: e.target.result }
+			}).done(function () {
+				location.reload();
+			});
+		});
 
+		FR.readAsDataURL( this.files[0] );
+	  }
+	}
+
+	$('#imgupload').on('change', readFile);
         $('#inputCV').change(function (e) {
             const file = this.files[0]
             if (file) {
 
-                $(this).parent().find('label').text()
+            $(this).parent().find('label').text()
 
-                $('#pahtFile').text(file.name)
+            $('#pahtFile').text(file.name)
             }
-        })
+    })
     </script>
 }
