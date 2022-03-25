@@ -1,0 +1,101 @@
+﻿@model ApplicationUserModel
+@{
+    ViewData["Title"] = "View Profile";
+}
+
+<div class="container">
+    <diSv class="main-body">
+        <div id="dialog" style="overflow: hidden;">
+            <div class="row gutters-sm col-12">
+                <div class="d-flex flex-column text-center col-5">
+                    <div class="col-12">
+                        <div class="containerImage">
+                            <img style="height:200px; width:200px" src="@Model.ImageProfile" />
+                        </div>
+                        <!-- badge -->
+                        <div class="rank-label-container">
+                            <span class="label label-default rank-label">@Model.Professione</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 col-6 justify-content-center">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Nome completo</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @Model.Nome @Model.Cognome
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Email</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @Model.Email
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Mobile</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @Model.Mobile
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+        <div class="row gutters-sm ml-5 mt-5">
+            <div class="col-sm-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <h6 class="d-flex align-items-center mb-3">Carica <i class="material-icons text-info ml-2">CV</i></h6>
+                            </div>
+                        </div>
+                        @if (Model.CurriculumVitae != null)
+                        {
+                        <div class="d-flex justify-content-center">
+                            <form method="post" action="/Home/DownloadFile">
+                                <button class="btn btn-primary" type="submit">Download CV</button>
+                            </form>
+                        </div>
+                    }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-8">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-11">
+                                <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Skill</i> Dev</h6>
+                            </div>
+                        </div>
+                        @if (Model.Skills.Any())
+                        {
+                            @foreach (var skill in Model.Skills)
+                            {
+                                <small>@skill.Tag</small>
+                                <div class="mb-3 " style="height: 5px">
+                                    <input class="col-10" type="range" id="@skill.Id" name="@skill.Id" min="10" max="100" value="@skill.Competenza" disabled="disabled">
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <h6 class="d-flex align-items-center mb-3">Non sono presenti Skill <i class="material-icons text-info ml-2">Skill</i> </h6>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

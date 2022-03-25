@@ -5,6 +5,7 @@ using LinkedInHomeMade.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace LinkedInHomeMade.Controllers
 {
@@ -21,16 +22,21 @@ namespace LinkedInHomeMade.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Explore()
+        public async Task<IActionResult> Explore()
         {
             try
             {
+                var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
+
                 var listUsers = _unitOfWork.UserRepository.GetUsers();
                 var users = new List<ApplicationUserModel>();
 
                 foreach (var user in listUsers)
                 {
-                    users.Add(new ApplicationUserModel(user));
+                    if (user.Id != userLogged.Id.ToString())
+                    {
+                        users.Add(new ApplicationUserModel(user));
+                    }
                 }
 
                 return View(users);
@@ -39,6 +45,21 @@ namespace LinkedInHomeMade.Controllers
             catch (System.Exception e)
             {
 
+                throw;
+            }
+        }
+
+        public IActionResult ViewProfile(string idProfilo)
+        {
+            try
+            {
+                var user = new ApplicationUserModel(_unitOfWork.UserRepository.GetUserById(idProfilo));
+
+                return View(user);
+
+            }
+            catch (System.Exception e)
+            {
                 throw;
             }
         }

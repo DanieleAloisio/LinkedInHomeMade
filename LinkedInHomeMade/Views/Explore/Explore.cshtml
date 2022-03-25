@@ -16,6 +16,8 @@
                             <h5 class="card-title">@item.Nome</h5>
                             <p class="card-text">@item.Professione -@item.TipoGruppo.Nome</p>
                             <a href="#" class="btn btn-primary">Diventa suo Fan!</a>
+                            <a action="" href="@Url.Action("ViewProfile", "Explore", new { idProfilo = item.IdProfilo })" class="link-info">Vedi profilo</a>
+                            
                         </div>
                     </div>
                 </div>
