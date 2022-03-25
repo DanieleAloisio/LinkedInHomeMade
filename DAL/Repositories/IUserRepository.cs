@@ -12,6 +12,7 @@ namespace DAL.Repositories
     public interface IUserRepository : IRepository<ApplicationUser>
     {
         ApplicationUser GetUserById(string id);
+        List<ApplicationUser> GetUsers();
     }
 
     public class UserRepository : RepositoryBase<ApplicationUser>, IUserRepository
@@ -25,6 +26,13 @@ namespace DAL.Repositories
             return _dbSet.Include(x => x.Skills)
                          .Include(x => x.CurriculumVitae)
                          .FirstOrDefault(x => x.Id == id);
+        }
+
+        public List<ApplicationUser> GetUsers()
+        {
+            return _dbSet.Include(x => x.Skills)
+                         .Include(x => x.TipoGruppo)
+                         .Include(x => x.CurriculumVitae).ToList();
         }
 
     }

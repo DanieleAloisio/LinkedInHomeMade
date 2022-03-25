@@ -1,0 +1,25 @@
+﻿@model List<ApplicationUserModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="main-body">
+        <div class="row">
+
+            @foreach (var item in Model.OrderBy(x => x.TipoGruppo))
+            {
+                <div class="col-3 d-flex align-items-stretch">
+                    <div class="card" style="width: 13rem;">
+                        <img src="@item.ImageProfile" class="rounded-circle" alt="..." style="height:50%;">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Nome</h5>
+                            <p class="card-text">@item.Professione -@item.TipoGruppo.Nome</p>
+                            <a href="#" class="btn btn-primary">Diventa suo Fan!</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
