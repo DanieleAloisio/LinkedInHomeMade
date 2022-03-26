@@ -2,9 +2,11 @@
 using Data;
 using Data_Models;
 using LinkedInHomeMade.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace LinkedInHomeMade.Controllers
@@ -21,16 +23,14 @@ namespace LinkedInHomeMade.Controllers
             _signInManager = signInManager;
             _unitOfWork = unitOfWork;
         }
-
         public async Task<IActionResult> Explore()
         {
             try
             {
                 var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
-
                 var listUsers = _unitOfWork.UserRepository.GetUsers();
                 var users = new List<ApplicationUserModel>();
-
+                
                 foreach (var user in listUsers)
                 {
                     if (user.Id != userLogged.Id.ToString())
@@ -56,6 +56,37 @@ namespace LinkedInHomeMade.Controllers
                 var user = new ApplicationUserModel(_unitOfWork.UserRepository.GetUserById(idProfilo));
 
                 return View(user);
+
+            }
+            catch (System.Exception e)
+            {
+                throw;
+            }
+        }
+
+
+        public async Task<IActionResult> BecomeFan(string idProfilo)
+        {
+            try
+            {
+
+                //Utente di cui vuoi seguire
+                var followProfile = _unitOfWork.UserRepository.GetUserById(idProfilo);
+
+                //Utente loggato a cui aggiungere il suo FOLLOW
+                var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
+                var fanUser = _unitOfWork.UserRepository.GetUserById(userLogged.Id);
+
+                var fan = new Fans() { FanUser = fanUser, FanUserId = fanUser.Id, 
+                                       FollowUserId = followProfile.Id, FollowUser = followProfile, 
+                                       RequestTime = System.DateTime.UtcNow };
+
+                userLogged.Fan.Add(fan);
+
+                await _unitOfWork.SaveChangesAsync();
+
+                return RedirectToAction("Explore");
+
 
             }
             catch (System.Exception e)

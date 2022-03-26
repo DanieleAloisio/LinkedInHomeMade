@@ -25,6 +25,7 @@ namespace DAL.Repositories
         {
             return _dbSet.Include(x => x.Skills)
                          .Include(x => x.CurriculumVitae)
+                         .Include(x => x.Fan)
                          .FirstOrDefault(x => x.Id == id);
         }
 
@@ -32,6 +33,7 @@ namespace DAL.Repositories
         {
             return _dbSet.Include(x => x.Skills)
                          .Include(x => x.TipoGruppo)
+                         .Include(x => x.Fan)
                          .Include(x => x.CurriculumVitae).ToList();
         }
 

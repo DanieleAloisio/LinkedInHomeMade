@@ -60,8 +60,8 @@ namespace Data_Models
         public int? CurriculumVitaeId { get; set; }
 
 
-        public virtual ICollection<Fans> Fan { get; set; }
-        public virtual ICollection<Fans> Follow { get; set; }
+        public virtual ICollection<Fans> Fan { get; set; } = new List<Fans>();
+        public virtual ICollection<Fans> Follow { get; set; } = new List<Fans>();
 
     }
 }

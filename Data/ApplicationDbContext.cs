@@ -35,15 +35,14 @@ namespace Data
 
             modelBuilder.Entity<Fans>()
                 .HasOne(e => e.FollowUser)
-                .WithMany(e => e.Follow).IsRequired().OnDelete(DeleteBehavior.NoAction)
+                .WithMany(e => e.Follow).OnDelete(DeleteBehavior.NoAction)
                 .HasForeignKey(e => e.FollowUserId);
 
             modelBuilder.Entity<Fans>()
                 .HasOne(e => e.FanUser)
-                .WithMany(e => e.Fan).IsRequired().OnDelete(DeleteBehavior.NoAction)
+                .WithMany(e => e.Fan).OnDelete(DeleteBehavior.NoAction)
                 .HasForeignKey(e => e.FanUserId);
 
-            base.OnModelCreating(modelBuilder);
         }
 
     }

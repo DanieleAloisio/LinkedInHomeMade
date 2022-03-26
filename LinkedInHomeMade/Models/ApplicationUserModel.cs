@@ -60,7 +60,7 @@ namespace LinkedInHomeMade.Models
             ImageProfile = dbUser.ImageProfile;
             Github = dbUser.Github;
             Skills = dbUser.Skills;
-            Fans = dbUser.Fan;
+            Fans = dbUser.Follow;
             
             CurriculumVitae = dbUser.CurriculumVitae;
             TipoGruppo = dbUser.TipoGruppo;
