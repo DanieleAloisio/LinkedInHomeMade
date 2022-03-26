@@ -58,5 +58,10 @@ namespace Data_Models
 
         public CurriculumVitae CurriculumVitae { get; set; }
         public int? CurriculumVitaeId { get; set; }
+
+
+        public virtual ICollection<Fans> Fan { get; set; }
+        public virtual ICollection<Fans> Follow { get; set; }
+
     }
 }

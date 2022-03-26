@@ -37,6 +37,7 @@ namespace LinkedInHomeMade.Models
         public string Professione { get; set; }
 
         public ICollection<Skills> Skills { get; set; } = new List<Skills>();
+        public ICollection<Fans> Fans { get; set; } = new List<Fans>();
         public CurriculumVitae CurriculumVitae { get; set; } = new CurriculumVitae();
         public TipoGruppo TipoGruppo { get; set; } = new TipoGruppo();
 
@@ -59,6 +60,8 @@ namespace LinkedInHomeMade.Models
             ImageProfile = dbUser.ImageProfile;
             Github = dbUser.Github;
             Skills = dbUser.Skills;
+            Fans = dbUser.Fan;
+            
             CurriculumVitae = dbUser.CurriculumVitae;
             TipoGruppo = dbUser.TipoGruppo;
         }
