@@ -1,6 +1,7 @@
 using Data_Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LinkedInHomeMade.Models
 {
@@ -38,6 +39,7 @@ namespace LinkedInHomeMade.Models
 
         public ICollection<Skills> Skills { get; set; } = new List<Skills>();
         public ICollection<Fans> Fans { get; set; } = new List<Fans>();
+        public ICollection<Fans> Follows { get; set; } = new List<Fans>();
         public CurriculumVitae CurriculumVitae { get; set; } = new CurriculumVitae();
         public TipoGruppo TipoGruppo { get; set; } = new TipoGruppo();
 
@@ -60,8 +62,8 @@ namespace LinkedInHomeMade.Models
             ImageProfile = dbUser.ImageProfile;
             Github = dbUser.Github;
             Skills = dbUser.Skills;
-            Fans = dbUser.Follow;
-            
+            Fans = dbUser.Fan;
+            Follows = dbUser.Follow;
             CurriculumVitae = dbUser.CurriculumVitae;
             TipoGruppo = dbUser.TipoGruppo;
         }

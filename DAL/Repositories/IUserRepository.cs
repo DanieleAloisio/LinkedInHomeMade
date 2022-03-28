@@ -24,8 +24,10 @@ namespace DAL.Repositories
         public ApplicationUser GetUserById(string id)
         {
             return _dbSet.Include(x => x.Skills)
+                         .Include(x => x.TipoGruppo)
                          .Include(x => x.CurriculumVitae)
-                         .Include(x => x.Fan)
+                         .Include(x => x.Fan).ThenInclude(x => x.FollowUser)
+                         .Include(x => x.Follow).ThenInclude(x => x.FanUser)
                          .FirstOrDefault(x => x.Id == id);
         }
 
@@ -33,7 +35,14 @@ namespace DAL.Repositories
         {
             return _dbSet.Include(x => x.Skills)
                          .Include(x => x.TipoGruppo)
-                         .Include(x => x.Fan)
+                         .Include(x => x.CurriculumVitae).ToList();
+        }
+        public List<ApplicationUser> GetUsersAndInclude()
+        {
+            return _dbSet.Include(x => x.Skills)
+                         .Include(x => x.TipoGruppo)
+                         .Include(x => x.Fan).ThenInclude(x => x.FollowUser)
+                         .Include(x => x.Follow).ThenInclude(x => x.FanUser)
                          .Include(x => x.CurriculumVitae).ToList();
         }
 

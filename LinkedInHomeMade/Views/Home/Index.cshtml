@@ -188,6 +188,36 @@
                 </div>
             </div>
         </div>
+        <div class="row justify-content-end mt-5">
+            <div class="col-12 col-sm-8 col-lg-6">
+                <!-- Section Heading-->
+                <div class="section_heading text-center wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                    <h2 class="d-flex align-items-center mb-3">I tuoi<i class="material-icons text-info ml-2">Fans</i></h2>
+                </div>
+            </div>
+        </div>
+        @foreach (var item in Model.Fans)
+        {
+            <div class="row ml-5">
+                <!-- Single Advisor-->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                        <!-- Team Thumb-->
+                        <div class="advisor_thumb">
+                            <img src="@item.FollowUser?.ImageProfile" style="width: 8rem;" alt="">
+                        </div>
+                        <!-- Team Details-->
+                        <a href="@Url.Action("ViewProfile", "Explore", new { idProfilo = item.FollowUser?.Id })">
+                            <div class="single_advisor_details_info">
+
+                                <h6>@item.FollowUser.Nome</h6>
+                                <p class="designation">@item.FollowUser.Professione</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
 </div>
 
 

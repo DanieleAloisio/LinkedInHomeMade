@@ -5,22 +5,27 @@
 
 <div class="container">
     <div class="main-body">
-        <div class="row">
-            @foreach (var item in Model.OrderBy(x => x.TipoGruppo))
-            {
-                <div class="col-3 d-flex align-items-stretch">
-                    <div class="card" style="width: 13rem;">
-                        <img src="@item.ImageProfile" class="rounded-circle" alt="..." style="height:50%;">
-                        <div class="card-body">
-                            <h5 class="card-title">@item.Nome</h5>
-                            <p class="card-text">@item.Professione -@item.TipoGruppo.Nome</p>
-                            <a href="@Url.Action("BecomeFan", "Explore", new { idProfilo = item.IdProfilo })" class="btn btn-primary">Diventa suo Fan!</a>
-                            <a action="" href="@Url.Action("ViewProfile", "Explore", new { idProfilo = item.IdProfilo })" class="link-info">Vedi profilo</a>
-
+        @foreach (var item in Model.OrderBy(x => x.TipoGruppo))
+        {
+            <div class="row">
+                <!-- Single Advisor-->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                        <!-- Team Thumb-->
+                        <div class="advisor_thumb">
+                            <img src="@item.ImageProfile" style="width: 8rem;" alt="">
                         </div>
+                        <!-- Team Details-->
+                        <a href="@Url.Action("ViewProfile", "Explore", new { idProfilo = item.IdProfilo })">
+                            <div class="single_advisor_details_info">
+
+                                <h6>@item.Nome</h6>
+                                <p class="designation">@item.Professione</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
-            }
-        </div>
+            </div>
+        }
     </div>
 </div>
