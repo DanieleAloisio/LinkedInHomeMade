@@ -18,14 +18,6 @@ namespace LinkedInHomeMade.Models
 
         [Required]
         [StringLength(20)]
-        public string Paese { get; set; }
-
-        [Required]
-        [StringLength(20)]
-        public string Citta { get; set; }
-
-        [Required]
-        [StringLength(20)]
         public string Professione { get; set; }
 
         [Required]

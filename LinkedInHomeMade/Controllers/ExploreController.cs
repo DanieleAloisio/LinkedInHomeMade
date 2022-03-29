@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -28,12 +29,16 @@ namespace LinkedInHomeMade.Controllers
             try
             {
                 var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
+                var dbProfilo = _unitOfWork.UserRepository.GetUserById(userLogged.Id);
+
                 var listUsers = _unitOfWork.UserRepository.GetUsers();
                 var users = new List<ApplicationUserModel>();
-                
+               
+
                 foreach (var user in listUsers)
                 {
-                    if (user.Id != userLogged.Id.ToString())
+                    if (user.Id != userLogged.Id.ToString() &&
+                        !dbProfilo.Fan.ToList().Exists(x => x.FollowUser.Email == user.Email))
                     {
                         users.Add(new ApplicationUserModel(user));
                     }

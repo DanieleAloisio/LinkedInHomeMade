@@ -32,39 +32,48 @@ namespace LinkedInHomeMade.Controllers
         [HttpPost]
         public async Task<IActionResult> Registrazione(RegistrazioneViewModel model)
         {
-
-
-            if (ModelState.IsValid)
+            try
             {
-                var user = new ApplicationUser
+                if (ModelState.IsValid)
                 {
-                    UserName = model.Email,
-                    Email = model.Email,
-                    Nome = model.Nome,
-                    Cognome = model.Cognome,
-                    Paese = model.Paese,
-                    Citta = model.Citta,
-                    Professione = model.Professione,
-                    IdTipoGruppo = model.TipoGruppo
-                };
+                    var user = new ApplicationUser
+                    {
+                        UserName = model.Email,
+                        Email = model.Email,
+                        Nome = model.Nome,
+                        Cognome = model.Cognome,
+                        Professione = model.Professione,
+                        IdTipoGruppo = model.TipoGruppo
+                    };
 
-                var result = await _userManager.CreateAsync(user, model.Password);
+                    var result = await _userManager.CreateAsync(user, model.Password);
 
-                if (result.Succeeded)
-                {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    if (result.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    return RedirectToAction("index", "Home");
+                        return RedirectToAction("index", "Home");
+                    }
+                    else
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("", error.Description);
+                        }
+                        ModelState.AddModelError(string.Empty, "Login non riuscito!");
+                    }
                 }
-
-                foreach (var error in result.Errors)
+                else
                 {
-                    ModelState.AddModelError("", error.Description);
+                    return View(model);
                 }
-
-                ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
-
             }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
             return View(model);
         }
 

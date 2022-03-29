@@ -19,11 +19,9 @@ namespace Data_Models
         [StringLength(20)]
         public string Cognome { get; set; }
 
-        [Required]
         [StringLength(20)]
         public string Paese { get; set; }
 
-        [Required]
         [StringLength(20)]
         public string Citta { get; set; }
 

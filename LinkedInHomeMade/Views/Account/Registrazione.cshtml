@@ -3,64 +3,64 @@
     ViewData["Title"] = "Registrazione";
 }
 
-<h1>Registrazione</h1>
 
-<div class="row">
-    <div class="col-md-12">
-        <form method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nome"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cognome"></label>
-                <input asp-for="Cognome" class="form-control" />
-                <span asp-validation-for="Cognome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Paese"></label>
-                <input asp-for="Paese" class="form-control" />
-                <span asp-validation-for="Paese" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Citta"></label>
-                <input asp-for="Citta" class="form-control" />
-                <span asp-validation-for="Citta" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Professione"></label>
-                <input asp-for="Professione" class="form-control" />
-                <span asp-validation-for="Professione" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TipoGruppo"></label>
-                <select asp-for="TipoGruppo" class="form-control">
-                    <option value="1" class="form-control" selected="selected">Sviluppo Software</option>
-                    <option value="2" class="form-control">CRM</option>
-                </select>
-                <span asp-validation-for="TipoGruppo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Password"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="ConfermaPassword"></label>
-                <input asp-for="ConfermaPassword" class="form-control" />
-                <span asp-validation-for="ConfermaPassword" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn-primary rounded">Register</button>
-        </form>
-
+<div class="container">
+    <div class="row">
+        <h1>Registrazione</h1>
     </div>
+    <form method="post">
+        <div class="row mt-2">
+            <div class="col-4">
+                <div class="form-group">
+                    <label asp-for="Nome"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Cognome"></label>
+                    <input asp-for="Cognome" class="form-control" />
+                    <span asp-validation-for="Cognome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label asp-for="Professione"></label>
+                    <input asp-for="Professione" class="form-control" />
+                    <span asp-validation-for="Professione" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TipoGruppo"></label>
+                    <select asp-for="TipoGruppo" class="form-control">
+                        <option value="1" class="form-control" selected="selected">Sviluppo Software</option>
+                        <option value="2" class="form-control">CRM</option>
+                    </select>
+                    <span asp-validation-for="TipoGruppo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ConfermaPassword"></label>
+                    <input asp-for="ConfermaPassword" class="form-control" />
+                    <span asp-validation-for="ConfermaPassword" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-primary rounded m-3">Registrati</button>
+        </div>
+        <div class="row">
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </div>
+    </form>
 </div>
