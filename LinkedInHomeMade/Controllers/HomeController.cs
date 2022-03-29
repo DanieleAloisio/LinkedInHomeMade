@@ -114,10 +114,9 @@ namespace LinkedInHomeMade.Controllers
 
                 return Json(new { status = true });
             }
-            catch (System.Exception ex)
+            catch (System.Exception e)
             {
-
-                return Json(new object());
+                return AjaxErrorResponse.ErrorJsonResult("Errore in aggiunta Skill", e.Message);
             }
 
         }

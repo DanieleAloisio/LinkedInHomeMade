@@ -56,11 +56,14 @@ namespace LinkedInHomeMade.Controllers
                     }
                     else
                     {
-                        foreach (var error in result.Errors)
+                        if (result.Errors.Any())
                         {
-                            ModelState.AddModelError("", error.Description);
+                            foreach (var error in result.Errors)
+                            {
+                                ModelState.AddModelError("", error.Description);
+                            }
                         }
-                        ModelState.AddModelError(string.Empty, "Login non riuscito!");
+                        ModelState.AddModelError(string.Empty, "Registrazione non riuscita!");
                     }
                 }
                 else
@@ -88,20 +91,31 @@ namespace LinkedInHomeMade.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel user)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var result = await _signInManager.PasswordSignInAsync(user.Email, user.Password, user.Ricordami, false);
-
-                if (result.Succeeded)
+                if (ModelState.IsValid)
                 {
+                    var result = await _signInManager.PasswordSignInAsync(user.Email, user.Password, user.Ricordami, false);
 
-                    return RedirectToAction("Index", "Home");
+                    if (result.Succeeded)
+                    {
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Login non corretto");
+                    }
+
                 }
-
-                ModelState.AddModelError(string.Empty, "Login non corretto");
-
+                return View(user);
             }
-            return View(user);
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
         public async Task<IActionResult> Logout()

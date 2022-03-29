@@ -244,7 +244,7 @@
 			datatype: 'json',
 			headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
 			data: { tag: tag },
-			success: function (jqXHR, exception) {
+            success: function ({ msg, err }) {
 
 				$("#mdlAddSkill").modal("hide");
 

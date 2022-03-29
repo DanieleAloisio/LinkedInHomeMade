@@ -15,6 +15,7 @@ namespace Data
         public DbSet<Skills> Skills { get; set; }
         public DbSet<LogGitHub> LogGitHub { get; set; }
         public DbSet<Fans> Fans { get; set; }
+        public DbSet<LogMessage> Logs { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
