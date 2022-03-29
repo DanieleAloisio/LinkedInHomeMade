@@ -30,7 +30,6 @@ namespace DAL.Repositories
                          .Include(x => x.Follow).ThenInclude(x => x.FanUser)
                          .FirstOrDefault(x => x.Id == id);
         }
-
         public List<ApplicationUser> GetUsers()
         {
             return _dbSet.Include(x => x.Skills)

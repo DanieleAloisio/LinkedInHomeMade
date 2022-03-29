@@ -96,7 +96,6 @@ namespace LinkedInHomeMade.Controllers
             try
             {
                 var splittedTag = tag.Split(',');
-
                 if (splittedTag.Any())
                 {
                     var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
@@ -110,13 +109,16 @@ namespace LinkedInHomeMade.Controllers
                     }));
 
                     await _unitOfWork.SaveChangesAsync();
+                    return AjaxErrorResponse.DoneJsonResult("Nuova skill salvata");
+
                 }
 
                 return Json(new { status = true });
             }
             catch (System.Exception e)
             {
-                return AjaxErrorResponse.ErrorJsonResult("Errore in aggiunta Skill", e.Message);
+                _unitOfWork.LogRepository.SaveLog(e.Message, LogMessageType.Error, "AggiungiSkill");
+                return AjaxErrorResponse.ErrorJsonResult("Errore in aggiunta Skill");
             }
 
         }

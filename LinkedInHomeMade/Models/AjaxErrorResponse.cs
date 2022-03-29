@@ -4,10 +4,14 @@ namespace LinkedInHomeMade.Models
 {
     public static class AjaxErrorResponse
     {
-        public static JsonResult ErrorJsonResult(string message, string consoleLog)
+        public static JsonResult ErrorJsonResult(string message)
         {
-           return new JsonResult(new { message = message, log = consoleLog, error = "true" });
+            return new JsonResult(new { message = message, error = "true" });
+        }
+
+        public static JsonResult DoneJsonResult(string message)
+        {
+            return new JsonResult(new { message = message,  error = "false" });
         }
     }
-
 }

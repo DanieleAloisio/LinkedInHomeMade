@@ -51,6 +51,15 @@
             await Html.RenderPartialAsync("InserisciSkill", new SkillViewModel());
         }
 
+        @*todo centralizzare*@
+        <div class="row row gutters-sm ml-5 mt-2">
+            <div class="col-4">
+                <div id="alertTemplate" class="alert d-none" role="alert">
+                    <span id="messageAlertTemplate"> </span>
+                </div>
+            </div>
+        </div>
+
         <div id="dialog" style="overflow: hidden;">
             <div class="row gutters-sm col-12">
                 <div class="d-flex flex-column text-center col-5">
@@ -244,14 +253,33 @@
 			datatype: 'json',
 			headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
 			data: { tag: tag },
-            success: function ({ msg, err }) {
-
-				$("#mdlAddSkill").modal("hide");
-
-				location.reload();
-			}
+            success: function ({ message, error }) {
+                if (error == 'true') {
+                    showAlert(`${message}`, 'alert-danger')
+                }
+                else {
+                    showAlert(message, 'alert-success')
+                    $('#mdlAddSkill').modal('hide');
+                    //location.reload()
+                }
+            },
+            failure: function (response) {
+                showAlert('Impossibile aggiungere la Skill. Riprovare.', 'alert-danger')
+            }
 		});
-	});
+    });
+
+    function showAlert(message, alertBootstrap) {
+        let divAlert = $('#alertTemplate')
+        let messageAlert = $('#messageAlertTemplate')
+
+        divAlert.removeClass('d-none')
+        divAlert.addClass(alertBootstrap)
+
+        messageAlert.text(message)
+
+        divAlert.show()
+    }
 
 	$("#btnModifica").click(function () {
 
@@ -311,7 +339,6 @@
 	});
 
 	$('#OpenImgUpload').click(function () { $('#imgupload').trigger('click'); });
-
 
 	function readFile() {
 

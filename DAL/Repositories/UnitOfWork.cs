@@ -11,6 +11,7 @@ namespace DAL
         private readonly ApplicationDbContext _context;
 
         private IUserRepository userRepository;
+        private ILogRepository logRepository;
 
         public IUserRepository UserRepository
         {
@@ -19,6 +20,16 @@ namespace DAL
                 if (userRepository == null)
                     userRepository = new UserRepository(_context);
                 return userRepository;
+            }
+        }
+
+        public ILogRepository LogRepository
+        {
+            get
+            {
+                if (logRepository == null)
+                    logRepository = new LogRepository(_context);
+                return logRepository;
             }
         }
 
@@ -33,7 +44,6 @@ namespace DAL
             try
             {
                 return await _context.SaveChangesAsync();
-
             }
             catch (Exception)
             {
