@@ -161,12 +161,12 @@
 
             <div class="col-sm-8">
                 <div class="card h-100">
-                    <div class="card-body">
+                    <div class="card-body body-section-skills">
                         <div class="row">
                             <div class="col-11">
                                 <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Skill</i> Dev</h6>
                             </div>
-                            @if (Model.Skills?.Count < 3)
+                            @if (Model.Skills?.Count != 100)
                             {
                                 <div class="col-1">
                                     <button type="button" id="btnOpenModaleInseriscSkill" name="btnInserisciSkill" class="btn btn-outline-info btn-circle">
@@ -177,22 +177,16 @@
                                 </div>
                             }
                         </div>
-                        @if (Model.Skills.Any())
-                        {
-                            @foreach (var skill in Model.Skills)
+                        <div id="divSectionSkill">
+                            @if (Model.Skills.Any())
                             {
-                                <small>@skill.Tag</small>
-                                <div class="mb-3 " style="height: 5px">
-                                    <input class="col-10" type="range" id="@skill.Id" name="@skill.Id" min="10" max="100" value="@skill.Competenza">
-                                    <button data-value="@skill.Id" class="btn btn-outline-danger btn-circle deletable"><i class="fa fa-times"></i></button>
-                                </div>
-                            }
-                        }
-                        else
-                        {
-                            <h6 class="d-flex align-items-center mb-3">Inserisci le tue 3 migliori <i class="material-icons text-info ml-2">Skill</i> </h6>
-                        }
 
+                            }
+                            else
+                            {
+                                <h6 class="d-flex align-items-center mb-3">Inserisci le tue 3 migliori <i class="material-icons text-info ml-2">Skill</i> </h6>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
@@ -227,11 +221,19 @@
                 </div>
             </div>
         }
+
+        <div id="spinner" class="spinner-grow text-primary d-none" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
 </div>
 
 
 @section scripts {
     <script type="text/javascript">
+
+    $(document).ready(function () {
+        getSkills()
+    });
 
 	$("#btnOpenModaleModificaProfilo").click(function () {
 
@@ -243,33 +245,23 @@
 	   $('#mdlAddSkill').modal('show');
 	});
 
-	$('#btnInserisciSkill').click(function () {
-
-		var tag = $("#Tag").val()
-
-			$.ajax({
-			url: "@Url.Action("AggiungiSkill", "Home")",
-			type: "POST",
-			datatype: 'json',
-			headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
-			data: { tag: tag },
-            success: function ({ message, error }) {
-                if (error == 'true') {
-                    showAlert(`${message}`, 'alert-danger')
+        function aggiungiSkill(tag) {
+            return $.ajax({
+                url: "@Url.Action("AggiungiSkill", "Home")",
+                type: "POST",
+                datatype: 'json',
+                headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+                data: { tag: tag },
+                success: function ({ message, error }) {
+                    successAjax(message,error)
+                },
+                failure: function (response) {
+                    showAlert('Impossibile aggiungere la Skill. Riprovare.', 'alert-danger')
                 }
-                else {
-                    showAlert(message, 'alert-success')
-                    $('#mdlAddSkill').modal('hide');
-                    //location.reload()
-                }
-            },
-            failure: function (response) {
-                showAlert('Impossibile aggiungere la Skill. Riprovare.', 'alert-danger')
-            }
-		});
-    });
+            })
+        }
 
-    function showAlert(message, alertBootstrap) {
+        function showAlert(message, alertBootstrap) {
         let divAlert = $('#alertTemplate')
         let messageAlert = $('#messageAlertTemplate')
 
@@ -279,7 +271,22 @@
         messageAlert.text(message)
 
         divAlert.show()
-    }
+        }
+
+    $('#btnInserisciSkill').click(function () {
+
+            var tag = $("#Tag").val()
+
+            try {
+
+               aggiungiSkill(tag)
+               getSkills()
+
+            } catch (e) {
+                console.error(e)
+            }
+
+        })
 
 	$("#btnModifica").click(function () {
 
@@ -364,7 +371,8 @@
 	}
 
 	$('#imgupload').on('change', readFile);
-        $('#inputCV').change(function (e) {
+
+    $('#inputCV').change(function (e) {
             const file = this.files[0]
             if (file) {
 

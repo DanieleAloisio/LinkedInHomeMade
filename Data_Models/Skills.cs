@@ -21,4 +21,10 @@ namespace Data_Models
         public int Competenza { get; set; }
         public ICollection<ApplicationUser> Users { get; set; }
     }
+
+    public class SkillResponse
+    {
+        public string Id { get; set; }
+        public string Tag { get; set; }
+    }
 }

@@ -1,4 +1,38 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function successAjax(message, error) {
+    if (error == 'true') {
+        showAlert(`${message}`, 'alert-danger')
+    }
+    else {
+        showAlert(message, 'alert-success')
+        $('#mdlAddSkill').modal('hide');
+    }
+}
 
-// Write your JavaScript code.
+function getSkills() {
+    return $.ajax({
+        url: "/Home/GetSkills/",
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            if (data) {
+                data.forEach(element => $('#divSectionSkill')
+                    .append(`<small>${element.tag}</small><div class="mb-3 " style="height: 5px"> <input class="col-10" type="range" id="${element.id}" name="${element.id}" min="10" max="100" value="${element.tag}"><button data-value="${element.id}" class="btn btn-outline-danger btn-circle deletable"><i class="fa fa-times"></i></button></div>`));
+            }
+        },
+        beforeSend: function () {
+            appendSpinner('divSectionSkill')
+            $('#spinner').removeClass('d-none')
+        },
+        complete: function () {
+            appendSpinner('divSectionSkill')
+            $('#spinner').addClass('d-none')
+        },
+    });
+}
+
+function appendSpinner(idToAppendElement) {
+
+    let spinner = $('#spinner')
+    $(`#${idToAppendElement}`).append(spinner)
+}
+

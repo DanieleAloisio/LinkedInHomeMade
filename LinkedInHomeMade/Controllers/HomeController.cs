@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -118,7 +119,35 @@ namespace LinkedInHomeMade.Controllers
             catch (System.Exception e)
             {
                 _unitOfWork.LogRepository.SaveLog(e.Message, LogMessageType.Error, "AggiungiSkill");
-                return AjaxErrorResponse.ErrorJsonResult("Errore in aggiunta Skill");
+                return AjaxErrorResponse.ErrorJsonResult("Si è verificato un problema. Riprovare.");
+            }
+
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetSkills()
+        {
+            try
+            {
+                var userLogged = await _signInManager.UserManager.GetUserAsync(this.User);
+                var dbProfilo = _unitOfWork.UserRepository.GetUserById(userLogged.Id);
+
+                var skills = dbProfilo.Skills.ToList();
+                List<SkillResponse> response = new List<SkillResponse>();
+                
+                if (skills.Any())
+                {
+
+                    skills.ForEach(skill => response.Add(new SkillResponse() { Id = skill.Id.ToString(), Tag = skill.Tag }));
+                }
+
+                return Json(response);
+            }
+            catch (Exception e)
+            {
+
+                _unitOfWork.LogRepository.SaveLog(e.Message, LogMessageType.Error, "AggiungiSkill");
+                return AjaxErrorResponse.ErrorJsonResult("Si è verificato un problema. Riprovare.");
             }
 
         }
@@ -222,7 +251,6 @@ namespace LinkedInHomeMade.Controllers
             return RedirectToAction("Index");
         }
 
-
         [HttpPost]
         public async Task<JsonResult> UploadImage(string file)
         {
@@ -244,6 +272,5 @@ namespace LinkedInHomeMade.Controllers
                 throw ex;
             }
         }
-
     }
 }
