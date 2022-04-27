@@ -4,7 +4,7 @@
 }
 
 <div class="container">
-    <diSv class="main-body">
+    <div class="main-body">
         <!-- Modal Modifica Profilo-->
         <div class="modal fade" id="mdlModProf" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -177,16 +177,7 @@
                                 </div>
                             }
                         </div>
-                        <div id="divSectionSkill">
-                            @if (Model.Skills.Any())
-                            {
-
-                            }
-                            else
-                            {
-                                <h6 class="d-flex align-items-center mb-3">Inserisci le tue 3 migliori <i class="material-icons text-info ml-2">Skill</i> </h6>
-                            }
-                        </div>
+                        <div id="divSectionSkill"></div>
                     </div>
                 </div>
             </div>
@@ -222,134 +213,105 @@
             </div>
         }
 
-        <div id="spinner" class="spinner-grow text-primary d-none" role="status">
+        <div id="spinner" class="spinner-border text-primary" role="status">
             <span class="sr-only">Loading...</span>
         </div>
+    </div>
 </div>
 
 
 @section scripts {
     <script type="text/javascript">
 
-    $(document).ready(function () {
+    $(() => {
         getSkills()
+
+	    $("#btnOpenModaleModificaProfilo").click(function () {
+
+		    $('#mdlModProf').modal('show');
+	    });
+
+	    $("#btnOpenModaleInseriscSkill").click(function () {
+
+	       $('#mdlAddSkill').modal('show');
+	    });
+
+        $('#btnInserisciSkill').click(function () {
+
+                var tag = $("#Tag").val()
+
+                try {
+
+                    aggiungiSkill(tag) //TODO: ADD SKILL
+
+                } catch (e) {
+                    console.error(e)
+                }
+
+            })
+
+	    $("#btnModifica").click(function () {
+
+		    var nome = $("#Nome").val()
+		    var cognome = $("#Cognome").val()
+		    var professione = $("#Professione").val()
+		    var mobile = $("#Mobile").val()
+
+		    $.ajax({
+			    url: "@Url.Action("ModificaProfilo", "Home")",
+			    type: "POST",
+			    datatype: 'json',
+			    headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+			    data: { nome: nome,
+			    cognome: cognome,
+			    professione: professione,
+			    mobile: mobile },
+			    success: function (jqXHR, exception) {
+
+				    $("#mdlModProf").modal("hide");
+
+				    location.reload();
+			    },
+			    error: function(error) {
+				    console.error(error);
+			    }
+		    });
+	    });
+
+	    $('input[type=range]').click(function () {
+
+		    let idTag = $(this).attr('id');
+		    let valCompetenza = $(this).val();
+
+			    $.ajax({
+			    url: "@Url.Action("ModificaCompetenzaSkill", "Home")",
+			    type: "POST",
+			    datatype: 'json',
+			    headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+			    data: { idTag: idTag, valCompetenza: valCompetenza }
+		    });
+	    });
+
+        $('#OpenImgUpload').click(function () {
+            $('#imgupload').trigger('click');
+        });
+
+        $('#imgupload').change(readFile);
+
+        $('#inputCV').change(function (e) {
+                const file = this.files[0]
+                if (file) {
+
+                $(this).parent().find('label').text()
+
+                $('#pahtFile').text(file.name)
+                }
+        })
     });
 
-	$("#btnOpenModaleModificaProfilo").click(function () {
+    function readFile() {
 
-		$('#mdlModProf').modal('show');
-	});
-
-	$("#btnOpenModaleInseriscSkill").click(function () {
-
-	   $('#mdlAddSkill').modal('show');
-	});
-
-        function aggiungiSkill(tag) {
-            return $.ajax({
-                url: "@Url.Action("AggiungiSkill", "Home")",
-                type: "POST",
-                datatype: 'json',
-                headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
-                data: { tag: tag },
-                success: function ({ message, error }) {
-                    successAjax(message,error)
-                },
-                failure: function (response) {
-                    showAlert('Impossibile aggiungere la Skill. Riprovare.', 'alert-danger')
-                }
-            })
-        }
-
-        function showAlert(message, alertBootstrap) {
-        let divAlert = $('#alertTemplate')
-        let messageAlert = $('#messageAlertTemplate')
-
-        divAlert.removeClass('d-none')
-        divAlert.addClass(alertBootstrap)
-
-        messageAlert.text(message)
-
-        divAlert.show()
-        }
-
-    $('#btnInserisciSkill').click(function () {
-
-            var tag = $("#Tag").val()
-
-            try {
-
-               aggiungiSkill(tag)
-               getSkills()
-
-            } catch (e) {
-                console.error(e)
-            }
-
-        })
-
-	$("#btnModifica").click(function () {
-
-		var nome = $("#Nome").val()
-		var cognome = $("#Cognome").val()
-		var professione = $("#Professione").val()
-		var mobile = $("#Mobile").val()
-
-		$.ajax({
-			url: "@Url.Action("ModificaProfilo", "Home")",
-			type: "POST",
-			datatype: 'json',
-			headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
-			data: { nome: nome,
-			cognome: cognome,
-			professione: professione,
-			mobile: mobile },
-			success: function (jqXHR, exception) {
-
-				$("#mdlModProf").modal("hide");
-
-				location.reload();
-			},
-			error: function(error) {
-				console.error(error);
-			}
-		});
-	});
-
-	$('input[type=range]').click(function () {
-
-		let idTag = $(this).attr('id');
-		let valCompetenza = $(this).val();
-
-			$.ajax({
-			url: "@Url.Action("ModificaCompetenzaSkill", "Home")",
-			type: "POST",
-			datatype: 'json',
-			headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
-			data: { idTag: idTag, valCompetenza: valCompetenza }
-		});
-	});
-
-	$('.deletable').click(function() {
-
-		let idTag = $(this).data('value')
-
-			$.ajax({
-			url: "@Url.Action("EliminaCompetenzaSkill", "Home")",
-			type: "POST",
-			datatype: 'json',
-			headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
-			data: { idTag: idTag }
-		}).done(function() {
-				location.reload();
-		});
-	});
-
-	$('#OpenImgUpload').click(function () { $('#imgupload').trigger('click'); });
-
-	function readFile() {
-
-	  if (this.files && this.files[0]) {
+	    if (this.files && this.files[0]) {
 
 		var FR= new FileReader();
 
@@ -367,19 +329,51 @@
 		});
 
 		FR.readAsDataURL( this.files[0] );
-	  }
-	}
+	    }
+    }
 
-	$('#imgupload').on('change', readFile);
+    function addRemoveListener(e) {
 
-    $('#inputCV').change(function (e) {
-            const file = this.files[0]
-            if (file) {
+        let idTag = $(e.currentTarget).data('value')
 
-            $(this).parent().find('label').text()
+        $.ajax({
+            url: "@Url.Action("EliminaCompetenzaSkill", "Home")",
+            type: "POST",
+            datatype: 'json',
+            headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+            data: { idTag: idTag }
+        }).done(function () {
+            location.reload();
+        })
+    }
 
-            $('#pahtFile').text(file.name)
+    function aggiungiSkill(tag) {
+        return $.ajax({
+            url: "@Url.Action("AggiungiSkill", "Home")",
+            type: "POST",
+            datatype: 'json',
+            headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+            data: { tag: tag },
+            success: function ({ message, error }) {
+                successAjax(message, error)
+                location.reload()
+            },
+            failure: function (response) {
+                showAlert('Impossibile aggiungere la Skill. Riprovare.', 'alert-danger')
             }
-    })
+        })
+    }
+
+    function showAlert(message, alertBootstrap) {
+        let divAlert = $('#alertTemplate')
+        let messageAlert = $('#messageAlertTemplate')
+
+        divAlert.removeClass('d-none')
+        divAlert.addClass(alertBootstrap)
+
+        messageAlert.text(message)
+
+        divAlert.show()
+    }
     </script>
 }
