@@ -14,7 +14,13 @@ function getSkills() {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            if (data) {
+
+            $('small').remove('.titleSkill')
+            $('div').remove('.contentSkill')
+            $('p').remove('.noSkill')
+
+            if (data.length != 0) {
+
                 data.forEach(el => {
 
                     $('#divSectionSkill')
@@ -25,15 +31,20 @@ function getSkills() {
             }
             else {
                 $('#divSectionSkill')
-                    .append('<h6 class="d-flex align-items-center mb-3">Inserisci le tue 3 migliori <i class="material-icons text-info ml-2">Skill</i> </h6>')
+                    .append('<p class="d-flex align-items-center mb-3 noSkill">Inserisci le tue 3 migliori <i class="material-icons text-info ml-2">Skill</i> </p>')
             }
         },
         beforeSend: function () {
-            appendSpinner('divSectionSkill')
+            $('p').remove('.noSkill')
+            $("#divSectionSkill").children().hide()
+
+            appendSpinner('divSpinnervSectionSkill')
             $('#spinner').removeClass('d-none')
         },
         complete: function () {
-            appendSpinner('divSectionSkill')
+            $("#divSectionSkill").children().show()
+
+            appendSpinner('divSpinnervSectionSkill')
             $('#spinner').addClass('d-none')
         }
     });
@@ -46,8 +57,8 @@ function appendSpinner(idToAppendElement) {
 }
 
 var generateHtmlSkill = (element) => {
-    return `<small>${element.tag}</small>
-                        <div class="mb-3" style="height: 5px">
+    return `<small class="titleSkill">${element.tag}</small>
+                        <div class="mb-3 contentSkill" style="height: 5px">
                             <input class="col-10" type="range" id="${element.id}" name="${element.id}" min="10" max="100" value="${element.tag}">
                             <button data-value="${element.id}" class="btn btn-outline-danger btn-circle deletable"><i class="fa fa-times"></i></button>
                         </div>`
