@@ -17,27 +17,8 @@ function getSkills() {
             if (data) {
                 data.forEach(el => {
 
-                    //TODO: Metodo
-                    //let small = document.createElement('small')
-                    //small.innerText = element.tag
-
-                    //let div = document.createElement('div')
-                    //div.classList.add('mb-3')
-                    //div.style.height = '5px'
-
-                    //let input = document.createElement('input')
-                    //input.type = 'range'
-                    //input.id = element.id
-
-                    const creaElemento = (element) => {
-                        return `<small>${element.tag}</small>
-                        <div class="mb-3" style="height: 5px">
-                            <input class="col-10" type="range" id="${element.id}" name="${element.id}" min="10" max="100" value="${element.tag}">
-                            <button data-value="${element.id}" class="btn btn-outline-danger btn-circle deletable"><i class="fa fa-times"></i></button>
-                        </div>`}
-
                     $('#divSectionSkill')
-                        .append(creaElemento(el))
+                        .append(generateHtmlSkill(el))
                 });
 
                 $('.deletable').click(function (e) { addRemoveListener(e) });
@@ -62,5 +43,13 @@ function appendSpinner(idToAppendElement) {
 
     let spinner = $('#spinner')
     $(`#${idToAppendElement}`).append(spinner)
+}
+
+var generateHtmlSkill = (element) => {
+    return `<small>${element.tag}</small>
+                        <div class="mb-3" style="height: 5px">
+                            <input class="col-10" type="range" id="${element.id}" name="${element.id}" min="10" max="100" value="${element.tag}">
+                            <button data-value="${element.id}" class="btn btn-outline-danger btn-circle deletable"><i class="fa fa-times"></i></button>
+                        </div>`
 }
 

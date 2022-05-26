@@ -343,7 +343,7 @@
             headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
             data: { idTag: idTag }
         }).done(function () {
-            location.reload();
+            getSkills()
         })
     }
 
@@ -356,7 +356,7 @@
             data: { tag: tag },
             success: function ({ message, error }) {
                 successAjax(message, error)
-                location.reload()
+                getSkills();
             },
             failure: function (response) {
                 showAlert('Impossibile aggiungere la Skill. Riprovare.', 'alert-danger')
@@ -374,6 +374,7 @@
         messageAlert.text(message)
 
         divAlert.show()
-    }
+        }
+
     </script>
 }

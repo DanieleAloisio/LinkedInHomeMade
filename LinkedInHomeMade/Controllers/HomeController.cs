@@ -110,7 +110,7 @@ namespace LinkedInHomeMade.Controllers
                     }));
 
                     await _unitOfWork.SaveChangesAsync();
-                    return AjaxErrorResponse.DoneJsonResult("Nuova skill salvata");
+                    return AjaxResponse.DoneJsonResult("Nuova skill salvata");
 
                 }
 
@@ -119,7 +119,7 @@ namespace LinkedInHomeMade.Controllers
             catch (System.Exception e)
             {
                 _unitOfWork.LogRepository.SaveLog(e.Message, LogMessageType.Error, "AggiungiSkill");
-                return AjaxErrorResponse.ErrorJsonResult("Si è verificato un problema. Riprovare.");
+                return AjaxResponse.ErrorJsonResult("Si è verificato un problema. Riprovare.");
             }
 
         }
@@ -147,7 +147,7 @@ namespace LinkedInHomeMade.Controllers
             {
 
                 _unitOfWork.LogRepository.SaveLog(e.Message, LogMessageType.Error, "AggiungiSkill");
-                return AjaxErrorResponse.ErrorJsonResult("Si è verificato un problema. Riprovare.");
+                return AjaxResponse.ErrorJsonResult("Si è verificato un problema. Riprovare.");
             }
 
         }

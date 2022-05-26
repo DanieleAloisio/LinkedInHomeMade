@@ -52,11 +52,11 @@ namespace DAL
             }
         }
 
-        public async Task<int> Remove(object skill)
+        public async Task<int> Remove<T>(T entity)
         {
             try
             {
-                _context.Remove(skill);
+                _context.Remove(entity);
                 return await _context.SaveChangesAsync();
             }
             catch (Exception)
@@ -64,7 +64,6 @@ namespace DAL
 
                 throw;
             }
-
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace LinkedInHomeMade.Models
 {
-    public static class AjaxErrorResponse
+    public static class AjaxResponse
     {
         public static JsonResult ErrorJsonResult(string message)
         {
